@@ -1,9 +1,9 @@
-const User = require("..authModels/User");
-const Role = require("..authModels/Role");
+const User = require("../authModels/User");
+const Role = require("../authModels/Role");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const { validationResult } = require("express-validator");
-const { secret } = require("./config");
+const { secret } = require("../config");
 
 const generateAccessToken = (id, roles) => {
   const payload = {
@@ -66,6 +66,23 @@ class authController {
     } catch (e) {
       console.log(e);
       res.status(400).json({ message: "Registration error" });
+    }
+  }
+  async getUsers(req, res) {
+    try {
+      //   const userRole = new Role();
+      //   const adminRole = new Role({ value: "ADMIN" });
+      //   const docRole = new Role({ value: "DOCTOR" });
+
+      //   await userRole.save();
+      //   await adminRole.save();
+      //   await docRole.save();
+
+      const users = await User.find();
+
+      res.json(users);
+    } catch (e) {
+      console.log(e);
     }
   }
 }

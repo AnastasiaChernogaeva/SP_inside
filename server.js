@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 
 const mongoose = require("mongoose");
+const authRouter = require("./authRouter/authRouter");
 const { PORT, mongoUri } = require("./config");
 
 const cors = require("cors");
@@ -42,12 +43,12 @@ app.use(treatmentsRoutes);
 //       res.sendFile(path.resolve(_dirname, "client", "dist", "index.html"));
 //     });
 //   }
+app.use("/auth", authRouter);
+
 app.get("*", (req, res) => {
   res.send("Hey, everything is fine!");
 });
-app.use("/auth", (req, res) => {
-  res.send("Hey, everything is fine!");
-});
+
 app.listen(PORT, () =>
   console.log(`App listening at http://localhost:${PORT}`)
 );
