@@ -45,6 +45,9 @@ app.use(treatmentsRoutes);
 app.get("*", (req, res) => {
   res.send("Hey, everything is fine!");
 });
+app.use("/auth", (req, res) => {
+  res.send("Hey, everything is fine!");
+});
 app.listen(PORT, () =>
   console.log(`App listening at http://localhost:${PORT}`)
 );
