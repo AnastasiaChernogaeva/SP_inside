@@ -1,45 +1,41 @@
 <template>
 <div>
   <el-form
-    ref="login"
-    :model="login"
+    ref="registrate"
+    :model="registrate"
     :rules="rules"
     label-width="120px"
-    class="demo-login"
+    class="demo-registrate"
   >
     <el-form-item label="Username" prop="username">
-      <el-input v-model="login.username"></el-input>
+      <el-input v-model="registrate.username"></el-input>
     </el-form-item> 
 
     <el-form-item label="Password" prop="password">
         <el-input
-        v-model="login.password"
+        v-model="registrate.password"
         type="password"
         autocomplete="off"
       ></el-input>
     </el-form-item>       
-<!--     
+
     <el-form-item label="Doctor?" prop="doctor">
-      <el-switch v-model="login.doctor"></el-switch>
+      <el-switch v-model="registrate.doctor"></el-switch>
     </el-form-item>
-
-    <el-form-item label="Doctor?" prop="doctor">
-      <el-switch v-model="login.doctor"></el-switch>
-    </el-form-item> -->
-
+<!-- 
     <el-form-item label="Who are you?" prop="role">
-      <el-radio-group v-model="login.role">
+      <el-radio-group v-model="registrate.role">
         <el-radio label="DOCTOR"></el-radio>
         <el-radio label="ADMIN"></el-radio>
       </el-radio-group>
-    </el-form-item>
+    </el-form-item> -->
 
 
     <el-form-item>
-      <el-button type="primary" @click="submitForm('login')"
-        >Log in</el-button
+      <el-button type="primary" @click="submitForm('registrate')"
+        >Sign up</el-button
       >
-      <el-button @click="resetForm('login')">Reset</el-button>
+      <el-button @click="resetForm('registrate')">Reset</el-button>
     </el-form-item>
   </el-form>
 </div>
@@ -50,10 +46,11 @@ import { ElLoading } from 'element-plus'
 export default {
   data() {
     return {
-      login: {
+      registrate: {
         username: '',
         password:'',
-        role: 'USER',
+        doctor: false,
+        role: ''
       },
       rules: {
         username: [
@@ -80,7 +77,7 @@ export default {
         if (valid) {
           this.loading()
           // this.$store.commit('addNewFormInsidePetsBase', this.petForm )
-          this.$store.dispatch('auth/login', this.login, {root:true,})
+          this.$store.dispatch('auth/registrate', this.registrate, {root:true,})
 
         } else {
           console.log('error submit!!')
@@ -104,5 +101,10 @@ export default {
       }, 2000)
     },
   },
+  computed:{
+      role(){
+          return this.doctor?'DOCTOR':'USER'
+      }
+  }
 }
 </script>

@@ -35,25 +35,26 @@ export default {
       try {
         const { data } = await axios.post(
           `http://localhost:${PORT}/auth/login`,
-          //   { ...payload, retunrnSecureToken: true }
           { ...payload }
         );
-        commit("setToken", data);
-        commit("setActiveUser", payload.email);
+        console.log(data.token);
+        commit("setToken", data.token);
+        commit("setActiveUser", payload.username);
       } catch (e) {
         throw new Error();
       }
     },
     async registrate({ commit, dispatch }, payload) {
-      console.log("ppp", payload);
-      //   try {
-      //     const { data } = await axios.post(
-      //       `http://localhost:${PORT}/auth/login`,
-      //       { ...payload, retunrnSecureToken: false }
-      //     );
-      //   } catch (e) {
-      //     throw new Error();
-      //   }
+      try {
+        const { data } = await axios.post(
+          `http://localhost:${PORT}/auth/registration`,
+          {
+            ...payload,
+          }
+        );
+      } catch (e) {
+        throw new Error();
+      }
     },
   },
 };

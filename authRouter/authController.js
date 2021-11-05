@@ -15,6 +15,7 @@ const generateAccessToken = (id, roles) => {
 
 class authController {
   async registration(req, res) {
+    console.log("req", req.body);
     try {
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
@@ -23,8 +24,8 @@ class authController {
           .json({ message: "Errors during the registration", errors });
       }
 
-      // const { username, password, role } = req.body;
-      const { username, password } = req.body;
+      const { username, password, role } = req.body;
+      // const { username, password } = req.body;
 
       const candidate = await User.findOne({ username });
       if (candidate) {
@@ -34,9 +35,9 @@ class authController {
       }
 
       const hashPassword = bcrypt.hashSync(password, 7);
-      // const userRole = await Role.findOne({ value: role });
+      const userRole = await Role.findOne({ value: role });
       // const userRole = await Role.findOne({value:"ADMIN"})
-      const userRole = await Role.findOne({ value: "USER" });
+      // const userRole = await Role.findOne({ value: "USER" });
 
       const user = new User({
         username,
@@ -59,7 +60,13 @@ class authController {
       const { username, password } = req.body;
       const user = await User.findOne({ username });
       if (!user) {
-        return res.status(400).json({ message: "The password is incorrect" });
+        return res
+          .status(400)
+          .json({ messahe: `User ${username} wasn't found ` });
+      }
+      const validPassword = bcrypt.compareSync(password, user.password);
+      if (!validPassword) {
+        return res.status(400).json({ messsaje: "The password is incorrect" });
       }
 
       const token = generateAccessToken(user._id, user.roles);

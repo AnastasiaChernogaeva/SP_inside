@@ -4,6 +4,7 @@ import store from "../store";
 const NotFound = () => import("../layout/NotFound");
 // const Admin = () => import("../layout/AuthAdmin");
 const Auth = () => import("../layout/Auth");
+const Registrate = () => import("../layout/Registrate");
 const Main = () => import("../layout/Main");
 const NewPet = () => import("../views/NewPet");
 const PetInfo = () => import("../views/PetInfo");
@@ -14,6 +15,7 @@ const router = createRouter({
   routes: [
     { path: "/test", component: Test },
     // { path: "/admin", component: Admin },
+    { path: "/registration", component: Registrate },
     { path: "/auth", component: Auth, alias: "" },
     { path: "/main", component: Main },
 
