@@ -18,9 +18,20 @@
         autocomplete="off"
       ></el-input>
     </el-form-item>       
-    
+<!--     
     <el-form-item label="Doctor?" prop="doctor">
       <el-switch v-model="login.doctor"></el-switch>
+    </el-form-item>
+
+    <el-form-item label="Doctor?" prop="doctor">
+      <el-switch v-model="login.doctor"></el-switch>
+    </el-form-item> -->
+
+    <el-form-item label="Who are you?" prop="role">
+      <el-radio-group v-model="login.role">
+        <el-radio label="Doctor"></el-radio>
+        <el-radio label="Admin"></el-radio>
+      </el-radio-group>
     </el-form-item>
 
 
@@ -42,7 +53,7 @@ export default {
       login: {
         email: '',
         password:'',
-        doctor: false,
+        role: '',
       },
       rules: {
         email: [
@@ -59,6 +70,11 @@ export default {
             trigger: 'blur',
           },
         ],
+        role:[
+          {
+            default:'User'
+          }
+        ]
       },
     }
   },

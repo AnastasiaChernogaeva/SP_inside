@@ -23,7 +23,8 @@ class authController {
           .json({ message: "Errors during the registration", errors });
       }
 
-      const { username, password, role } = req.body;
+      // const { username, password, role } = req.body;
+      const { username, password } = req.body;
 
       const candidate = await User.findOne({ username });
       if (candidate) {
@@ -33,9 +34,9 @@ class authController {
       }
 
       const hashPassword = bcrypt.hashSync(password, 7);
-      const userRole = await Role.findOne({ value: role });
+      // const userRole = await Role.findOne({ value: role });
       // const userRole = await Role.findOne({value:"ADMIN"})
-      // const userRole = await Role.findOne({value:"USER"})
+      const userRole = await Role.findOne({ value: "USER" });
 
       const user = new User({
         username,

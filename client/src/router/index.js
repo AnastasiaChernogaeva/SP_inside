@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import store from "../store";
 
 const NotFound = () => import("../layout/NotFound");
-const Admin = () => import("../layout/AuthAdmin");
+// const Admin = () => import("../layout/AuthAdmin");
 const Auth = () => import("../layout/Auth");
 const Main = () => import("../layout/Main");
 const NewPet = () => import("../views/NewPet");
@@ -13,7 +13,7 @@ const router = createRouter({
   history: createWebHistory(),
   routes: [
     { path: "/test", component: Test },
-    { path: "/admin", component: Admin },
+    // { path: "/admin", component: Admin },
     { path: "/auth", component: Auth, alias: "" },
     { path: "/main", component: Main },
 
