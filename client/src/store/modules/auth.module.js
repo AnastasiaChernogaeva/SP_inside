@@ -31,26 +31,29 @@ export default {
   },
   actions: {
     async login({ commit, dispatch }, payload) {
+      console.log("ppp", payload);
       try {
         const { data } = await axios.post(
           `http://localhost:${PORT}/auth/login`,
-          { ...payload, retunrnSecureToken: true }
+          //   { ...payload, retunrnSecureToken: true }
+          { ...payload }
         );
-        commit("setToken", data.idToken);
-        commit("setActiveUser", data.email);
+        commit("setToken", data);
+        commit("setActiveUser", payload.email);
       } catch (e) {
         throw new Error();
       }
     },
     async registrate({ commit, dispatch }, payload) {
-      try {
-        const { data } = await axios.post(
-          `http://localhost:${PORT}/auth/login`,
-          { ...payload, retunrnSecureToken: false }
-        );
-      } catch (e) {
-        throw new Error();
-      }
+      console.log("ppp", payload);
+      //   try {
+      //     const { data } = await axios.post(
+      //       `http://localhost:${PORT}/auth/login`,
+      //       { ...payload, retunrnSecureToken: false }
+      //     );
+      //   } catch (e) {
+      //     throw new Error();
+      //   }
     },
   },
 };

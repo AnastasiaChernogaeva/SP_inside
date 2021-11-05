@@ -84,7 +84,9 @@ export default {
       this.$refs[formName].validate((valid) => {
         if (valid) {
           this.loading()
-          this.$store.commit('addNewFormInsidePetsBase', this.petForm )
+          // this.$store.commit('addNewFormInsidePetsBase', this.petForm )
+          this.$store.dispatch('auth/login', this.login, {root:true,})
+
         } else {
           console.log('error submit!!')
           return false
