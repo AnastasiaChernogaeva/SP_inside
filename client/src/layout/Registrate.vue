@@ -49,8 +49,8 @@ export default {
       registrate: {
         username: '',
         password:'',
-        doctor: false,
-        role: ''
+        // doctor: false,
+        // role: ''
       },
       rules: {
         username: [
@@ -77,7 +77,8 @@ export default {
         if (valid) {
           this.loading()
           // this.$store.commit('addNewFormInsidePetsBase', this.petForm )
-          this.$store.dispatch('auth/registrate', this.registrate, {root:true,})
+          const {username, password} = this.registrate
+          this.$store.dispatch('auth/registrate', {username, password, role:this.role}, {root:true,})
 
         } else {
           console.log('error submit!!')
@@ -101,9 +102,14 @@ export default {
       }, 2000)
     },
   },
+  // watch:{
+  //     doctor(){
+  //         this.role=this.doctor?'DOCTOR':'USER'
+  //     }
+  // }
   computed:{
       role(){
-          return this.doctor?'DOCTOR':'USER'
+          return this.doctor?'USER':'DOCTOR'
       }
   }
 }

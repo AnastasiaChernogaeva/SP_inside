@@ -1,7 +1,7 @@
 // import axios from "../../../axios/requests";
 // import store from "../../index";
 import axios from "axios";
-import { login } from "../../../../authRouter/authController";
+// import { login } from "../../../../authRouter/authController";
 const { PORT } = require("../../../../config");
 
 const TOKEN_KEY_CLIENT = "jwt-token-client";
@@ -11,13 +11,13 @@ export default {
   state() {
     return {
       token: localStorage.getItem(TOKEN_KEY_CLIENT),
-      activeUserEmail: localStorage.getItem("emailActiveUser"),
+      activeUser: localStorage.getItem("activeUser"),
     };
   },
   mutations: {
     setActiveUser(state, email) {
       state.activeUserEmail = email;
-      localStorage.setItem("emailActiveUser", email);
+      localStorage.setItem("activeUser", email);
     },
     setToken(state, token) {
       state.token = token;
@@ -26,18 +26,18 @@ export default {
     logout(state) {
       state.token = null;
       localStorage.removeItem(TOKEN_KEY_CLIENT);
-      localStorage.removeItem("emailActiveUser");
+      localStorage.removeItem("activeUser");
     },
   },
   actions: {
     async login({ commit, dispatch }, payload) {
-      console.log("ppp", payload);
+      // console.log("ppp", payload);
       try {
         const { data } = await axios.post(
           `http://localhost:${PORT}/auth/login`,
           { ...payload }
         );
-        console.log(data.token);
+        // console.log(data.token);
         commit("setToken", data.token);
         commit("setActiveUser", payload.username);
       } catch (e) {
