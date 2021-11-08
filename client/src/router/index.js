@@ -37,4 +37,6 @@ const router = createRouter({
   //   linkExactActiveClass: "el-link",
 });
 
+router.beforeEach((to, from, next) => {});
+
 export default router;
