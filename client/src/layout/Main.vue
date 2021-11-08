@@ -1,51 +1,118 @@
 <template>
+ <div> 
   <el-menu
-    :default-active="activeIndex"
+    :active="activeIndex"
     class="el-menu-demo"
     mode="horizontal"
     @select="handleSelect"
   >
-     <el-menu-item><h1>Vet</h1></el-menu-item>
-    <el-menu-item index="1">Processing Center</el-menu-item>
-    <el-sub-menu index="2">
+     <el-menu-item><h1>VetCl</h1></el-menu-item>
+    <!-- <el-menu-item index="1" @click="!dialogLogIn&&!dialogSignUp" >Main</el-menu-item> -->
+    <!-- <el-sub-menu index="2">
       <template #title>Workspace</template>
       <el-menu-item index="2-1">item one</el-menu-item>
       <el-menu-item index="2-2">item two</el-menu-item>
-      <el-menu-item index="2-3">item three</el-menu-item>
-      <el-sub-menu index="2-4">
+      <el-menu-item index="2-3">item three</el-menu-item> -->
+      <!-- <el-sub-menu index="2-4">
         <template #title>item four</template>
         <el-menu-item index="2-4-1">item one</el-menu-item>
         <el-menu-item index="2-4-2">item two</el-menu-item>
         <el-menu-item index="2-4-3">item three</el-menu-item>
       </el-sub-menu>
-    </el-sub-menu>
-    <el-menu-item index="3" disabled>Info</el-menu-item>
-    <el-menu-item index="4">Orders</el-menu-item>
+    </el-sub-menu> -->
+    <!-- <el-menu-item index="3" disabled>Info</el-menu-item> -->
+    <el-menu-item index="1" @click="dialogLogIn = true" @changedLI="close">Log In</el-menu-item>
+    <el-menu-item index="2" @click="dialogSignUp = true" @changedSU="close" >Sign Up</el-menu-item>
+
   </el-menu>
-  <!-- <div class="line"></div> -->
+
+  
+  <el-dialog v-model="dialogLogIn"  @closed="dialogLogIn=false"  title="Log In">
+      <auth></auth>
+  </el-dialog>
+
+    <el-dialog v-model="dialogSignUp"  @closed="dialogSignUp=false"  title="Sign Up">
+      <registrate></registrate>
+  </el-dialog>
+  </div>
   
 </template>
 
 <script>
-import { defineComponent, ref } from 'vue'
+import Auth from '../layout/Auth.vue'
+import Registrate from '../layout/Registrate.vue'
+// import { defineComponent, ref } from 'vue'
 
-export default defineComponent({
-  setup() {
-    const activeIndex = ref('1')
-    const activeIndex2 = ref('1')
-    const handleSelect = (key, keyPath) => {
-      console.log(key, keyPath)
-    }
+// export default defineComponent({
+//   setup() {
+//     const activeIndex = ref('1')
+//     const activeIndex2 = ref('1')
+//     const handleSelect = (key, keyPath) => {
+//       console.log(key, keyPath)
+//     }
+//     return {
+//       activeIndex,
+//       activeIndex2,
+//       handleSelect,
+//     }
+//   },
+// })
+
+export default {
+  
+  
+  emits:['changedLI', 'changedSU'],
+  components:{
+      auth:Auth,
+      registrate:Registrate,
+  },
+  data() {
+    Registrate
     return {
-      activeIndex,
-      activeIndex2,
-      handleSelect,
+        dialogLogIn:false,
+        dialogSignUp:false,
+        activeIndex:1
+
     }
   },
-})
+  methods:{
+      handleSelect(key, keyPath){
+          console.log(key, keyPath)
+        //   if()
+      }
+  },
+  watch:{
+      dialogLogIn(val){
+          console.log('dialogLogIn', val)
+          if(val===false){
+              this.$emit('changedLI')
+          }
+      },
+      dialogSignUp(val){
+          console.log('dialogSignUp',val)
+            if(val===false){
+              this.$emit('changedSU')
+          }
+          
+      }
+  }
+}
 </script>
 <style scoped>
 .el-menu--horizontal{
-        justify-content: space-around;
+        justify-content: space-evenly;
 }
+/* .is-not-active{
+        display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    height: 60
+px
+;
+    margin: 0;
+    border-bottom: 2
+px
+ solid transparent;
+    color: var(--el-menu-text-color);
+} */
 </style>

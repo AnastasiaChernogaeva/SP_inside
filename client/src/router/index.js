@@ -10,10 +10,13 @@ const NewPet = () => import("../views/NewPet");
 const PetInfo = () => import("../views/PetInfo");
 const Test = () => import("../test.vue");
 const Main = () => import("../layout/Main.vue");
+const TTTT = () => import("../TTTT.vue");
 
 const router = createRouter({
   history: createWebHistory(),
   routes: [
+    { path: "/0", component: TTTT },
+
     { path: "/test", component: Test },
     // { path: "/admin", component: Admin },
     { path: "/registration", component: Registrate },
