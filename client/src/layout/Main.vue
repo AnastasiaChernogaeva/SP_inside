@@ -1,112 +1,51 @@
 <template>
-<div>
-  <router-link to="/addNewOne" class="el-link" type="success">
-      <el-button type="success">
-          New Pet
-      </el-button>
-  </router-link>
-  <router-link to="/all" class="el-link" type="success">
-      <el-button type="success">
-        All Cards
-      </el-button>
-  </router-link>
-  <!-- <el-button type="danger" @click="close" :disabled="disabled"><router-link class="el-link" type="danger" to="/main"> Close all</router-link></el-button> -->
-
-  <!-- <hr> -->
-
-<!-- 
-  <div class="tabs">
-      <keep-alive >
-        <component  :is="currentTabComponent" :class=[{disabled:disabled},]>  </component>
-      </keep-alive>
-  </div> -->
-</div>
+  <el-menu
+    :default-active="activeIndex"
+    class="el-menu-demo"
+    mode="horizontal"
+    @select="handleSelect"
+  >
+     <el-menu-item><h1>Vet</h1></el-menu-item>
+    <el-menu-item index="1">Processing Center</el-menu-item>
+    <el-sub-menu index="2">
+      <template #title>Workspace</template>
+      <el-menu-item index="2-1">item one</el-menu-item>
+      <el-menu-item index="2-2">item two</el-menu-item>
+      <el-menu-item index="2-3">item three</el-menu-item>
+      <el-sub-menu index="2-4">
+        <template #title>item four</template>
+        <el-menu-item index="2-4-1">item one</el-menu-item>
+        <el-menu-item index="2-4-2">item two</el-menu-item>
+        <el-menu-item index="2-4-3">item three</el-menu-item>
+      </el-sub-menu>
+    </el-sub-menu>
+    <el-menu-item index="3" disabled>Info</el-menu-item>
+    <el-menu-item index="4">Orders</el-menu-item>
+  </el-menu>
+  <!-- <div class="line"></div> -->
+  
 </template>
 
 <script>
-// import NewPet from './views/NewPet.vue'
-// import PetInfo from './views/PetInfo.vue'
+import { defineComponent, ref } from 'vue'
 
-
-export default {
-//   components:{
-//     NewPet,
-//     PetInfo,
-//   },
-
-  data(){
-    return{
-      currentTabComponent:"",
-      addNewPet:false,
-      showAll:false,
-      disabled:true,
+export default defineComponent({
+  setup() {
+    const activeIndex = ref('1')
+    const activeIndex2 = ref('1')
+    const handleSelect = (key, keyPath) => {
+      console.log(key, keyPath)
+    }
+    return {
+      activeIndex,
+      activeIndex2,
+      handleSelect,
     }
   },
-
-//   methods:{
-//     // addNewPetFunc(){
-
-//     //   this.addNewPet=!this.addNewPet
-//     //   this.showAll=false
-
-//     //   this.currentTabComponent = "NewPet"
-
-//     // console.group("Inside Add New Pet Function!!!")
-//     //   console.log("Adding Pet :", this.addNewPet)
-//     //   console.log("Show all pets' cards :", this.showAll)
-//     // console.groupEnd()
-
-//       this.disabled = false
-//     },
-//     showAllFunc(){
-
-//       this.showAll=!this.showAll
-//       this.addNewPet=false
-
-//       this.currentTabComponent = "PetInfo"
-
-
-//     // console.group("Inside Show All Function!!!")
-//     //   console.log("Adding Pet :", this.addNewPet)
-//     //   console.log("Show all pets' cards :", this.showAll)
-//     // console.groupEnd()
-
-//       this.disabled = false
-//     },
-
-//     close(){
-//       if(!this.addNewPet&&!this.showAll){
-//         this.disabled = true
-//       }
-//       else{
-//         this.disabled = false
-//         this.addNewPet = false
-//         this.showAll = false
-
-//     // console.group("CLOSE ALL!!!")
-//     //     console.log("Adding Pet :", this.addNewPet)
-//     //     console.log("Show all pets' cards  :", this.showAll)
-//     // console.groupEnd()
-//       }
-//     }
-//   },
-
-  // mounted() {
-  //   this.$store.commit("loadPetCards")
-  // },
-  
-}
+})
 </script>
-
 <style scoped>
-div{
-  text-align: center;
-}
-.tabs{
-  margin-top:5%;
-}
-
-.disabled{
-  display:none,
+.el-menu--horizontal{
+        justify-content: space-around;
 }
 </style>
