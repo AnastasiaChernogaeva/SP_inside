@@ -45,12 +45,12 @@
 import { ElLoading } from 'element-plus'
 export default {
   data() {
-    return {
+    return { 
       registrate: {
         username: '',
         password:'',
-        // doctor: false,
-        // role: ''
+        doctor: false,
+     
       },
       rules: {
         username: [
@@ -77,8 +77,13 @@ export default {
         if (valid) {
           this.loading()
           // this.$store.commit('addNewFormInsidePetsBase', this.petForm )
+
           const {username, password} = this.registrate
           this.$store.dispatch('auth/registrate', {username, password, role:this.role}, {root:true,})
+
+          const rr = this.role
+          console.log('Reg',  {username, password, rr})
+
 
         } else {
           console.log('error submit!!')
@@ -102,14 +107,10 @@ export default {
       }, 2000)
     },
   },
-  // watch:{
-  //     doctor(){
-  //         this.role=this.doctor?'DOCTOR':'USER'
-  //     }
-  // }
   computed:{
       role(){
-          return this.doctor?'USER':'DOCTOR'
+        console.log(this.registrate)
+          return this.registrate.doctor?'DOCTOR':'USER'
       }
   }
 }
