@@ -6,9 +6,9 @@
     mode="horizontal"
     @select="handleSelect"
   >
-    <el-menu-item index="1">Processing Center</el-menu-item>
-    <el-menu-item index="3" unique-opened="true"	>Info</el-menu-item>
-    <el-menu-item index="4">Orders</el-menu-item>
+    <el-menu-item index="1" :class="{'is-active':false}">Processing Center</el-menu-item>
+    <el-menu-item index="3" unique-opened="true" :class="{'is-active':false}"	>Info</el-menu-item>
+    <el-menu-item index="4" :class="{'is-active':false}">Orders</el-menu-item>
   </el-menu>
   </div>
 </template>

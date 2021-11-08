@@ -1,5 +1,6 @@
 <template>
  <div> 
+
   <el-menu
     :active="activeIndex"
     class="el-menu-demo"
@@ -7,20 +8,6 @@
     @select="handleSelect"
   >
      <el-menu-item><h1>VetCl</h1></el-menu-item>
-    <!-- <el-menu-item index="1" @click="!dialogLogIn&&!dialogSignUp" >Main</el-menu-item> -->
-    <!-- <el-sub-menu index="2">
-      <template #title>Workspace</template>
-      <el-menu-item index="2-1">item one</el-menu-item>
-      <el-menu-item index="2-2">item two</el-menu-item>
-      <el-menu-item index="2-3">item three</el-menu-item> -->
-      <!-- <el-sub-menu index="2-4">
-        <template #title>item four</template>
-        <el-menu-item index="2-4-1">item one</el-menu-item>
-        <el-menu-item index="2-4-2">item two</el-menu-item>
-        <el-menu-item index="2-4-3">item three</el-menu-item>
-      </el-sub-menu>
-    </el-sub-menu> -->
-    <!-- <el-menu-item index="3" disabled>Info</el-menu-item> -->
     <el-menu-item index="1" @click="dialogLogIn = true" @changedLI="close">Log In</el-menu-item>
     <el-menu-item index="2" @click="dialogSignUp = true" @changedSU="close" >Sign Up</el-menu-item>
 
@@ -34,6 +21,12 @@
     <el-dialog v-model="dialogSignUp"  @closed="dialogSignUp=false"  title="Sign Up">
       <registrate></registrate>
   </el-dialog>
+
+    <user></user>
+
+
+
+
   </div>
   
 </template>
@@ -41,6 +34,9 @@
 <script>
 import Auth from '../layout/Auth.vue'
 import Registrate from '../layout/Registrate.vue'
+import MainUser from '../user/views/MainUser.vue'
+
+
 // import { defineComponent, ref } from 'vue'
 
 // export default defineComponent({
@@ -63,6 +59,7 @@ export default {
   
   emits:['changedLI', 'changedSU'],
   components:{
+      user:MainUser,
       auth:Auth,
       registrate:Registrate,
   },
