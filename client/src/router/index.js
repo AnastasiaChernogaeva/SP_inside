@@ -6,6 +6,7 @@ const NotFound = () => import("../layout/NotFound");
 const Main = () => import("../layout/Main.vue");
 
 const MainDoc = () => import("../doctor/layout/MainDoc");
+const Primary = () => import("../doctor/views/Primary");
 const NewPet = () => import("../doctor/views/NewPet");
 const PetInfo = () => import("../doctor/views/PetInfo");
 
@@ -26,18 +27,38 @@ const router = createRouter({
     // { path: "/registration", component: Registrate },
     // { path: "/auth", component: Auth, alias: "" },
 
-    { path: "/main", component: Main, alias: "" },
-    { path: "/main_admin", component: MainAdmin },
+    {
+      path: "/main",
+      component: Main,
+      alias: "",
+      meta: {
+        authAdmin: false,
+        authDoc: false,
+      },
+    },
+    {
+      path: "/main_admin",
+      component: MainAdmin,
+      meta: {
+        authAdmin: true,
+        authDoc: false,
+      },
+    },
     {
       path: "/main_doc",
       component: MainDoc,
-      // children: [
-      //   { path: "all", component: PetInfo },
-      //   { path: "addNewOne", component: NewPet },
-      // ],
+      children: [
+        { path: "primary", component: Primary, alias: "" },
+        { path: "all", component: PetInfo },
+        { path: "addNewOne", component: NewPet },
+      ],
+      meta: {
+        authAdmin: false,
+        authDoc: true,
+      },
     },
-    { path: "/main_doc/all", component: PetInfo },
-    { path: "/main_doc/addNewOne", component: NewPet },
+    // { path: "/main_doc/all", component: PetInfo },
+    // { path: "/main_doc/addNewOne", component: NewPet },
 
     { path: "/:notFound(.*)", component: NotFound },
   ],
@@ -47,14 +68,18 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
   try {
-    if (store.state.role === "DOCTOR") {
-      console.log("DOCTOR", store.state.role);
-    } else if (store.state.role === "ADMIN") {
-      console.log("ADMIN", store.state.role);
+    if (store.state.auth.role === "DOCTOR") {
+      next("/main_doc");
+      console.log("DOCTOR", store.state.auth.role);
+    } else if (store.state.auth.role === "ADMIN") {
+      next("/main_admin");
+
+      console.log("ADMIN", store.state.auth.role);
     } else {
       console.log("UUUUUUSER");
       next();
     }
+    // next("#");
   } catch (e) {
     console.log(e);
   }
