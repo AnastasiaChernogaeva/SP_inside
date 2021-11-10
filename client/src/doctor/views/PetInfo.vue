@@ -2,12 +2,12 @@
 <div>
     <div class="center">
     <el-button-group >
-       <router-link to="/addNewOne" class="el-link" type="primary">
+       <router-link to="/main_doc/addNewOne" class="el-link" type="primary">
             <el-button type="primary" icon="el-icon-arrow-left"
               >Add New Pet
             </el-button>
         </router-link>
-        <router-link to="/" class="el-link" type="primary">
+        <router-link to="/main_doc" class="el-link" type="primary">
         <el-button type="primary"
           >Main<i class="el-icon-arrow-right el-icon-right"></i
         ></el-button>

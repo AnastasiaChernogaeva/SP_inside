@@ -1,6 +1,5 @@
 <template>
  <div> 
-
   <el-menu
     :active="activeIndex"
     class="el-menu-demo"

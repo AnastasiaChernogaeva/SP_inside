@@ -13,9 +13,9 @@ const MainAdmin = () => import("../admin/layout/MainAdmin");
 
 // const Auth = () => import("../layout/Auth");
 // const Registrate = () => import("../layout/Registrate");
-// const Admin = () => import("../layout/AuthAdmin");
-// const Test = () => import("../test.vue");
-// const TTTT = () => import("../TTTT.vue");
+// const Admin = () => import("../trial_versions/AuthAdmin");
+// const Test = () => import("../trial_versions/test.vue");
+// const TTTT = () => import("../trial_versions/TTTT");
 
 const router = createRouter({
   history: createWebHistory(),
@@ -26,17 +26,42 @@ const router = createRouter({
     // { path: "/registration", component: Registrate },
     // { path: "/auth", component: Auth, alias: "" },
 
-    { path: "/main", component: Main },
+    { path: "/main", component: Main, alias: "" },
     { path: "/main_admin", component: MainAdmin },
-    { path: "/main_doc", component: MainDoc },
-    { path: "/all", component: PetInfo },
-    { path: "/addNewOne", component: NewPet },
+    {
+      path: "/main_doc",
+      component: MainDoc,
+      // children: [
+      //   { path: "all", component: PetInfo },
+      //   { path: "addNewOne", component: NewPet },
+      // ],
+    },
+    { path: "/main_doc/all", component: PetInfo },
+    { path: "/main_doc/addNewOne", component: NewPet },
+
     { path: "/:notFound(.*)", component: NotFound },
   ],
   //   linkActiveClass: "el-link",
   //   linkExactActiveClass: "el-link",
 });
 
-router.beforeEach((to, from, next) => {});
+// router.beforeEach((to, from, next) => {
+//   try {
+//     if(
+
+//     ){
+
+//     }
+//     else if(){
+
+//     }
+//     else {
+//       next()
+//     }
+
+//   } catch (e) {
+//     console.log(e);
+//   }
+// });
 
 export default router;

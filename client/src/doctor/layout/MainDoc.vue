@@ -1,11 +1,11 @@
 <template>
 <div>
-  <router-link to="/addNewOne" class="el-link" type="success">
+  <router-link to="/main_doc/addNewOne" class="el-link" type="success">
       <el-button type="success">
           New Pet
       </el-button>
   </router-link>
-  <router-link to="/all" class="el-link" type="success">
+  <router-link to="/main_doc/all" class="el-link" type="success">
       <el-button type="success">
         All Cards
       </el-button>
