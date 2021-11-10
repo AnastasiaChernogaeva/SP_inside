@@ -79,6 +79,12 @@ export default {
   },
   watch:{
       dialogLogIn(val){
+        if(val)
+        this.$route.path = "/logIn"
+        else
+        this.$route.path = "/"
+
+         console.log('NN', this.$route.path)
           console.log('dialogLogIn', val)
           if(val===false){
               this.$emit('changedLI')
