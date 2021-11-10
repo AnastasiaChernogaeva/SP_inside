@@ -12,6 +12,7 @@ export default {
     return {
       token: localStorage.getItem(TOKEN_KEY_CLIENT),
       activeUser: localStorage.getItem("activeUser"),
+      role: localStorage.getItem("role"),
     };
   },
   mutations: {
@@ -23,10 +24,15 @@ export default {
       state.token = token;
       localStorage.setItem(TOKEN_KEY_CLIENT, token);
     },
+    setRole(state, role) {
+      state.role = role;
+      localStorage.setItem("role", role);
+    },
     logout(state) {
       state.token = null;
       localStorage.removeItem(TOKEN_KEY_CLIENT);
       localStorage.removeItem("activeUser");
+      localStorage.removeItem("role");
     },
   },
   actions: {
@@ -37,9 +43,16 @@ export default {
           `http://localhost:${PORT}/auth/login`,
           { ...payload }
         );
-        // console.log(data.token);
+        // console.log(data);
+        // setRole;
+
+        // console.log(data);
+
         commit("setToken", data.token);
         commit("setActiveUser", payload.username);
+        // commit("setRole", data.role);
+
+        commit("setRole", payload.role);
       } catch (e) {
         throw new Error();
       }

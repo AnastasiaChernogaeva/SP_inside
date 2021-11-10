@@ -45,23 +45,19 @@ const router = createRouter({
   //   linkExactActiveClass: "el-link",
 });
 
-// router.beforeEach((to, from, next) => {
-//   try {
-//     if(
-
-//     ){
-
-//     }
-//     else if(){
-
-//     }
-//     else {
-//       next()
-//     }
-
-//   } catch (e) {
-//     console.log(e);
-//   }
-// });
+router.beforeEach((to, from, next) => {
+  try {
+    if (store.state.role === "DOCTOR") {
+      console.log("DOCTOR", store.state.role);
+    } else if (store.state.role === "ADMIN") {
+      console.log("ADMIN", store.state.role);
+    } else {
+      console.log("UUUUUUSER");
+      next();
+    }
+  } catch (e) {
+    console.log(e);
+  }
+});
 
 export default router;

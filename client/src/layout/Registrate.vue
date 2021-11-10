@@ -102,7 +102,7 @@ export default {
         background: 'rgba(0, 0, 0, 0.7)',
       })
       setTimeout(() => {
-        this.$router.push('/all')
+        this.$router.push('/main')
         loading.close()
       }, 2000)
     },

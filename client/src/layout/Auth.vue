@@ -81,7 +81,7 @@ export default {
           this.loading()
           // this.$store.commit('addNewFormInsidePetsBase', this.petForm )
           this.$store.dispatch('auth/login', this.login, {root:true,})
-          console.log('LogIn',  this.login)
+          // console.log('LogIn',  this.login)
 
         } else {
           console.log('error submit!!')
@@ -100,7 +100,7 @@ export default {
         background: 'rgba(0, 0, 0, 0.7)',
       })
       setTimeout(() => {
-        this.$router.push('/all')
+        this.$router.push('/main_doc/all')
         loading.close()
       }, 2000)
     },
