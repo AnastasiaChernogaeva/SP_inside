@@ -15,9 +15,21 @@ const PetInfo = () => import("../doctor/views/PetInfo");
 
 const MainAdmin = () => import("../admin/layout/MainAdmin");
 
+// const Auth = () => import("../layout/Auth");
+// const Register = () => import("../layout/Register");
+// const Admin = () => import("../trial_versions/AuthAdmin");
+// const Test = () => import("../trial_versions/test.vue");
+// const TTTT = () => import("../trial_versions/TTTT");
+
 const router = createRouter({
   history: createWebHistory(),
   routes: [
+    // { path: "/0", component: TTTT },
+    // { path: "/admin", component: Admin },
+    // { path: "/test", component: Test },
+    // { path: "/registration", component: Register },
+    // { path: "/auth", component: Auth, alias: "" },
+
     {
       path: "/main",
       component: Main,
@@ -62,9 +74,13 @@ const router = createRouter({
         auth: "DOCTOR",
       },
     },
+    // { path: "/main_doc/all", component: PetInfo },
+    // { path: "/main_doc/addNewOne", component: NewPet },
 
     { path: "/:notFound(.*)", component: NotFound },
   ],
+  //   linkActiveClass: "el-link",
+  //   linkExactActiveClass: "el-link",
 });
 
 router.beforeEach((to, from, next) => {

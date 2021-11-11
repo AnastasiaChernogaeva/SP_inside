@@ -43,15 +43,9 @@ export default {
           `http://localhost:${PORT}/auth/login`,
           { ...payload }
         );
-        // console.log(data);
-        // setRole;
-
-        // console.log(data);
 
         commit("setToken", data.token);
         commit("setActiveUser", payload.username);
-        // commit("setRole", data.role);
-
         commit("setRole", payload.role);
       } catch (e) {
         throw new Error();
