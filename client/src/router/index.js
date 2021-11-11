@@ -44,6 +44,12 @@ const router = createRouter({
     {
       path: "/main_admin",
       component: MainAdmin,
+      children: [
+        {
+          path: "",
+          component: () => import("../admin/views/Main"),
+        },
+      ],
       meta: {
         layout: "main_admin",
         auth: "ADMIN",
