@@ -74,6 +74,8 @@ const router = createRouter({
 
     { path: "/:notFound(.*)", component: NotFound },
   ],
+  linkActiveClass: "el-link",
+  linkExactActiveClass: "el-link",
 });
 
 router.beforeEach((to, from, next) => {
@@ -84,7 +86,17 @@ router.beforeEach((to, from, next) => {
     if (requireAuth && !currentUser) {
       next("/login?message=login");
     } else {
-      next();
+      if (/^\/main_doc/.test(to.path) && currentUser !== "DOCTOR") {
+        next("/main");
+      } else if (/^\/main_admin/.test(to.path) && currentUser !== "ADMIN") {
+        next("/main");
+      } else if (/users/.test(to.path) && currentUser !== "USERS") {
+        next("/main");
+      } else {
+        next();
+        // if (from.path) next(from.path);
+        // else next();
+      }
     }
 
     // if (requireAuth === "DOCTOR" && currentUser === "DOCTOR") {
