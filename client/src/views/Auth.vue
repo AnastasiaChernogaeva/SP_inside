@@ -90,7 +90,15 @@ export default {
         background: 'rgba(0, 0, 0, 0.7)',
       })
       setTimeout(() => {
-        this.$router.push('/main_doc/all')
+        if(this.$store.state.auth.role==="DOCTOR"){
+          this.$router.push('/main_doc/all')
+        }
+        else if(this.$store.state.auth.role==="ADMIN"){
+          this.$router.push('/main_admin')
+        }
+        else if(this.$store.state.auth.role==="USER"){
+          this.$router.push('/main/users')
+        }
         loading.close()
       }, 2000)
     },

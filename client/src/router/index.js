@@ -34,11 +34,14 @@ const router = createRouter({
         {
           path: "users",
           component: Users,
+          meta: {
+            authUser: true,
+          },
         },
       ],
       meta: {
         layout: "main",
-        auth: "",
+        auth: false,
       },
     },
     {
@@ -52,7 +55,7 @@ const router = createRouter({
       ],
       meta: {
         layout: "main_admin",
-        auth: "ADMIN",
+        auth: true,
       },
     },
     {
@@ -65,7 +68,7 @@ const router = createRouter({
       ],
       meta: {
         layout: "main_doc",
-        auth: "DOCTOR",
+        auth: true,
       },
     },
 
@@ -75,16 +78,27 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
   try {
-    // const currentUser = store.state.auth.role;
-    // const requireAuth = to.matched.some((record) => record.meta.auth);
-    // if (requireAuth === "DOCTOR" && currentUser === "DOCTOR") {
-    // } else if (requireAuth === "ADMIN" && currentUser === "ADMIN") {
-    // } else if (requireAuth === "USER" && currentUser === "USER") {
-    // } else if (requireAuth === "" && !currentUser) {
-    //   noxt("/main");
-    // }
+    const currentUser = store.state.auth.role;
+    const requireAuth = to.matched.some((record) => record.meta.auth);
 
-    next();
+    if (requireAuth && !currentUser) {
+      next("/login?message=login");
+    } else {
+      next();
+    }
+
+    // if (requireAuth === "DOCTOR" && currentUser === "DOCTOR") {
+    //   next("/main_doc");
+    // } else if (requireAuth && currentUser === "ADMIN") {
+    //   next("/main_admin");
+    // } else if (requireAuth && currentUser === "USER") {
+    //   next("/main/users");
+    //   // } else if (!requireAuth && !currentUser) {
+    //   // next("");
+
+    // } else {
+    //   next();
+    // }
 
     // if (store.state.auth.role === "DOCTOR") {
     //   const requireAuth = to.matched.some((record) => record.meta);
