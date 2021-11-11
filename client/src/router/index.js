@@ -86,21 +86,46 @@ router.beforeEach((to, from, next) => {
     if (requireAuth && !currentUser) {
       next("/login?message=login");
     } else {
-      // if (/^\/main_doc/.test(to.path) && currentUser !== "DOCTOR") {
-      //   // next("/main");
-      //   next(from.fullPath);
-      // } else if (/^\/main_admin/.test(to.path) && currentUser !== "ADMIN") {
-      //   // next("/main");
-      //   next(from.fullPath);
-      // } else if (/users/.test(to.path) && currentUser !== "USER") {
-      //   // next("/main");
-      //   next(from.fullPath);
-      // } else {
-      console.log(from);
-      next();
-      // if (from.path === "/") next();
-      // else next(from.path);
-      // }
+      if (/^\/main_doc/.test(to.path) && currentUser !== "DOCTOR") {
+        // next("/main");
+        switch (currentUser) {
+          case "ADMIN":
+            next("/main_admin");
+            break;
+          case "USER":
+            next("/main/users");
+            break;
+        }
+
+        // next(from.fullPath);
+      } else if (/^\/main_admin/.test(to.path) && currentUser !== "ADMIN") {
+        // next("/main");
+        switch (currentUser) {
+          case "DOCTOR":
+            next("/main_doc");
+            break;
+          case "USER":
+            next("/main/users");
+            break;
+        }
+        // next(from.fullPath);
+      } else if (/users/.test(to.path) && currentUser !== "USER") {
+        // next("/main");
+        switch (currentUser) {
+          case "ADMIN":
+            next("/main_admin");
+            break;
+          case "DOCTOR":
+            next("/main_doc");
+            break;
+        }
+        // next(from.fullPath);
+      } else {
+        // console.log(from);
+        next();
+        // if (from.path === "/") next();
+        // else next(from.path);
+      }
     }
 
     // if (requireAuth === "DOCTOR" && currentUser === "DOCTOR") {
