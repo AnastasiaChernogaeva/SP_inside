@@ -87,15 +87,21 @@ router.beforeEach((to, from, next) => {
       next("/login?message=login");
     } else {
       if (/^\/main_doc/.test(to.path) && currentUser !== "DOCTOR") {
-        next("/main");
+        // next("/main");
+        next(from.path);
       } else if (/^\/main_admin/.test(to.path) && currentUser !== "ADMIN") {
-        next("/main");
-      } else if (/users/.test(to.path) && currentUser !== "USERS") {
-        next("/main");
+        // next("/main");
+        next(from.path);
+      } else if (/users/.test(to.path) && currentUser !== "USER") {
+        // next("/main");
+        next(from.path);
+        // if (from.path === "/") next();
+        // else next(from.path);
       } else {
+        console.log(from);
         next();
-        // if (from.path) next(from.path);
-        // else next();
+        // if (from.path === "/") next();
+        // else next(from.path);
       }
     }
 
