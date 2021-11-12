@@ -74,7 +74,7 @@ export default {
     message(){
       console.log('Now')
       setTimeout(this.open, 3050)
-      this.$store.commit.
+      // this.$store.commit.
     }
   },
   computed:{
