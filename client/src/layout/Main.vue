@@ -23,7 +23,7 @@
   </div>
   <!-- <top/> -->
 <hr>
-  <router-view></router-view>
+  <router-view class="card container"></router-view>
 
 </div>
 
