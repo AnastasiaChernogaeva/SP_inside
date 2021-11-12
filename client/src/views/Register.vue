@@ -80,6 +80,7 @@ export default {
 
           const {username, password} = this.registrate
           this.$store.dispatch('auth/registrate', {username, password, role:this.role}, {root:true,})
+          // console.log(data)
 
           const rr = this.role
           // console.log('Reg',  {username, password, rr})

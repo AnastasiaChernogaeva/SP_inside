@@ -57,18 +57,19 @@ export default {
       }
     },
     async registrate({ commit, dispatch }, payload) {
-      try {
-        const response = await axios.post(
-          `http://localhost:${PORT}/auth/registration`,
-          {
-            ...payload,
-          }
-        );
-        // console.log(response.message);
-      } catch (e) {
-        console.log(e.message);
-        throw new Error();
-      }
+      // try {
+      const { data } = await axios.post(
+        `http://localhost:${PORT}/auth/registration`,
+        {
+          ...payload,
+        }
+      );
+
+      console.log(data.message);
+      // } catch (e) {
+      // console.log(e);
+      // throw new Error();
+      // }
     },
   },
 };

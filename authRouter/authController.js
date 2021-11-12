@@ -19,8 +19,8 @@ class authController {
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
         return res
-          .status(400)
-          .json({ message: "Errors during the registration", errors });
+          .json({ message: "Errors during the registration", errors })
+          .status(400);
       }
 
       const { username, password, role } = req.body;
@@ -28,8 +28,8 @@ class authController {
       const candidate = await User.findOne({ username });
       if (candidate) {
         return res
-          .status(400)
-          .json({ message: "User with such a username has already existed" });
+          .json({ message: "User with such a username has already existed" })
+          .status(400);
       }
 
       const hashPassword = bcrypt.hashSync(password, 7);
@@ -60,8 +60,8 @@ class authController {
       const user = await User.findOne({ username });
       if (!user) {
         return res
-          .status(400)
-          .json({ messahe: `User ${username} wasn't found ` });
+          .json({ messahe: `User ${username} wasn't found ` })
+          .status(400);
       }
       const validPassword = bcrypt.compareSync(password, user.password);
       if (!validPassword) {
