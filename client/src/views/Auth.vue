@@ -91,7 +91,7 @@ export default {
       })
       setTimeout(() => {
         if(this.$store.state.auth.role==="DOCTOR"){
-          this.$router.push('/main_doc/all')
+          this.$router.push('/main_doc')
         }
         else if(this.$store.state.auth.role==="ADMIN"){
           this.$router.push('/main_admin')

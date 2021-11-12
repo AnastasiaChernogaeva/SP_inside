@@ -1,5 +1,12 @@
 <template>
 <div>
+<div class="flex-container">
+  <h3>{{activeUser}}</h3>
+  <el-button type="danger" @click="logout">Log out</el-button>
+</div>
+
+<hr>
+<div class="center">
   <router-link to="/main_doc/addNewOne" class="el-link" type="success">
       <el-button type="success">
           New Pet
@@ -22,7 +29,7 @@
       </keep-alive>
   </div> -->
 </div>
-<el-button type="danger">Log out</el-button>
+</div>
 </template>
 
 <script>
@@ -44,6 +51,16 @@ export default {
       disabled:true,
     }
   },
+  computed:{
+    activeUser(){
+      return this.$store.state.auth.activeUser
+    }
+  },
+  methods:{
+    logout(){
+        this.$store.commit('auth/logout',{root:true})
+    }
+  }
 
 //   methods:{
 //     // addNewPetFunc(){
@@ -101,7 +118,7 @@ export default {
 </script>
 
 <style scoped>
-div{
+.center{
   text-align: center;
 }
 .tabs{
@@ -110,5 +127,9 @@ div{
 
 .disabled{
   display:none,
+}
+.flex-container{
+  display: flex;
+  justify-content: space-between;
 }
 </style>

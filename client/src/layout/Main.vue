@@ -1,6 +1,6 @@
 <template>
-<div class="container">
- <!-- <div >  -->
+<div>
+ <div class="container"> 
    <h1 class="label">VetCl</h1>
 <!-- :active="activeIndex" -->
   <el-menu    
@@ -20,9 +20,9 @@
 
 
   </el-menu>  
-  <!-- </div> -->
+  </div>
   <!-- <top/> -->
-
+<hr>
   <router-view></router-view>
 
 </div>
@@ -72,6 +72,7 @@ export default {
 .el-menu--horizontal{
         /* justify-content: space-evenly; */
         justify-content: flex-end;
+        border-bottom:none;
 
 }
 .label{
