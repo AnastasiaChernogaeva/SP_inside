@@ -10,6 +10,7 @@
         All Cards
       </el-button>
   </router-link>
+    
   <!-- <el-button type="danger" @click="close" :disabled="disabled"><router-link class="el-link" type="danger" to="/main"> Close all</router-link></el-button> -->
 
   <!-- <hr> -->
@@ -21,6 +22,7 @@
       </keep-alive>
   </div> -->
 </div>
+<el-button type="danger">Log out</el-button>
 </template>
 
 <script>

@@ -2,27 +2,26 @@
 <div class="container">
  <!-- <div >  -->
    <h1 class="label">VetCl</h1>
-
-  <!-- <el-menu
-    :active="activeIndex"
+<!-- :active="activeIndex" -->
+  <el-menu    
     class="el-menu-demo"
     mode="horizontal"
     @select="handleSelect"
-  > -->
+  >
      <!-- <el-menu-item disabled><h1>VetCl</h1></el-menu-item> -->
 
-        <!-- <el-menu-item index="1"><router-link to="login"> Log In</router-link></el-menu-item>
-        <el-menu-item index="2"><router-link to="signup">  Sign Up</router-link></el-menu-item>  -->
+        <el-menu-item index="1" v-if="!auth"><router-link to="login"> Log In</router-link></el-menu-item>
+        <el-menu-item index="2" v-if="!auth"><router-link to="signup">  Sign Up</router-link></el-menu-item> 
 
      
      
 
-     <!-- <el-menu-item index="1" v-if="activeUserRole" @click="logout"> Log Out</el-menu-item> -->
+     <el-menu-item index="1" v-if="auth" @click="logout"> Log Out</el-menu-item>
 
 
-  <!-- </el-menu>   -->
+  </el-menu>  
   <!-- </div> -->
-  <top/>
+  <!-- <top/> -->
 
   <router-view></router-view>
 
@@ -34,16 +33,17 @@
 </template>
 
 <script>
-import Top from '../components/Top.vue'
+// import Top from '../components/Top.vue'
 
 export default {
-  components:{
-    top:Top,
-  },
+  // components:{
+  //   top:Top,
+  // },
   data() {
     return {
         // activeUserRole:'',
-        activeIndex:1
+        // activeIndex:1,
+        // auth:false,
 
     }
   },
@@ -55,10 +55,17 @@ export default {
         this.$store.commit('auth/logout',{root:true})
       }
   },
-  mounted(){
-    this.activeUserRole = this.$store.state.auth.role
-    console.log(this.activeUserRole)
+  // mounted(){
+  //   if(this.$store.state.auth.role === "USER")
+  //   this.auth = true
+  //   // console.log(this.activeUserRole)
+  // },
+  computed:{
+    auth(){
+      return this.$store.state.auth.role==="USER"?true:false
+    }
   }
+  
 }
 </script>
 <style scoped>

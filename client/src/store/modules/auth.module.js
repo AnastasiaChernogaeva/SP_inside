@@ -1,6 +1,7 @@
 // import axios from "../../../axios/requests";
 // import store from "../../index";
 import axios from "axios";
+import router from "../../router";
 // import { login } from "../../../../authRouter/authController";
 const { PORT } = require("../../../../config");
 
@@ -30,9 +31,13 @@ export default {
     },
     logout(state) {
       state.token = null;
+      state.activeUser = null;
+      state.role = null;
+
       localStorage.removeItem(TOKEN_KEY_CLIENT);
       localStorage.removeItem("activeUser");
       localStorage.removeItem("role");
+      router.push("/");
     },
   },
   actions: {
