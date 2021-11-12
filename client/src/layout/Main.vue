@@ -44,6 +44,7 @@ export default {
         // activeUserRole:'',
         // activeIndex:1,
         // auth:false,
+        
 
     }
   },
@@ -63,7 +64,10 @@ export default {
   computed:{
     auth(){
       return this.$store.state.auth.role==="USER"?true:false
-    }
+    },
+    // message(){
+    //   return this.$store.state.auth.errors
+    // }
   }
   
 }

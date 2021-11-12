@@ -14,6 +14,7 @@ export default {
       token: localStorage.getItem(TOKEN_KEY_CLIENT),
       activeUser: localStorage.getItem("activeUser"),
       role: localStorage.getItem("role"),
+      errors: [],
     };
   },
   mutations: {
@@ -38,6 +39,9 @@ export default {
       localStorage.removeItem("activeUser");
       localStorage.removeItem("role");
       router.push("/");
+    },
+    setErrors(state, error) {
+      state.errors.push(error);
     },
   },
   actions: {
