@@ -64,7 +64,7 @@ export default {
             ...payload,
           }
         );
-        // console.log(response);
+        // console.log(response.message);
       } catch (e) {
         console.log(e.message);
         throw new Error();
