@@ -49,7 +49,7 @@ export default {
   },
   methods:{
       handleSelect(key, keyPath){
-          console.log(key, keyPath)
+          // console.log(key, keyPath)
       },
       logout(){
         this.$store.commit('auth/logout',{root:true})

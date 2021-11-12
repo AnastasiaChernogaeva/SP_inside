@@ -82,7 +82,7 @@ export default {
           this.$store.dispatch('auth/registrate', {username, password, role:this.role}, {root:true,})
 
           const rr = this.role
-          console.log('Reg',  {username, password, rr})
+          // console.log('Reg',  {username, password, rr})
 
 
         } else {
@@ -109,7 +109,7 @@ export default {
   },
   computed:{
       role(){
-        console.log(this.registrate)
+        // console.log(this.registrate)
           return this.registrate.doctor?'DOCTOR':'USER'
       }
   }
