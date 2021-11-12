@@ -1,6 +1,6 @@
 <template>
 <div>
- <div class="container"> 
+ <div class="container">   
    <h1 class="label">VetCl</h1>
 <!-- :active="activeIndex" -->
   <el-menu    
@@ -22,6 +22,7 @@
   </el-menu>  
   </div>
   <!-- <top/> -->
+
 <hr>
   <router-view class="card container"></router-view>
 
@@ -33,6 +34,7 @@
 </template>
 
 <script>
+import { ElMessage } from 'element-plus'
 // import Top from '../components/Top.vue'
 
 export default {
@@ -44,7 +46,7 @@ export default {
         // activeUserRole:'',
         // activeIndex:1,
         // auth:false,
-        
+        // message: computed(()=> this.$store.state.auth.error)
 
     }
   },
@@ -54,6 +56,13 @@ export default {
       },
       logout(){
         this.$store.commit('auth/logout',{root:true})
+      },
+      open(){
+        ElMessage({
+        showClose: true,
+        message: this.message,
+        type: 'error',
+      })
       }
   },
   // mounted(){
@@ -61,13 +70,20 @@ export default {
   //   this.auth = true
   //   // console.log(this.activeUserRole)
   // },
+  watch:{
+    message(){
+      console.log('Now')
+      setTimeout(this.open, 3050)
+      this.$store.commit.
+    }
+  },
   computed:{
     auth(){
       return this.$store.state.auth.role==="USER"?true:false
     },
-    // message(){
-    //   return this.$store.state.auth.errors
-    // }
+    message(){
+      return this.$store.state.auth.error
+    }
   }
   
 }

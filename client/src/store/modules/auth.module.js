@@ -14,7 +14,7 @@ export default {
       token: localStorage.getItem(TOKEN_KEY_CLIENT),
       activeUser: localStorage.getItem("activeUser"),
       role: localStorage.getItem("role"),
-      errors: [],
+      error: "",
     };
   },
   mutations: {
@@ -41,7 +41,7 @@ export default {
       router.push("/");
     },
     setErrors(state, error) {
-      state.errors.push(error);
+      state.error = error;
     },
   },
   actions: {
@@ -69,7 +69,8 @@ export default {
         }
       );
 
-      console.log(data.message);
+      commit("setErrors", data.message);
+      // console.log(data.message);
       // } catch (e) {
       // console.log(e);
       // throw new Error();
