@@ -40,8 +40,11 @@ export default {
       localStorage.removeItem("role");
       router.push("/");
     },
-    setErrors(state, error) {
+    setError(state, error) {
       state.error = error;
+    },
+    deleteError(state) {
+      state.error = "";
     },
   },
   actions: {
@@ -69,7 +72,7 @@ export default {
         }
       );
 
-      commit("setErrors", data.message);
+      commit("setError", data.message);
       // console.log(data.message);
       // } catch (e) {
       // console.log(e);

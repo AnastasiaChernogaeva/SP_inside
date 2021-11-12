@@ -72,9 +72,15 @@ export default {
   // },
   watch:{
     message(){
-      console.log('Now')
-      setTimeout(this.open, 3050)
-      // this.$store.commit.
+      if(this.message!=''){
+        setTimeout(()=>{
+        this.open()
+        this.$store.commit('auth/deleteError',{root:true})
+       }, 3050)
+      }
+      // console.log('MMM',this.message)
+      
+      
     }
   },
   computed:{
