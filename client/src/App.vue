@@ -25,6 +25,9 @@ a{
   box-shadow: 2px 3px 10px rgba(0, 0, 0, 0.2);
   background: #fff;
 }
+.center{
+  text-align: center;
+}
 
 /* body {
   font-family: Inter, Roboto, Oxygen, Fira Sans, Helvetica Neue, sans-serif;

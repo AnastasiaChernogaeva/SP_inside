@@ -1,7 +1,7 @@
 <template>
 <div class="container card">
 <div class="flex-container">
-  <h3>{{$store.state.auth.activeUser}}</h3>
+  <h3>{{activeUser}}</h3>
   <el-button type="danger" @click="logout">Log out</el-button>
 </div>
 
@@ -49,14 +49,14 @@ export default {
       addNewPet:false,
       showAll:false,
       disabled:true,
-      activeUser:'',
+      activeUser:localStorage.getItem('activeUser'),
     }
   },
-  computed:{
-    activeUser(){
-      return this.$store.state.auth.activeUser
-    }
-  },
+  // computed:{
+  //   activeUser(){
+  //     return this.$store.state.auth.activeUser
+  //   }
+  // },
   // mounted(){
   //   console.log('hey', this.$store.state.auth.activeUser)
   //   console.log('heyhey', this.activeUser)
@@ -125,9 +125,7 @@ export default {
 </script>
 
 <style scoped>
-.center{
-  text-align: center;
-}
+
 .tabs{
   margin-top:5%;
 }
