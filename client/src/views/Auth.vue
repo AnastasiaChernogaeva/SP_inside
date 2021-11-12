@@ -100,7 +100,7 @@ export default {
           this.$router.push('/main/users')
         }
         loading.close()
-      }, 2000)
+      }, 3000)
     },
   },
 }

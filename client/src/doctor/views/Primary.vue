@@ -1,7 +1,7 @@
 <template>
-<div>
+<div class="container card">
 <div class="flex-container">
-  <h3>{{activeUser}}</h3>
+  <h3>{{$store.state.auth.activeUser}}</h3>
   <el-button type="danger" @click="logout">Log out</el-button>
 </div>
 
@@ -49,6 +49,7 @@ export default {
       addNewPet:false,
       showAll:false,
       disabled:true,
+      activeUser:'',
     }
   },
   computed:{
@@ -56,6 +57,12 @@ export default {
       return this.$store.state.auth.activeUser
     }
   },
+  // mounted(){
+  //   console.log('hey', this.$store.state.auth.activeUser)
+  //   console.log('heyhey', this.activeUser)
+
+  //   // this.activeUser = this.$store.state.auth.activeUser
+  // },
   methods:{
     logout(){
         this.$store.commit('auth/logout',{root:true})
