@@ -52,10 +52,12 @@ export default {
       const { data } = await axios.post(`http://localhost:${PORT}/auth/login`, {
         ...payload,
       });
+      // console.log("data message", data.message);
+      // console.log("data message boolean", !!data.message);
 
-      if (data.message !== "") {
+      if (!!data.message) {
         commit("setError", data.message);
-      } else {
+      } else if (!data.message) {
         commit("setToken", data.token);
         commit("setActiveUser", payload.username);
         commit("setRole", payload.role);

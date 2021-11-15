@@ -9,9 +9,11 @@
     @select="handleSelect"
   >
   <!-- @click="closeInfo@click="closeInfo@click="showInfo" -->
-        <el-menu-item index="0"><router-link to="main"> Main </router-link></el-menu-item>
-        <el-menu-item index="1" v-if="!auth" ><router-link to="login"> Log In</router-link></el-menu-item>
-        <el-menu-item index="2" v-if="!auth" ><router-link to="signup">  Sign Up</router-link></el-menu-item>   
+        <!-- <router-link to="main" class="el-menu-item" role="menuitem" index="1"  data-v-269c9956=""> Main </router-link> -->
+
+        <router-link to="main"><el-menu-item index="0"> Main </el-menu-item></router-link>
+        <router-link to="login"><el-menu-item index="1" v-if="!auth" @click="$route.path=='/login'?true:false"> Log In</el-menu-item></router-link>
+        <router-link to="signup"><el-menu-item index="2" v-if="!auth" @click="$route.path=='/signup'?true:false">  Sign Up</el-menu-item>  </router-link> 
      
         <el-menu-item index="1" v-if="auth" @click="logout"> Log Out</el-menu-item>
   </el-menu>  
@@ -94,7 +96,12 @@ export default {
           break
 
       }
-      }
+      },
+      // route(){
+      //   switch(this.$route.path){
+      //     case 
+      //   }
+      // }
 
     }
   // },

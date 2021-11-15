@@ -56,8 +56,14 @@ class authController {
   }
   async login(req, res) {
     try {
-      const { username, password } = req.body;
+      const { username, password, role } = req.body;
       const user = await User.findOne({ username });
+
+      if (user.roles[0] !== role) {
+        return res
+          .json({ message: `User "${username}" wasn't found ` })
+          .status(400);
+      }
       if (!user) {
         return res
           .json({ message: `User "${username}" wasn't found ` })
