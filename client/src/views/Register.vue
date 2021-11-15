@@ -103,15 +103,28 @@ export default {
         background: 'rgba(0, 0, 0, 0.7)',
       })
       setTimeout(() => {
-        this.$router.push('/main')
+        if(this.message){
+           this.registrate = {
+              username: '',
+              password:'',
+              doctor: false,
+           }
+        }
+        else{
+           this.$router.push('/main')
+        }       
         loading.close()
       }, 2000)
     },
   },
+  
   computed:{
       role(){
         // console.log(this.registrate)
           return this.registrate.doctor?'DOCTOR':'USER'
+      },
+      message(){
+        return this.$store.state.auth.error
       }
   }
 }

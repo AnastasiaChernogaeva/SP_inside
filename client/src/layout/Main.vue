@@ -2,57 +2,49 @@
 <div>
  <div class="container">   
    <h1 class="label">VetCl</h1>
-<!-- :active="activeIndex" -->
-  <el-menu    
+  <el-menu  
+    :default-active="activeIndex" 
     class="el-menu-demo"
     mode="horizontal"
     @select="handleSelect"
   >
-     <!-- <el-menu-item disabled><h1>VetCl</h1></el-menu-item> -->
-
-        <el-menu-item index="1" v-if="!auth"><router-link to="login"> Log In</router-link></el-menu-item>
-        <el-menu-item index="2" v-if="!auth"><router-link to="signup">  Sign Up</router-link></el-menu-item> 
-
+        <el-menu-item index="0" @click="showInfo" > Main</el-menu-item>
+        <el-menu-item index="1" v-if="!auth" @click="closeInfo"><router-link to="login"> Log In</router-link></el-menu-item>
+        <el-menu-item index="2" v-if="!auth" @click="closeInfo"><router-link to="signup">  Sign Up</router-link></el-menu-item>   
      
-     
-
-     <el-menu-item index="1" v-if="auth" @click="logout"> Log Out</el-menu-item>
-
-
+        <el-menu-item index="1" v-if="auth" @click="logout"> Log Out</el-menu-item>
   </el-menu>  
   </div>
-  <!-- <top/> -->
-
-<hr>
-  <router-view class="card container"></router-view>
-
-</div>
-
-
-
-  
+  <hr>
+  <router-view class="card container" v-if="!info"></router-view>
+  <mainInfo v-if="info"></mainInfo>
+</div>  
 </template>
 
+
 <script>
+import Info from '../views/Info'
 import { ElMessage } from 'element-plus'
-// import Top from '../components/Top.vue'
 
 export default {
-  // components:{
-  //   top:Top,
-  // },
+  components:{
+    mainInfo:Info,
+  },
   data() {
     return {
-        // activeUserRole:'',
-        // activeIndex:1,
-        // auth:false,
-        // message: computed(()=> this.$store.state.auth.error)
-
+      // info:true,
+      activeIndex:'0',
     }
   },
   methods:{
+      showInfo(){
+        this.$router.push('/main')
+        this.info = true
+      },
+      closeInfo(){
+        this.info = false
+      },
       handleSelect(key, keyPath){
-          // console.log(key, keyPath)
       },
       logout(){
         this.$store.commit('auth/logout',{root:true})
@@ -65,22 +57,14 @@ export default {
       })
       }
   },
-  // mounted(){
-  //   if(this.$store.state.auth.role === "USER")
-  //   this.auth = true
-  //   // console.log(this.activeUserRole)
-  // },
   watch:{
     message(){
       if(this.message!=''){
         setTimeout(()=>{
         this.open()
         this.$store.commit('auth/deleteError',{root:true})
-       }, 3050)
+       }, 2025)
       }
-      // console.log('MMM',this.message)
-      
-      
     }
   },
   computed:{
@@ -89,8 +73,21 @@ export default {
     },
     message(){
       return this.$store.state.auth.error
-    }
-  }
+    },
+    info(){
+      if(this.$route.path == '/main' || this.$route.path == '/' ){
+        // this.activeIndex = '0'
+        return true
+      }
+      else{
+        // switch('')
+        return false
+      }
+    },
+    // activeIndex(){
+
+    // }
+  },
   
 }
 </script>
