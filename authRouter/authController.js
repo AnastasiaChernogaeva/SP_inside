@@ -51,7 +51,7 @@ class authController {
       });
     } catch (e) {
       console.log(e);
-      res.status(400).json({ message: "Registration error" });
+      res.json({ message: "Registration error" }).status(400);
     }
   }
   async login(req, res) {
@@ -60,19 +60,19 @@ class authController {
       const user = await User.findOne({ username });
       if (!user) {
         return res
-          .json({ messahe: `User ${username} wasn't found ` })
+          .json({ message: `User "${username}" wasn't found ` })
           .status(400);
       }
       const validPassword = bcrypt.compareSync(password, user.password);
       if (!validPassword) {
-        return res.status(400).json({ messsaje: "The password is incorrect" });
+        return res.json({ message: "The password is incorrect" }).status(400);
       }
 
       const token = generateAccessToken(user._id, user.roles);
       return res.json({ token });
     } catch (e) {
       console.log(e);
-      res.status(400).json({ message: "Registration error" });
+      res.json({ message: "Registration error" }).status(400);
     }
   }
   async getUsers(req, res) {

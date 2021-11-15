@@ -90,6 +90,14 @@ export default {
         background: 'rgba(0, 0, 0, 0.7)',
       })
       setTimeout(() => {
+        if(this.message){
+           this.login = {
+              username: '',
+              password:'',
+              role: 'USER',
+           }
+        }
+        else{
         if(this.$store.state.auth.role==="DOCTOR"){
           this.$router.push('/main_doc')
         }
@@ -99,10 +107,17 @@ export default {
         else if(this.$store.state.auth.role==="USER"){
           this.$router.push('/main/users')
         }
+        }
         loading.close()
-      }, 3000)
+      }, 2000)
     },
   },  
+  
+  computed:{
+      message(){
+        return this.$store.state.auth.error
+      }
+  }
 }
 </script>
 

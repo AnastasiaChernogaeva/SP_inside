@@ -49,22 +49,19 @@ export default {
   },
   actions: {
     async login({ commit, dispatch }, payload) {
-      // console.log("ppp", payload);
-      try {
-        const { data } = await axios.post(
-          `http://localhost:${PORT}/auth/login`,
-          { ...payload }
-        );
+      const { data } = await axios.post(`http://localhost:${PORT}/auth/login`, {
+        ...payload,
+      });
 
+      if (data.message !== "") {
+        commit("setError", data.message);
+      } else {
         commit("setToken", data.token);
         commit("setActiveUser", payload.username);
         commit("setRole", payload.role);
-      } catch (e) {
-        throw new Error();
       }
     },
     async registrate({ commit, dispatch }, payload) {
-      // try {
       const { data } = await axios.post(
         `http://localhost:${PORT}/auth/registration`,
         {
@@ -73,11 +70,6 @@ export default {
       );
 
       commit("setError", data.message);
-      // console.log(data.message);
-      // } catch (e) {
-      // console.log(e);
-      // throw new Error();
-      // }
     },
   },
 };
