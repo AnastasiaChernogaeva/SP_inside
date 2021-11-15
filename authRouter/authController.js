@@ -78,7 +78,7 @@ class authController {
       return res.json({ token });
     } catch (e) {
       console.log(e);
-      res.json({ message: "Registration error" }).status(400);
+      res.json({ message: "Login error" }).status(400);
     }
   }
   async getUsers(req, res) {
