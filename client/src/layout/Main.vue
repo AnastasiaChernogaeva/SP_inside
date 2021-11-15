@@ -8,9 +8,10 @@
     mode="horizontal"
     @select="handleSelect"
   >
-        <el-menu-item index="0" @click="showInfo" > Main</el-menu-item>
-        <el-menu-item index="1" v-if="!auth" @click="closeInfo"><router-link to="login"> Log In</router-link></el-menu-item>
-        <el-menu-item index="2" v-if="!auth" @click="closeInfo"><router-link to="signup">  Sign Up</router-link></el-menu-item>   
+  <!-- @click="closeInfo@click="closeInfo@click="showInfo" -->
+        <el-menu-item index="0"><router-link to="main"> Main </router-link></el-menu-item>
+        <el-menu-item index="1" v-if="!auth" ><router-link to="login"> Log In</router-link></el-menu-item>
+        <el-menu-item index="2" v-if="!auth" ><router-link to="signup">  Sign Up</router-link></el-menu-item>   
      
         <el-menu-item index="1" v-if="auth" @click="logout"> Log Out</el-menu-item>
   </el-menu>  
@@ -33,17 +34,10 @@ export default {
   data() {
     return {
       // info:true,
-      activeIndex:'0',
+      // activeIndex:'0',
     }
   },
   methods:{
-      showInfo(){
-        this.$router.push('/main')
-        this.info = true
-      },
-      closeInfo(){
-        this.info = false
-      },
       handleSelect(key, keyPath){
       },
       logout(){
@@ -76,18 +70,34 @@ export default {
     },
     info(){
       if(this.$route.path == '/main' || this.$route.path == '/' ){
-        // this.activeIndex = '0'
         return true
       }
       else{
-        // switch('')
         return false
       }
     },
-    // activeIndex(){
+    activeIndex(){
+      switch(this.$route.path){
+        case '/':
+          return '0'
+          break
+        case '/main':
+          return '0'
+          break
 
-    // }
-  },
+        case '/login':
+          return '1'
+          break
+        
+        case '/signup':
+          return '2'
+          break
+
+      }
+      }
+
+    }
+  // },
   
 }
 </script>

@@ -22,13 +22,6 @@
     <el-form-item label="Doctor?" prop="doctor">
       <el-switch v-model="registrate.doctor"></el-switch>
     </el-form-item>
-<!-- 
-    <el-form-item label="Who are you?" prop="role">
-      <el-radio-group v-model="registrate.role">
-        <el-radio label="DOCTOR"></el-radio>
-        <el-radio label="ADMIN"></el-radio>
-      </el-radio-group>
-    </el-form-item> -->
 
 
     <el-form-item>
@@ -82,7 +75,7 @@ export default {
           this.$store.dispatch('auth/registrate', {username, password, role:this.role}, {root:true,})
           // console.log(data)
 
-          const rr = this.role
+          // const rr = this.role
           // console.log('Reg',  {username, password, rr})
 
 
@@ -120,7 +113,6 @@ export default {
   
   computed:{
       role(){
-        // console.log(this.registrate)
           return this.registrate.doctor?'DOCTOR':'USER'
       },
       message(){
