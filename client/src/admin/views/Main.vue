@@ -50,14 +50,24 @@ export default {
   justify-content: space-between;
 }
 .myButton{
-    box-shadow: 0 2px 4px #909399, 0 0 6px rgb(0 0 0 / 4%);
+    font-size:18px;
+    /* text-decoration: left; */
+    /* letter-spacing: 3px; */
+    box-shadow: 0 2px 4px #e9e9eb, 0 0 6px rgb(0 0 0 / 4%);
+    margin-bottom:2px;
 
     /* box-shadow: 0 2px 4px #d1dbe5, 0 0 6px rgb(0 0 0 / 4%); */
-    --el-button-background-color: #d1dbe5;
-    --el-button-border-color: #d1dbe559;
+    /* --el-button-background-color: #d1dbe5;
+    --el-button-border-color: #d1dbe559; */
+    --el-button-background-color: #d1dbe5db;
+    --el-button-border-color: #d1dbe5;
+    --el-button-hover-color: #66b1ff;
+    --el-button-active-font-color: #66b1ff;
+    --el-button-active-background-color: #409eff;
+    --el-button-active-border-color: #3a8ee6;
 }
 .myButton:first-child{
-  margin:0px 0px 0px 10px
+  margin:0px 0px 2px 10px
 }
 .gr-button{
   /* text-align: center; */
