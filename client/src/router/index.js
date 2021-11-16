@@ -52,6 +52,42 @@ const router = createRouter({
           path: "",
           component: () => import("../admin/views/Main"),
         },
+        {
+          path: "clinics",
+          component: () => import("../admin/views/Clinics"),
+        },
+        {
+          path: "doctors",
+          component: () => import("../admin/views/Doctors"),
+        },
+        {
+          path: "services",
+          component: () => import("../admin/views/Services"),
+        },
+        {
+          path: "cities",
+          component: () => import("../admin/views/Cities"),
+        },
+        {
+          path: "working_time",
+          component: () => import("../admin/views/WorkingTime"),
+        },
+        {
+          path: "pets",
+          component: () => import("../admin/views/Pets"),
+        },
+        {
+          path: "users",
+          component: () => import("../admin/views/Users"),
+        },
+        {
+          path: "treatments",
+          component: () => import("../admin/views/Treatments"),
+        },
+        {
+          path: "shop_goods",
+          component: () => import("../admin/views/ShopGoods"),
+        },
       ],
       meta: {
         layout: "main_admin",

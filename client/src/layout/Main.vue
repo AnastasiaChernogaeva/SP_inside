@@ -11,9 +11,14 @@
   <!-- @click="closeInfo@click="closeInfo@click="showInfo" -->
         <!-- <router-link to="main" class="el-menu-item" role="menuitem" index="1"  data-v-269c9956=""> Main </router-link> -->
 
-        <router-link to="/"><el-menu-item index="0"> Main </el-menu-item></router-link>
-        <router-link to="login"><el-menu-item index="1" v-if="!auth" @click="$route.path=='/login'?true:false"> Log In</el-menu-item></router-link>
-        <router-link to="signup"><el-menu-item index="2" v-if="!auth" @click="$route.path=='/signup'?true:false">  Sign Up</el-menu-item>  </router-link> 
+        <el-menu-item index="0" @click="()=>{$router.push('/')}"> Main </el-menu-item>
+        <el-menu-item index="1" v-if="!auth" @click="()=>{$router.push('/login')}"> Log In</el-menu-item>
+        <el-menu-item index="2" v-if="!auth" @click="()=>{$router.push('/signup')}">  Sign Up</el-menu-item>
+     
+
+
+     <!-- <router-link to="login"><el-menu-item index="1" v-if="!auth" @click="$route.path=='/login'?true:false"> Log In</el-menu-item></router-link>
+     <router-link to="signup"><el-menu-item index="2" v-if="!auth" @click="$route.path=='/signup'?true:false">  Sign Up</el-menu-item>  </router-link>  -->
      
         <el-menu-item index="1" v-if="auth" @click="logout"> Log Out</el-menu-item>
   </el-menu>  

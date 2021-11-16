@@ -5,21 +5,18 @@
   <el-button type="danger" @click="logout">Log out</el-button>
 </div>
 <div class="center gr-button">
-  <!-- <el-button-group class="gr-button"> -->
-   <el-button type="info" class="myButton">Clinics</el-button>
-   <el-button type="info" class="myButton">Doctors</el-button>
-   <el-button type="info" class="myButton">Services</el-button>
-   <el-button type="info" class="myButton">Cities</el-button>
-  <!-- </el-button-group> -->
-  
-  <!-- <el-button-group class="gr-button"> -->
-   <el-button type="info" class="myButton">WorkingTime</el-button>
-   <el-button type="info" class="myButton">Pets</el-button>
-   <el-button type="info" class="myButton">Users</el-button>
-   <el-button type="info" class="myButton">Treatments</el-button>
-   <el-button type="info" class="myButton">ShopGoods</el-button>
+   <el-button type="info" class="myButton" @click="()=>{$router.push('/main_admin/clinics')}">Clinics</el-button>
+   <el-button type="info" class="myButton" @click="()=>{$router.push('/main_admin/doctors')}">Doctors</el-button>
+   <el-button type="info" class="myButton" @click="()=>{$router.push('/main_admin/services')}">Services</el-button>
+   <el-button type="info" class="myButton" @click="()=>{$router.push('/main_admin/cities')}">Cities</el-button>
 
-  <!-- </el-button-group> -->
+   <el-button type="info" class="myButton" @click="()=>{$router.push('/main_admin/working_time')}">WorkingTime</el-button>
+   <el-button type="info" class="myButton" @click="()=>{$router.push('/main_admin/pets')}">Pets</el-button>
+   <el-button type="info" class="myButton" @click="()=>{$router.push('/main_admin/users')}">Users</el-button>
+   <el-button type="info" class="myButton" @click="()=>{$router.push('/main_admin/treatments')}">Treatments</el-button>
+   <el-button type="info" class="myButton" @click="()=>{$router.push('/main_admin/shop_goods')}">ShopGoods</el-button>
+
+
 
 </div>
 </div>
@@ -51,8 +48,6 @@ export default {
 }
 .myButton{
     font-size:18px;
-    /* text-decoration: left; */
-    /* letter-spacing: 3px; */
     box-shadow: 0 2px 4px #e9e9eb, 0 0 6px rgb(0 0 0 / 4%);
     margin-bottom:2px;
 
@@ -70,7 +65,6 @@ export default {
   margin:0px 0px 2px 10px
 }
 .gr-button{
-  /* text-align: center; */
   display:flex;
   flex-direction: column;
   margin-top:2%;
