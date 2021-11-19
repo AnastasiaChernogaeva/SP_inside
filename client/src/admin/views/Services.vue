@@ -1,5 +1,6 @@
 <template>
-<div>
+<div class="card  container ">
+    
     <el-form
     ref="service"
     :model="service"
@@ -26,18 +27,11 @@
     </el-form-item>
   </el-form>
     <div v-if="services.length!==0">
-    <div v-for="service in services" :key="service.id">
-         <div v-for="service in services" :key="service.id">
-        <h1>{{service.name}}</h1>
-        <h4>{{service.country}}, {{service.city}}</h4>
-        <ul><li>{{service.services}}</li></ul>
-        <p>{{service.doctors}}</p>
-        <img :src="service.photo" alt="service">
-        <p>{{service.description}}</p>
-
-        
-        </div>{{service}}</div>
-</div>
+       <div v-for="serv in services" :key="serv.id">
+            <h3>{{serv.name}}</h3>
+            <h4>{{serv.price}}</h4>        
+        </div>
+    </div>
 <h2 v-else>NO</h2>
 </div>
 
@@ -52,7 +46,7 @@ export default {
     data(){
      return { 
       type:'services',
-    //   services:[],
+      services:[],
 
       service: {
         name: '',
@@ -75,9 +69,6 @@ export default {
         ],
       },
     }
-        return{
-          
-        }
     },
     methods:{
           submitForm(formName) {
@@ -86,7 +77,6 @@ export default {
         if (valid) {
           this.loading()
           this.$store.dispatch('info/addNew', {items:this.service, type:this.type}, {root:true,})
-
         } else {
           console.log('error submit!!')
           return false
@@ -103,27 +93,12 @@ export default {
         spinner: 'el-icon-loading',
         background: 'rgba(0, 0, 0, 0.7)',
       })
+    //   this.services.push(this.service)
       setTimeout(() => {
-    //     if(this.message){
-    //        this.login = {
-    //           username: '',
-    //           password:'',
-    //           role: 'USER',
-    //        }
-    //     }
-    //     else{
-    //     if(this.$store.state.auth.role==="DOCTOR"){
-    //       this.$router.push('/main_doc')
-    //     }
-    //     else if(this.$store.state.auth.role==="ADMIN"){
-    //       this.$router.push('/main_admin')
-    //     }
-    //     else if(this.$store.state.auth.role==="USER"){
-    //       this.$router.push('/main/users')
-    //     }
-    //     }
+        
         this.resetForm('service')
         loading.close()
+        
       }, 2000)
     },
     },
@@ -132,13 +107,5 @@ export default {
         if(info)
         this.services = info
     },
-    computed:{
-        services(){
-            if(this.$store.state.services)
-            return this.$store.state.services
-            else
-            return []
-        }
-    }
 }
 </script>
