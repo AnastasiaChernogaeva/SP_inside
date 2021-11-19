@@ -70,10 +70,15 @@ export default {
   },
   actions: {
     async addNew({ commit, dispatch }, payload) {
-      //   const { data } = await axios.post(`http://localhost:${PORT}/auth/login`, {
-      //     ...payload,
-      //   });
-      // console.log("data message", data.message);
+      console.log("123", payload);
+      const { data } = await axios.post(
+        `http://localhost:${PORT}/api/${payload.type}`,
+        {
+          ...payload.items,
+        }
+      );
+      commit("setInfo", data, payload.type);
+      console.log("data message", data);
       // console.log("data message boolean", !!data.message);
       //   if (!!data.message) {
       //     commit("setError", data.message);

@@ -14,6 +14,8 @@ const clinicsRoutes = require("./routes/api/clinics");
 const illnessesRoutes = require("./routes/api/illnesses");
 const petsRoutes = require("./routes/api/pets");
 const treatmentsRoutes = require("./routes/api/treatments");
+const doctorsRoutes = require("./routes/api/doctors");
+const servicesRoutes = require("./routes/api/services");
 
 const path = require("path");
 
@@ -36,6 +38,8 @@ app.use(clinicsRoutes);
 app.use(illnessesRoutes);
 app.use(petsRoutes);
 app.use(treatmentsRoutes);
+app.use(doctorsRoutes);
+app.use(servicesRoutes);
 
 //   if (process.env.NODE_ENV === "production") {
 //     app.use(express.static("client/dist"));
