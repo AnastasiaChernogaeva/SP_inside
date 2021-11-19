@@ -78,7 +78,7 @@ export default {
         }
       );
       commit("setInfo", data, payload.type);
-      console.log("data message", data);
+
       // console.log("data message boolean", !!data.message);
       //   if (!!data.message) {
       //     commit("setError", data.message);
