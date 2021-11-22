@@ -26,12 +26,14 @@ export default {
         }
     },
     methods:{
-
-    },
-    async beforeMount() {
+    async updateInfo(){
         const info = await this.$store.dispatch('info/getInfo', {type:this.type}, {root:true,})
-        if(info)       
+        if(info)
         this.users = info
+    }
+    },
+    beforeMount() {
+        this.updateInfo()
     },
 }
 </script>

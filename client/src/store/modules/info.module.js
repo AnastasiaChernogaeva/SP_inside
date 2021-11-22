@@ -53,6 +53,37 @@ export default {
       // state.role = role;
       // localStorage.setItem("role", role);
     },
+    addInfo(state, data, type) {
+      switch (type) {
+        case "clinics":
+          state.clinics.push(data);
+          break;
+        case "cities":
+          state.cities.push(data);
+          break;
+        case "doctors":
+          state.doctors.push(data);
+          break;
+        case "pets":
+          state.pets.push(data);
+          break;
+        case "services":
+          state.services.push(data);
+          break;
+        case "shopgoods":
+          state.shopgoods.push(data);
+          break;
+        case "treatments":
+          state.treatments.push(data);
+          break;
+        case "users":
+          state.users.push(data);
+          break;
+        case "workingtime":
+          state.workingtime.push(data);
+          break;
+      }
+    },
     setRole(state, role) {
       state.role = role;
       localStorage.setItem("role", role);
@@ -70,14 +101,13 @@ export default {
   },
   actions: {
     async addNew({ commit, dispatch }, payload) {
-      console.log("123", payload);
       const { data } = await axios.post(
         `http://localhost:${PORT}/api/${payload.type}`,
         {
           ...payload.items,
         }
       );
-      commit("setInfo", data, payload.type);
+      commit("addInfo", data, payload.type);
 
       // console.log("data message boolean", !!data.message);
       //   if (!!data.message) {

@@ -29,8 +29,12 @@
     <div v-if="services.length!==0">
        <div v-for="serv in services" :key="serv.id">
             <h3>{{serv.name}}</h3>
-            <h4>{{serv.price}}</h4>        
-        </div>
+            <h4>{{serv.price}}</h4>       
+              <el-row>
+                <el-button type="primary" :icon="Edit" circle></el-button>
+                <el-button type="danger" :icon="Delete" circle></el-button>
+              </el-row> 
+      </div>
     </div>
 <h2 v-else>NO</h2>
 </div>
@@ -41,6 +45,7 @@
 
 <script>
 import { ElLoading } from 'element-plus'
+import {  Edit, Delete } from '@element-plus/icons'
 
 export default {
     data(){
@@ -71,12 +76,13 @@ export default {
     }
     },
     methods:{
-          submitForm(formName) {
+      submitForm(formName) {
       
       this.$refs[formName].validate((valid) => {
         if (valid) {
           this.loading()
           this.$store.dispatch('info/addNew', {items:this.service, type:this.type}, {root:true,})
+               
         } else {
           console.log('error submit!!')
           return false
@@ -93,19 +99,20 @@ export default {
         spinner: 'el-icon-loading',
         background: 'rgba(0, 0, 0, 0.7)',
       })
-    //   this.services.push(this.service)
-      setTimeout(() => {
-        
+      setTimeout(() => {         
+        this.updateInfo()
         this.resetForm('service')
-        loading.close()
-        
+        loading.close()        
       }, 2000)
     },
-    },
-    async beforeMount() {
+    async updateInfo(){
         const info = await this.$store.dispatch('info/getInfo', {type:this.type}, {root:true,})
         if(info)
         this.services = info
+    }
+    },
+    beforeMount() {
+        this.updateInfo()
     },
 }
 </script>
