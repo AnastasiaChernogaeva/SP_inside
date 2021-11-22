@@ -26,14 +26,12 @@
       <el-button @click="resetForm('service')">Reset</el-button>
     </el-form-item>
   </el-form>
+  <hr>
     <div v-if="services.length!==0">
-       <div v-for="serv in services" :key="serv.id">
+       <div class="flex" v-for="serv in services" :key="serv.id">
             <h3>{{serv.name}}</h3>
-            <h4>{{serv.price}}</h4>       
-              <el-row>
-                <el-button type="primary" :icon="Edit" circle></el-button>
-                <el-button type="danger" :icon="Delete" circle></el-button>
-              </el-row> 
+            <h4>{{serv.price}}</h4>
+            <buttons/>
       </div>
     </div>
 <h2 v-else>NO</h2>
@@ -44,10 +42,13 @@
 </template>
 
 <script>
-import { ElLoading } from 'element-plus'
-import {  Edit, Delete } from '@element-plus/icons'
+import { ElLoading} from 'element-plus'
+import Buttons from '../components/Buttons.vue'
 
 export default {
+    components:{
+      buttons:Buttons,
+    },
     data(){
      return { 
       type:'services',

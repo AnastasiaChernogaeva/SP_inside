@@ -25,8 +25,16 @@ a{
   box-shadow: 2px 3px 10px rgba(0, 0, 0, 0.2);
   background: #fff;
 }
+.flex{
+  display:flex;
+  justify-content:space-between
+}
 .center{
   text-align: center;
+}
+.icon{
+  width:auto;
+  height:10px;
 }
 
 body {
