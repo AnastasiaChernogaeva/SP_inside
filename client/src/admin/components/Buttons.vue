@@ -5,19 +5,20 @@
   </el-row>
 </template>
 // <script>
-// export default {
-//   data:{
-//     // return {}
-//   },
-//   methods:{
-//     editInfo(){
+export default {
+  emits:['edited', 'deleted'],
+  data:{
+    // return {}
+  },
+  methods:{
+    editInfo(){
+      this.$emit('edited')
+    },
+    deleteInfo(){
+      this.$emit('deleted')
+    },
 
-//     },
-//     deleteInfo(){
+  }
 
-//     },
-
-//   }
-
-// }
-// </script>
+}
+</script>

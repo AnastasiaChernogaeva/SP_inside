@@ -28,10 +28,14 @@
   </el-form>
   <hr>
     <div v-if="services.length!==0">
-       <div class="flex" v-for="serv in services" :key="serv.id">
+       <div class="flex" v-for="serv in services" :key="serv._id">
             <h3>{{serv.name}}</h3>
             <h4>{{serv.price}}</h4>
-            <buttons/>
+            <el-row>
+            <el-button class="icon" type="primary" icon="el-icon-edit"  @click="()=>editInfo(serv._id)" circle></el-button>
+            <el-button class="icon" type="danger" icon="el-icon-delete"  @click="()=>deleteInfo(serv._id)" circle></el-button>
+            <!-- <buttons/> -->
+            </el-row>
       </div>
     </div>
 <h2 v-else>NO</h2>
@@ -77,8 +81,7 @@ export default {
     }
     },
     methods:{
-      submitForm(formName) {
-      
+      submitForm(formName) {      
       this.$refs[formName].validate((valid) => {
         if (valid) {
           this.loading()
@@ -110,7 +113,13 @@ export default {
         const info = await this.$store.dispatch('info/getInfo', {type:this.type}, {root:true,})
         if(info)
         this.services = info
-    }
+    },
+    editInfo(id){
+      console.log('id in edit', id)
+    },
+    deleteInfo(id){
+      console.log('id in delete', id)
+    },
     },
     beforeMount() {
         this.updateInfo()
