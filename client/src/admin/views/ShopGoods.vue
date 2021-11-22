@@ -1,6 +1,6 @@
 <template>
 <div v-if="shopgoods.length!==0">
-    <div v-for="shopgood in shopgoods" :key="shopgood.id">
+    <div class="flex" v-for="shopgood in shopgoods" :key="shopgood.id">
          <div v-for="shopgood in shopgoods" :key="shopgood.id">
         <h1>{{shopgood.name}}</h1>
         <h4>{{shopgood.country}}, {{shopgood.city}}</h4>
@@ -8,6 +8,10 @@
         <p>{{shopgood.doctors}}</p>
         <img :src="shopgood.photo" alt="shopgood">
         <p>{{shopgood.description}}</p>
+        <el-row>
+            <el-button class="icon" type="primary" icon="el-icon-edit"  @click="()=>editInfo(shopgood._id)" circle></el-button>
+            <el-button class="icon" type="danger" icon="el-icon-delete"  @click="()=>deleteInfo(shopgood._id)" circle></el-button>
+        </el-row>
 
         
         </div>{{shopgood}}</div>

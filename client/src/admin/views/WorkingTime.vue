@@ -1,6 +1,6 @@
 <template>
 <div  v-if="workingtimes.length!==0">
-    <div v-for="workingtime in workingtimes" :key="workingtime.id">
+    <div class="flex" v-for="workingtime in workingtimes" :key="workingtime.id">
          <div v-for="workingtime in workingtimes" :key="workingtime.id">
         <h1>{{workingtime.name}}</h1>
         <h4>{{workingtime.country}}, {{workingtime.city}}</h4>
@@ -8,6 +8,10 @@
         <p>{{workingtime.doctors}}</p>
         <img :src="workingtime.photo" alt="workingtime">
         <p>{{workingtime.description}}</p>
+        <el-row>
+            <el-button class="icon" type="primary" icon="el-icon-edit"  @click="()=>editInfo(workingtime._id)" circle></el-button>
+            <el-button class="icon" type="danger" icon="el-icon-delete"  @click="()=>deleteInfo(workingtime._id)" circle></el-button>
+        </el-row>
 
         
         </div>{{workingtime}}</div>

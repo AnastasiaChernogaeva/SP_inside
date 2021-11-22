@@ -1,6 +1,6 @@
 <template>
 <div v-if="doctors.length!==0">
-    <div v-for="doctor in doctors" :key="doctor.id">
+    <div class="flex" v-for="doctor in doctors" :key="doctor.id">
          <div v-for="doctor in doctors" :key="doctor.id">
         <h1>{{doctor.name}}</h1>
         <h4>{{doctor.country}}, {{doctor.city}}</h4>
@@ -8,6 +8,10 @@
         <p>{{doctor.doctors}}</p>
         <img :src="doctor.photo" alt="doctor">
         <p>{{doctor.description}}</p>
+        <el-row>
+            <el-button class="icon" type="primary" icon="el-icon-edit"  @click="()=>editInfo(doctor._id)" circle></el-button>
+            <el-button class="icon" type="danger" icon="el-icon-delete"  @click="()=>deleteInfo(doctor._id)" circle></el-button>
+        </el-row>
 
         
         </div>{{doctor}}</div>

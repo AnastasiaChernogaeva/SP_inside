@@ -34,8 +34,7 @@
             <el-row>
             <el-button class="icon" type="primary" icon="el-icon-edit"  @click="()=>editInfo(serv._id)" circle></el-button>
             <el-button class="icon" type="danger" icon="el-icon-delete"  @click="()=>deleteInfo(serv._id)" circle></el-button>
-            <!-- <buttons/> -->
-            </el-row>
+           </el-row>
       </div>
     </div>
 <h2 v-else>NO</h2>
@@ -47,12 +46,8 @@
 
 <script>
 import { ElLoading} from 'element-plus'
-import Buttons from '../components/Buttons.vue'
 
 export default {
-    components:{
-      buttons:Buttons,
-    },
     data(){
      return { 
       type:'services',
