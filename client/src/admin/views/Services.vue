@@ -38,6 +38,9 @@
       </div>
     </div>
 <h2 v-else>NO</h2>
+
+
+
 </div>
 
 
@@ -46,10 +49,15 @@
 
 <script>
 import { ElLoading} from 'element-plus'
+// import AppModal from '../../ui/AppModal.vue'
 
 export default {
+    // components:{
+    //   AppModal,
+    // },
     data(){
-     return { 
+     return {
+      // modal:false, 
       type:'services',
       services:[],
 
@@ -110,10 +118,13 @@ export default {
         this.services = info
     },
     editInfo(id){
+      // this.modal = true
       console.log('id in edit', id)
+
     },
-    deleteInfo(id){
-      console.log('id in delete', id)
+    async deleteInfo(id){
+      await this.$store.dispatch('info/deleteItem', {type:this.type, id:id}, {root:true,})
+      this.updateInfo()
     },
     },
     beforeMount() {

@@ -44,8 +44,7 @@ router.put("/api/services/", async (req, res) => {
   }
 });
 
-router.delete("/api/services/", async (req, res) => {
-  // console.log(req.body.id);
+router.delete(`/api/services/`, async (req, res) => {
   const id = req.body.id;
   try {
     const removed = await Service.findByIdAndDelete(id);

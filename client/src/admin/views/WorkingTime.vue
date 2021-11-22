@@ -35,7 +35,11 @@ export default {
         const info = await this.$store.dispatch('info/getInfo', {type:this.type}, {root:true,})
         if(info)
         this.workingtimes = info
-    }
+    },
+    async deleteInfo(id){
+      await this.$store.dispatch('info/deleteItem', {type:this.type, id:id}, {root:true,})
+      this.updateInfo()
+    },
     },
     beforeMount() {
         this.updateInfo()

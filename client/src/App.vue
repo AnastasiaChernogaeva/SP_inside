@@ -37,6 +37,33 @@ a{
   height:10px;
 }
 
+
+.modal {
+  position: relative;
+  /* position: fixed; */
+  top: 60px;
+  width: 600px;
+  padding: 1rem;
+  background: #fff;
+  z-index: 1000;
+  left: 50%;
+  border-radius: 10px;
+  transform: translateX(-50%);
+  box-shadow: 2px 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+.modal-backdrop {
+  overflow-y: scroll;
+
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.35);
+  z-index: 100;
+}
+
 body {
   font-family: Inter, Roboto, Oxygen, Fira Sans, Helvetica Neue, sans-serif;
   -webkit-font-smoothing: antialiased;
