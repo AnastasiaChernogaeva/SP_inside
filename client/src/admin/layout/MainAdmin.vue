@@ -4,7 +4,7 @@
        <teleport to="body"> 
         <app-modal v-if="modal" @close="modal = false" >
           <keep-alive>
-             <component :is="'editing-'+type" @click.stop @added="modal = false"></component>
+             <component :is="'form'+type" @click.stop @added="modal = false"></component>
           </keep-alive>
         </app-modal>
        </teleport> 

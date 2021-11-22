@@ -1,7 +1,5 @@
 <template>
-<div class="card  container ">
-    <!-- <form-services></form-services> -->
-    <el-form
+   <el-form
     ref="service"
     :model="service"
     :rules="rules"
@@ -25,37 +23,17 @@
       >
       <el-button @click="resetForm('service')">Reset</el-button>
     </el-form-item>
-  </el-form>
-  <hr>
-    <div v-if="services.length!==0">
-       <div class="flex" v-for="serv in services" :key="serv._id">
-            <h3>{{serv.name}}</h3>
-            <h4>{{serv.price}}</h4>
-            <el-row>
-            <el-button class="icon" type="primary" icon="el-icon-edit"  @click="()=>editInfo(serv._id)" circle></el-button>
-            <el-button class="icon" type="danger" icon="el-icon-delete"  @click="()=>deleteInfo(serv._id)" circle></el-button>
-           </el-row>
-      </div>
-    </div>
-<h2 v-else>NO</h2>
-
-
-
-</div>
-
-
-    
+  </el-form>    
 </template>
-
 <script>
 import { ElLoading} from 'element-plus'
-// import FormServices from '../forms/FormServices.vue'
+import FormServices from '../forms/FormServices.vue'
 // import AppModal from '../../ui/AppModal.vue'
 
 export default {
-    // components:{
-    //   FormServices,
-    // },
+    components:{
+      FormServices,
+    },
     data(){
      return {
       // modal:false, 
