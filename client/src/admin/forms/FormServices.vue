@@ -27,19 +27,12 @@
 </template>
 <script>
 import { ElLoading} from 'element-plus'
-import FormServices from '../forms/FormServices.vue'
-// import AppModal from '../../ui/AppModal.vue'
 
 export default {
-    components:{
-      FormServices,
-    },
+    emits:['added'],
     data(){
      return {
-      // modal:false, 
       type:'services',
-      services:[],
-
       service: {
         name: '',
         price:'',
@@ -85,29 +78,30 @@ export default {
         spinner: 'el-icon-loading',
         background: 'rgba(0, 0, 0, 0.7)',
       })
-      setTimeout(() => {         
-        this.updateInfo()
+      setTimeout(() => {     
+        this.$emit('added')    
+        // this.updateInfo()
         this.resetForm('service')
         loading.close()        
       }, 2000)
     },
-    async updateInfo(){
-        const info = await this.$store.dispatch('info/getInfo', {type:this.type}, {root:true,})
-        if(info)
-        this.services = info
-    },
-    editInfo(id){
-      // this.modal = true
-      console.log('id in edit', id)
+    // async updateInfo(){
+    //     const info = await this.$store.dispatch('info/getInfo', {type:this.type}, {root:true,})
+    //     if(info)
+    //     this.services = info
+    // },
+    // editInfo(id){
+    //   // this.modal = true
+    //   console.log('id in edit', id)
 
-    },
-    async deleteInfo(id){
-      await this.$store.dispatch('info/deleteItem', {type:this.type, id:id}, {root:true,})
-      this.updateInfo()
-    },
-    },
-    beforeMount() {
-        this.updateInfo()
+    // },
+    // async deleteInfo(id){
+    //   await this.$store.dispatch('info/deleteItem', {type:this.type, id:id}, {root:true,})
+    //   this.updateInfo()
+    // },
+    // },
+    // beforeMount() {
+    //     this.updateInfo()
     },
 }
 </script>

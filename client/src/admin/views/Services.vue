@@ -1,7 +1,7 @@
 <template>
 <div class="card  container ">
-    <!-- <form-services></form-services> -->
-    <el-form
+    <form-services @added="updateInfo"></form-services>
+    <!-- <el-form
     ref="service"
     :model="service"
     :rules="rules"
@@ -25,7 +25,7 @@
       >
       <el-button @click="resetForm('service')">Reset</el-button>
     </el-form-item>
-  </el-form>
+  </el-form> -->
   <hr>
     <div v-if="services.length!==0">
        <div class="flex" v-for="serv in services" :key="serv._id">
@@ -49,70 +49,70 @@
 
 <script>
 import { ElLoading} from 'element-plus'
-// import FormServices from '../forms/FormServices.vue'
+import FormServices from '../forms/FormServices.vue'
 // import AppModal from '../../ui/AppModal.vue'
 
 export default {
-    // components:{
-    //   FormServices,
-    // },
+    components:{
+      FormServices,
+    },
     data(){
      return {
       // modal:false, 
       type:'services',
       services:[],
 
-      service: {
-        name: '',
-        price:'',
-      },
-      rules: {
-        name: [
-          {
-            required: true,
-            message: 'Please, input name of service',
-            trigger: 'blur',
-          },
-        ],
-        price: [
-          {
-            required: true,
-            message: 'Please, input price',
-            trigger: 'blur',
-          },
-        ],
-      },
+      // service: {
+      //   name: '',
+      //   price:'',
+      // },
+      // rules: {
+      //   name: [
+      //     {
+      //       required: true,
+      //       message: 'Please, input name of service',
+      //       trigger: 'blur',
+      //     },
+      //   ],
+      //   price: [
+      //     {
+      //       required: true,
+      //       message: 'Please, input price',
+      //       trigger: 'blur',
+      //     },
+      //   ],
+      // },
     }
     },
     methods:{
-      submitForm(formName) {      
-      this.$refs[formName].validate((valid) => {
-        if (valid) {
-          this.loading()
-          this.$store.dispatch('info/addNew', {items:this.service, type:this.type}, {root:true,})
+    //   submitForm(formName) {      
+    //   this.$refs[formName].validate((valid) => {
+    //     if (valid) {
+    //       this.loading()
+    //       this.$store.dispatch('info/addNew', {items:this.service, type:this.type}, {root:true,})
                
-        } else {
-          console.log('error submit!!')
-          return false
-        }        
-      })
-    },
-    resetForm(formName) {
-      this.$refs[formName].resetFields()
-    },
-    loading(){
-      const loading = ElLoading.service({
-        lock: true,
-        text: 'Loading',
-        spinner: 'el-icon-loading',
-        background: 'rgba(0, 0, 0, 0.7)',
-      })
-      setTimeout(() => {         
-        this.updateInfo()
-        this.resetForm('service')
-        loading.close()        
-      }, 2000)
-    },
+    //     } else {
+    //       console.log('error submit!!')
+    //       return false
+    //     }        
+    //   })
+    // },
+    // resetForm(formName) {
+    //   this.$refs[formName].resetFields()
+    // },
+    // loading(){
+    //   const loading = ElLoading.service({
+    //     lock: true,
+    //     text: 'Loading',
+    //     spinner: 'el-icon-loading',
+    //     background: 'rgba(0, 0, 0, 0.7)',
+    //   })
+    //   setTimeout(() => {         
+    //     this.updateInfo()
+    //     this.resetForm('service')
+    //     loading.close()        
+    //   }, 2000)
+    // },
     async updateInfo(){
         const info = await this.$store.dispatch('info/getInfo', {type:this.type}, {root:true,})
         if(info)
