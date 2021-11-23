@@ -18,9 +18,12 @@
     </el-form-item>
   
      <el-form-item>
-      <el-button type="primary" @click="submitForm('service')"
-        >Save</el-button
+      <el-button type="primary" @click="editElem('service')" 
+        >Edit</el-button
       >
+      <!-- <el-button type="primary" @click="submitForm('service')" v-else
+        >Save</el-button
+      > v-if="editId!==''"-->
       <el-button @click="resetForm('service')">Reset</el-button>
     </el-form-item>
   </el-form>    
@@ -32,6 +35,7 @@ export default {
     emits:['added'],
     data(){
      return {
+      // edit:'',
       type:'services',
       service: {
         name: '',
@@ -56,6 +60,17 @@ export default {
     }
     },
     methods:{
+      editElem(formName){ 
+      this.$refs[formName].validate((valid) => {
+        if (valid) {
+          this.loading()
+          this.$store.dispatch('info/edit', {item:this.service, type:this.type}, {root:true,})
+               
+        } else {
+          console.log('error submit!!')
+          return false
+        } } )},
+
       submitForm(formName) {      
       this.$refs[formName].validate((valid) => {
         if (valid) {
@@ -80,28 +95,18 @@ export default {
       })
       setTimeout(() => {     
         this.$emit('added')    
-        // this.updateInfo()
         this.resetForm('service')
         loading.close()        
       }, 2000)
     },
-    // async updateInfo(){
-    //     const info = await this.$store.dispatch('info/getInfo', {type:this.type}, {root:true,})
-    //     if(info)
-    //     this.services = info
-    // },
-    // editInfo(id){
-    //   // this.modal = true
-    //   console.log('id in edit', id)
-
-    // },
-    // async deleteInfo(id){
-    //   await this.$store.dispatch('info/deleteItem', {type:this.type, id:id}, {root:true,})
-    //   this.updateInfo()
-    // },
-    // },
-    // beforeMount() {
-    //     this.updateInfo()
     },
+
+    inject: ['editId'],
+    watch:{
+      editId: (val)=>{
+         this.service = this.$store.state.info.services.find(elem => elem._id===val)
+      }
+    }
 }
+
 </script>

@@ -82,6 +82,15 @@ export default {
     },
   },
   actions: {
+    async editElem({ commit, dispatch }, payload) {
+      const { data } = await axios.put(
+        `http://localhost:${PORT}/api/${payload.type}`,
+        {
+          ...payload.item,
+        }
+      );
+    },
+
     async addNew({ commit, dispatch }, payload) {
       const { data } = await axios.post(
         `http://localhost:${PORT}/api/${payload.type}`,
