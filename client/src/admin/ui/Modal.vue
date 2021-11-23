@@ -2,7 +2,7 @@
        <teleport to="body"> 
         <app-modal @close="()=>$emit('closeForm')" >
           <keep-alive>
-             <component :is="'form-'+type" @click.stop ></component>
+             <component :is="'form-'+type" @click.stop :edit="edit"></component>
           </keep-alive>
         </app-modal>
        </teleport> 
@@ -21,6 +21,7 @@ import FormServices from "../forms/FormServices.vue"
 
 
 export default {
+    props:['edit'],
     components:{
       AppModal,
       FormServices,

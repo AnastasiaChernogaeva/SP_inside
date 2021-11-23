@@ -18,12 +18,12 @@
     </el-form-item>
   
      <el-form-item>
-      <el-button type="primary" @click="editElem('service')" 
+      <el-button type="primary" @click="editElem('service')" v-if="edit"
         >Edit</el-button
       >
-      <!-- <el-button type="primary" @click="submitForm('service')" v-else
+     <el-button type="primary" @click="submitForm('service')" v-else
         >Save</el-button
-      > v-if="editId!==''"-->
+      > 
       <el-button @click="resetForm('service')">Reset</el-button>
     </el-form-item>
   </el-form>    
@@ -32,10 +32,10 @@
 import { ElLoading} from 'element-plus'
 
 export default {
+    props:['edit'],
     emits:['added'],
     data(){
      return {
-      // edit:'',
       type:'services',
       service: {
         name: '',
@@ -64,7 +64,7 @@ export default {
       this.$refs[formName].validate((valid) => {
         if (valid) {
           this.loading()
-          this.$store.dispatch('info/edit', {item:this.service, type:this.type}, {root:true,})
+          this.$store.dispatch('info/editElem', {item:this.service, type:this.type}, {root:true,})
                
         } else {
           console.log('error submit!!')
@@ -100,13 +100,20 @@ export default {
       }, 2000)
     },
     },
-
-    inject: ['editId'],
-    watch:{
-      editId: (val)=>{
-         this.service = this.$store.state.info.services.find(elem => elem._id===val)
+  computed:{
+    editId(){
+      console.log(this.$props.edit)
+      return this.props.edit
+    },
+  },
+  watch:{
+    editId(){
+      if(this.editId!==''){
+        this.service = this.$store.state.info.services.find(elem=>elem._id==this.edit)
+        console.log(this.service )
       }
     }
+  },
 }
 
 </script>

@@ -13,7 +13,7 @@
       </div>
     </div>
 <h2 v-else>NO</h2>
-<modal v-if="modal" @closeForm="modal=false"/>
+<modal v-if="modal" @closeForm="modal=false" :edit="editId"/>
 
 
 </div>
@@ -59,11 +59,5 @@ export default {
     beforeMount() {
         this.updateInfo()
     },
-    provide(){
-      return {
-        editId:this.editId,
-        type:this.type,
-      }
-    }
 }
 </script>
