@@ -2,7 +2,7 @@
        <teleport to="body"> 
         <app-modal @close="$emit('closeModal')" >
           <keep-alive>
-             <component :is="'form-'+type" @click.stop :edit="edit"  @closeNow="close"></component>
+             <component :is="'form-'+type" @click.stop :edit="edit" @edited="$emit('edited')" ></component>
           </keep-alive>
         </app-modal>
        </teleport> 
@@ -17,11 +17,11 @@ import FormServices from "../forms/FormServices.vue"
 // import FormShopgoods from "../forms/FormServices.vue"
 // import FormTreatments from "../forms/FormServices.vue"
 // import FormUsers from "../forms/FormServices.vue"
-// import FormWorkingtime from "../forms/FormServices.vue"
+// import FormWorkingtime from "../forms/FormServices.vue" @closeNow="close"
 
 
 export default {
-    emits:['closeModal'],
+    emits:['closeModal', 'edited'],
     props:['edit'],
     components:{
       AppModal,
@@ -42,10 +42,10 @@ export default {
         }
     },
     methods:{
-      close(){
-        this.$emit('closeModal') 
-        console.log('Modal')
-      }
+      // close(){
+      //   this.$emit('closeModal') 
+      //   console.log('Modal')
+      // }
     },
     beforeMount() {
         this.type = this.$route.path.split('/')[this.$route.path.split('/').length-1]

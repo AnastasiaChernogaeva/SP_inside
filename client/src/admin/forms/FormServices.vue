@@ -33,7 +33,7 @@ import { ElLoading} from 'element-plus'
 
 export default {
     props:['edit'],
-    emits:['added', 'closeNow'],
+    emits:['added', 'closeNow', 'edited'],
     data(){
      return {
       type:'services',
@@ -97,7 +97,7 @@ export default {
         if(!this.edit)  
         this.$emit('added') 
         else  {
-             this.$emit('close') 
+             this.$emit('edited') 
              console.log('Inside the form')
         }
        

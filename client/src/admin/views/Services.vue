@@ -42,7 +42,7 @@ export default {
     },
     methods:{
     edited(){
-      cosnoel.log('inside the services')
+      console.log('inside the services')
       this.modal=false
       this.updateInfo()
       },
@@ -54,7 +54,7 @@ export default {
     editInfo(id){
       this.modal = true
       this.editId = id
-      console.log('id in edit', id)
+      // console.log('id in edit', id)
     },
     async deleteInfo(id){
       await this.$store.dispatch('info/deleteItem', {type:this.type, id:id}, {root:true,})
