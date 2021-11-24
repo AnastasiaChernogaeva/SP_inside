@@ -13,7 +13,7 @@
       </div>
     </div>
 <h2 v-else>NO</h2>
-<modal v-if="modal" @closeForm="modal=false" :edit="editId" @closeModal="edited"/>
+<modal v-if="modal" @closeForm="modal=false" :edit="editId" @closeModal="updateInfo"/>
 
 
 </div>
@@ -41,11 +41,6 @@ export default {
     }
     },
     methods:{
-    edited(){
-      cosnoel.log('inside the services')
-      this.modal=false
-      this.updateInfo()
-      },
     async updateInfo(){
         const info = await this.$store.dispatch('info/getInfo', {type:this.type}, {root:true,})
         if(info)

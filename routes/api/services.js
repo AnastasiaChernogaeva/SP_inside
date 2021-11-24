@@ -32,25 +32,20 @@ router.post("/api/services/", async (req, res) => {
 
 router.put("/api/services/", async (req, res) => {
   const id = req.body._id;
-  const body = req.body;
+  const body = { name: req.body.name, price: req.body.price };
 
-  console.log("body", body);
-  console.log("id", id);
+  // console.log("body", body);
+  // console.log("id", id);
 
-  // try {
-  //   // const response = await Service.findByIdAndUpdate(id, {
-  //   //   ...req.body.name,
-  //   //   ...req.body.price,
-  //   // });
-  //   const response = await Service.findByIdAndUpdate(id, body);
-  //   console.log("asd", response);
-  //   if (!response) throw new Error("Something went wrong");
-  //   const updated = { ...response._doc };
-  //   console.log("updated", updated);
-  //   res.status(200).json(updated);
-  // } catch (error) {
-  //   res.status(500).json({ message: error.message });
-  // }
+  try {
+    const response = await Service.findByIdAndUpdate(id, body);
+    if (!response) throw new Error("Something went wrong");
+    const updated = { ...response._doc };
+    // console.log("updated", updated);
+    res.status(200).json(updated);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
 });
 
 router.delete(`/api/services/`, async (req, res) => {

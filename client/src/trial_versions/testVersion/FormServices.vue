@@ -65,7 +65,7 @@ export default {
         if (valid) {
           this.loading()
           this.$store.dispatch('info/editElem', {item:this.service, id:this.edit, type:this.type}, {root:true,})
-          // this.$emit('closeNow') 
+               
         } else {
           console.log('error submit!!')
           return false
@@ -95,13 +95,9 @@ export default {
       })
       setTimeout(() => {   
         if(!this.edit)  
-        this.$emit('added') 
-        else  {
-             this.$emit('close') 
-             console.log('Inside the form')
-        }
-       
-        
+        this.$emit('added')  
+        else
+        this.$emit('closeNow')  
         this.resetForm('service')
         loading.close()        
       }, 2000)
@@ -114,6 +110,20 @@ export default {
       }
       
     },
+  // computed:{
+  //   editId(){
+  //     console.log(this.edit)
+  //     return this.edit
+  //   },
+  // },
+  // watch:{
+  //   editId(){
+  //     if(this.editId!==''){
+  //       this.service = this.$store.state.info.services.find(elem=>elem._id==this.edit)
+  //       console.log(this.service )
+  //     }
+  //   }
+  // },
 }
 
 </script>

@@ -1,8 +1,8 @@
 <template>
        <teleport to="body"> 
-        <app-modal @close="$emit('closeModal')" >
+        <app-modal @close="()=>$emit('closeModal')" >
           <keep-alive>
-             <component :is="'form-'+type" @click.stop :edit="edit"  @closeNow="close"></component>
+             <component :is="'form-'+type" @click.stop :edit="edit"></component>
           </keep-alive>
         </app-modal>
        </teleport> 
@@ -40,12 +40,6 @@ export default {
             type:'',
             // modal:false,
         }
-    },
-    methods:{
-      close(){
-        this.$emit('closeModal') 
-        console.log('Modal')
-      }
     },
     beforeMount() {
         this.type = this.$route.path.split('/')[this.$route.path.split('/').length-1]
