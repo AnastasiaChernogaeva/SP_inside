@@ -31,10 +31,19 @@ router.post("/api/services/", async (req, res) => {
 });
 
 router.put("/api/services/", async (req, res) => {
-  const id = req.body.item;
-  console.log("body", req.body);
+  const id = req.body._id;
+  const body = req.body;
+
+  console.log("body", body);
+  console.log("id", id);
+
   // try {
-  //   const response = await Service.findByIdAndUpdate(id, req.body.description);
+  //   // const response = await Service.findByIdAndUpdate(id, {
+  //   //   ...req.body.name,
+  //   //   ...req.body.price,
+  //   // });
+  //   const response = await Service.findByIdAndUpdate(id, body);
+  //   console.log("asd", response);
   //   if (!response) throw new Error("Something went wrong");
   //   const updated = { ...response._doc };
   //   console.log("updated", updated);

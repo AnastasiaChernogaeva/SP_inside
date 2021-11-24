@@ -64,7 +64,7 @@ export default {
       this.$refs[formName].validate((valid) => {
         if (valid) {
           this.loading()
-          this.$store.dispatch('info/editElem', {item:this.service, type:this.type}, {root:true,})
+          this.$store.dispatch('info/editElem', {item:this.service, id:this.edit, type:this.type}, {root:true,})
                
         } else {
           console.log('error submit!!')
@@ -100,20 +100,27 @@ export default {
       }, 2000)
     },
     },
-  computed:{
-    editId(){
-      console.log(this.$props.edit)
-      return this.props.edit
-    },
-  },
-  watch:{
-    editId(){
-      if(this.editId!==''){
-        this.service = this.$store.state.info.services.find(elem=>elem._id==this.edit)
-        console.log(this.service )
+    async beforeMount() {
+      if(this.edit){
+        let arr = await this.$store.dispatch('info/getInfo', {type:this.type}, {root:true,})
+        this.service = arr.find(elem=>elem._id==this.edit)
       }
-    }
-  },
+      
+    },
+  // computed:{
+  //   editId(){
+  //     console.log(this.edit)
+  //     return this.edit
+  //   },
+  // },
+  // watch:{
+  //   editId(){
+  //     if(this.editId!==''){
+  //       this.service = this.$store.state.info.services.find(elem=>elem._id==this.edit)
+  //       console.log(this.service )
+  //     }
+  //   }
+  // },
 }
 
 </script>
