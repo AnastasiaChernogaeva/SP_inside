@@ -6,14 +6,14 @@
   <hr>
   <h3><em>List of shopgoods:</em></h3>
 <div v-if="shopgoods.length!==0">
-    <div class="flex" v-for="shopgood in shopgoods" :key="shopgood._id">
-        <h1>{{shopgood.name}}</h1>
-        <ul><li>{{currency(shopgood.price)}}</li></ul>
-        <img :src="shopgood.photo" alt="shopgood">
-        <p>{{shopgood.description}}</p>
+    <div class="flex" v-for="good in shopgoods" :key="good._id">
+        <h1>{{good.name}}</h1>
+        <ul><li>{{currency(good.price)}}</li></ul>
+        <img :src="good.photo" alt="shopgood">
+        <p>{{good.description}}</p>
         <el-row>
-            <el-button class="icon" type="primary" icon="el-icon-edit"  @click="()=>editInfo(shopgood._id)" circle></el-button>
-            <el-button class="icon" type="danger" icon="el-icon-delete"  @click="()=>deleteInfo(shopgood._id)" circle></el-button>
+            <el-button class="icon" type="primary" icon="el-icon-edit"  @click="()=>editInfo(good._id)" circle></el-button>
+            <el-button class="icon" type="danger" icon="el-icon-delete"  @click="()=>deleteInfo(good._id)" circle></el-button>
         </el-row>
 
         

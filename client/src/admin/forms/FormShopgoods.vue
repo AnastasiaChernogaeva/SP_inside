@@ -116,7 +116,7 @@ export default {
       this.$refs[formName].resetFields()
     },
     loading(){
-      const loading = ElLoading.shopgood({
+      const loading = ElLoading.service({
         lock: true,
         text: 'Loading',
         spinner: 'el-icon-loading',
