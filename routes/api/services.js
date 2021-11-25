@@ -5,7 +5,7 @@ const router = Router();
 
 router.get("/api/services/", async (req, res) => {
   try {
-    console.log("Success");
+    // console.log("Success");
     const services = await Service.find();
     if (!services) throw new Error("No services");
     const sorted = services.sort((a, b) => {
@@ -19,7 +19,7 @@ router.get("/api/services/", async (req, res) => {
 });
 
 router.post("/api/services/", async (req, res) => {
-  console.log(req.body);
+  // console.log(req.body);
   const newService = new Service(req.body);
   try {
     const service = await newService.save();

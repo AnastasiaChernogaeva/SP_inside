@@ -7,12 +7,12 @@
     class="demo-service"
   >
     <el-form-item label="Name" prop="name">
-      <el-input v-model="service.name"></el-input>
+      <el-input v-model="service.name" @focus="focused===true" ></el-input>
     </el-form-item> 
 
     <el-form-item label="Price" prop="price">
         <el-input
-        v-model="service.price"
+        v-model.number="service.price"
         type="price"
       ></el-input>    
     </el-form-item>
@@ -36,6 +36,7 @@ export default {
     emits:['added', 'closeNow', 'edited'],
     data(){
      return {
+      focused:false,
       type:'services',
       service: {
         name: '',
@@ -51,6 +52,8 @@ export default {
         ],
         price: [
           {
+            type:"Number",
+            min:0,
             required: true,
             message: 'Please, input price',
             trigger: 'blur',
@@ -113,6 +116,9 @@ export default {
         this.service = arr.find(elem=>elem._id==this.edit)
       }
       
+    },
+    mounted() {
+      this.focused = true
     },
 }
 

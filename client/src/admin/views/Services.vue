@@ -5,7 +5,7 @@
     <div v-if="services.length!==0">
        <div class="flex" v-for="serv in services" :key="serv._id">
             <h3>{{serv.name}}</h3>
-            <h4>{{serv.price}}</h4>
+            <h4>{{currency(serv.price)}}</h4>
             <el-row>
             <el-button class="icon" type="primary" icon="el-icon-edit"  @click="()=>editInfo(serv._id)" circle></el-button>
             <el-button class="icon" type="danger" icon="el-icon-delete"  @click="()=>deleteInfo(serv._id)" circle></el-button>
@@ -25,6 +25,8 @@
 <script>
 import FormServices from '../forms/FormServices.vue'
 import Modal from '../ui/Modal.vue'
+import {currency} from '../../use/currency'
+
 
 
 export default {
@@ -38,6 +40,7 @@ export default {
       modal:false,
       type:'services',
       services:[],
+      currency
     }
     },
     methods:{
