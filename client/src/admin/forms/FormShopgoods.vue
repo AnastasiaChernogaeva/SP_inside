@@ -9,7 +9,7 @@
     class="demo-shopgood"
   >
     <el-form-item label="Name" prop="name">
-      <el-input v-model="shopgood.name" @focus="focused===true" ></el-input>
+      <el-input v-model="shopgood.name" ></el-input>
     </el-form-item> 
 
     <el-form-item label="Price" prop="price">
@@ -20,7 +20,7 @@
     </el-form-item>
 
     <el-form-item label="Description" prop="description">
-      <el-input v-model="shopgood.description" @focus="focused===true" ></el-input>
+      <el-input v-model="shopgood.description"  ></el-input>
     </el-form-item> 
 
     <el-form-item label="Photo" prop="photo">
@@ -43,7 +43,7 @@
   
 </template>
 <script>
-import { ElLoading} from 'element-plus'
+import { ElLoading } from 'element-plus'
 
 export default {
     props:['edit'],
@@ -68,8 +68,6 @@ export default {
         ],
         price: [
           {
-            // type:"Number",
-            // min:0,
             required: true,
             message: 'Please, input price',
             trigger: 'blur',
@@ -84,9 +82,6 @@ export default {
         ],
         photo: [
           {
-            // type:"Number",
-            // min:0,
-            // required: true,
             message: 'Please, input url for a photo',
             trigger: 'blur',
           },
@@ -100,7 +95,6 @@ export default {
         if (valid) {
           this.loading()
           this.$store.dispatch('info/editElem', {item:this.shopgood, id:this.edit, type:this.type}, {root:true,})
-          // this.$emit('closeNow') 
         } else {
           console.log('error submit!!')
           return false
@@ -149,9 +143,9 @@ export default {
       }
       
     },
-    mounted() {
-      this.focused = true
-    },
+    // mounted() {
+    //   this.focused = true
+    // },
 }
 
 </script>
