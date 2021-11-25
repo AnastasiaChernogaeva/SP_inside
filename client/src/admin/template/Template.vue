@@ -1,10 +1,14 @@
 <template>
 <div class="card  container ">
-  <h1 class="center">Services</h1>
+  <h1 class="center">{{type.toUpperCase()}}</h1>
   <hr>
-    <form-services @added="updateInfo"></form-services>
+   <keep-alive>
+                    <component :is="'form-'+type" @click.stop :edit="edit" @edited="$emit('closeModal')" ></component>
+   </keep-alive>
+    
   <hr>
-  <h3><em>List of services:</em></h3>
+  <h3><em>List of {{type}} :</em></h3>
+
     <div v-if="services.length!==0">
        <div class="flex" v-for="serv in services" :key="serv._id">
             <h3>{{serv.name}}</h3>
@@ -15,6 +19,7 @@
            </el-row>
       </div>
     </div>
+
 <h2 v-else>NO</h2>
 <modal v-if="modal" @closeForm="modal=false" :edit="editId" @closeModal="edited"/>
 
@@ -29,7 +34,15 @@
 </template>
 
 <script>
-import FormServices from '../forms/FormServices.vue'
+const FormServices = () => import("../forms/FormServices.vue");
+// const FormServices = () => import("../forms/FormServices.vue");
+// const FormServices = () => import("../forms/FormServices.vue");
+// const FormServices = () => import("../forms/FormServices.vue");
+// const FormServices = () => import("../forms/FormServices.vue");
+// const FormServices = () => import("../forms/FormServices.vue");
+
+
+// import FormServices from '../forms/FormServices.vue'
 import Modal from '../ui/Modal.vue'
 import {currency} from '../../use/currency'
 
@@ -44,10 +57,9 @@ export default {
      return {
       editId:'',
       modal:false,
-      currency,
       type:'services',
-      services:[]
-      
+      services:[],
+      currency
     }
     },
     methods:{

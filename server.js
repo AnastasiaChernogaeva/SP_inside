@@ -16,6 +16,7 @@ const petsRoutes = require("./routes/api/pets");
 const treatmentsRoutes = require("./routes/api/treatments");
 const doctorsRoutes = require("./routes/api/doctors");
 const servicesRoutes = require("./routes/api/services");
+const shopgoodsRoutes = require("./routes/api/shopgoods");
 
 const path = require("path");
 

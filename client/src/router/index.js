@@ -47,6 +47,56 @@ const router = createRouter({
     {
       path: "/main_admin",
       component: MainAdmin,
+      // through TEMPLATE
+      // children: [
+      //   {
+      //     path: "",
+      //     component: () => import("../admin/views/Main"),
+      //   },
+      //   {
+      //     path: "templ",
+      //     component: () => import("../admin/template/Template"),
+      //     children: [
+      //       {
+      //         path: "clinics",
+      //         component: () => import("../admin/views/Clinics"),
+      //       },
+      //       {
+      //         path: "doctors",
+      //         component: () => import("../admin/views/Doctors"),
+      //       },
+      //       {
+      //         path: "services",
+      //         component: () => import("../admin/views/Services"),
+      //       },
+      //       {
+      //         path: "cities",
+      //         component: () => import("../admin/views/Cities"),
+      //       },
+      //       {
+      //         path: "working_time",
+      //         component: () => import("../admin/views/WorkingTime"),
+      //       },
+      //       {
+      //         path: "pets",
+      //         component: () => import("../admin/views/Pets"),
+      //       },
+      //       {
+      //         path: "users",
+      //         component: () => import("../admin/views/Users"),
+      //       },
+      //       {
+      //         path: "treatments",
+      //         component: () => import("../admin/views/Treatments"),
+      //       },
+      //       {
+      //         path: "shop_goods",
+      //         component: () => import("../admin/views/ShopGoods"),
+      //       },
+      //     ],
+      //   },
+      // ],
+
       children: [
         {
           path: "",
@@ -69,7 +119,7 @@ const router = createRouter({
           component: () => import("../admin/views/Cities"),
         },
         {
-          path: "working_time",
+          path: "workingtime",
           component: () => import("../admin/views/WorkingTime"),
         },
         {
@@ -85,7 +135,7 @@ const router = createRouter({
           component: () => import("../admin/views/Treatments"),
         },
         {
-          path: "shop_goods",
+          path: "shopgoods",
           component: () => import("../admin/views/ShopGoods"),
         },
       ],

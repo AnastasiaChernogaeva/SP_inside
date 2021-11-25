@@ -44,10 +44,9 @@ export default {
      return {
       editId:'',
       modal:false,
-      currency,
       type:'services',
-      services:[]
-      
+      services:[],
+      currency
     }
     },
     methods:{

@@ -1,11 +1,14 @@
 <template>
+<div class="card  container ">
+  <h1 class="center">Shopgoods</h1>
+  <hr>
+    <form-shopgoods @added="updateInfo"></form-shopgoods>
+  <hr>
+  <h3><em>List of shopgoods:</em></h3>
 <div v-if="shopgoods.length!==0">
-    <div class="flex" v-for="shopgood in shopgoods" :key="shopgood.id">
-         <div v-for="shopgood in shopgoods" :key="shopgood.id">
+    <div class="flex" v-for="shopgood in shopgoods" :key="shopgood._id">
         <h1>{{shopgood.name}}</h1>
-        <h4>{{shopgood.country}}, {{shopgood.city}}</h4>
-        <ul><li>{{shopgood.services}}</li></ul>
-        <p>{{shopgood.doctors}}</p>
+        <ul><li>{{currency(shopgood.price)}}</li></ul>
         <img :src="shopgood.photo" alt="shopgood">
         <p>{{shopgood.description}}</p>
         <el-row>
@@ -14,28 +17,56 @@
         </el-row>
 
         
-        </div>{{shopgood}}</div>
-</div>
+        </div>
+        <!-- {{shopgood}} -->
+        </div>
 <h2 v-else>NO</h2>
+<modal v-if="modal" @closeForm="modal=false" :edit="editId" @closeModal="edited"/>
 
+
+<hr>
+   <el-button type="info" class="myButton" @click="()=>{$router.push('/main_admin')}">Back</el-button>
+
+</div>
     
 </template>
 
 <script>
+import FormShopgoods from '../forms/FormShopgoods.vue'
+import Modal from '../ui/Modal.vue'
+import {currency} from '../../use/currency'
+
 export default {
+    components:{
+      FormShopgoods,
+      Modal
+    },
     data(){
         return{
+            editId:'',
+            modal:false,
+            currency,
             type:'shopgoods',
             shopgoods:[],
 
         }
     },
     methods:{
+    edited(){
+      console.log('inside the shopgoods')
+      this.modal=false
+      this.updateInfo()
+      },
     async updateInfo(){
         const info = await this.$store.dispatch('info/getInfo', {type:this.type}, {root:true,})
         if(info)
         this.shopgoods = info
-    },    
+    },
+    editInfo(id){
+      this.modal = true
+      this.editId = id
+      // console.log('id in edit', id)
+    },
     async deleteInfo(id){
       await this.$store.dispatch('info/deleteItem', {type:this.type, id:id}, {root:true,})
       this.updateInfo()
