@@ -8,8 +8,8 @@
        </teleport> 
 </template>
 <script>
-import AppModal from '../ui/AppModal.vue'
-import FormServices from "../admin/forms/FormServices.vue"
+import AppModal from '../../ui/AppModal.vue'
+import FormServices from "../forms/FormServices.vue"
 // import FormCities from "../forms/FormServices.vue"
 // import FormClinics from "../forms/FormServices.vue"
 // import FormDoctors from "../forms/FormServices.vue"
