@@ -41,6 +41,7 @@ app.use(petsRoutes);
 app.use(treatmentsRoutes);
 app.use(doctorsRoutes);
 app.use(servicesRoutes);
+app.use(shopgoodsRoutes);
 
 //   if (process.env.NODE_ENV === "production") {
 //     app.use(express.static("client/dist"));

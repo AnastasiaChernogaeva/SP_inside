@@ -86,7 +86,7 @@ export default {
           {
             // type:"Number",
             // min:0,
-            required: true,
+            // required: true,
             message: 'Please, input url for a photo',
             trigger: 'blur',
           },

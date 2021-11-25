@@ -11,7 +11,7 @@ const ShopgoodSchema = new Schema({
   },
   photo: {
     type: String,
-    required: true,
+    // required: true,
   },
   price: {
     type: String,
