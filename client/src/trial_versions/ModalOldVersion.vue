@@ -1,17 +1,15 @@
 <template>
        <teleport to="body"> 
-           <div class="modal-backdrop" @click="$emit('closeModal')">
-             <div class="modal">
-                 <keep-alive>
-                    <component :is="'form-'+type" @click.stop :edit="edit" @edited="$emit('closeModal')" ></component>
-                </keep-alive>
-            </div>
-          </div>
+        <app-modal @close="$emit('closeModal')" >
+          <keep-alive>
+             <component :is="'form-'+type" @click.stop :edit="edit" @edited="$emit('edited')" ></component>
+          </keep-alive>
+        </app-modal>
        </teleport> 
 </template>
 <script>
-import AppModal from '../../ui/AppModal.vue'
-import FormServices from "../forms/FormServices.vue"
+import AppModal from '../ui/AppModal.vue'
+import FormServices from "../admin/forms/FormServices.vue"
 // import FormCities from "../forms/FormServices.vue"
 // import FormClinics from "../forms/FormServices.vue"
 // import FormDoctors from "../forms/FormServices.vue"
@@ -23,7 +21,7 @@ import FormServices from "../forms/FormServices.vue"
 
 
 export default {
-    emits:['closeModal'],
+    emits:['closeModal', 'edited'],
     props:['edit'],
     components:{
       AppModal,
