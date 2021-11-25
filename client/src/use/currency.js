@@ -1,5 +1,5 @@
-const formatterCurrency = new Intl.NumberFormat("ru-RU", {
-  currency: "BYN",
+const formatterCurrency = new Intl.NumberFormat("de-DE", {
+  currency: "EUR",
   style: "currency",
 });
 

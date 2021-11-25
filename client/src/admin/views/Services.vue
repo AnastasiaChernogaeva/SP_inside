@@ -1,7 +1,10 @@
 <template>
 <div class="card  container ">
+  <h1 class="center">Services</h1>
+  <hr>
     <form-services @added="updateInfo"></form-services>
   <hr>
+  <h3><em>List of services:</em></h3>
     <div v-if="services.length!==0">
        <div class="flex" v-for="serv in services" :key="serv._id">
             <h3>{{serv.name}}</h3>
@@ -15,6 +18,9 @@
 <h2 v-else>NO</h2>
 <modal v-if="modal" @closeForm="modal=false" :edit="editId" @closeModal="edited"/>
 
+
+<hr>
+   <el-button type="info" class="myButton" @click="()=>{$router.push('/main_admin')}">Back</el-button>
 
 </div>
 
@@ -69,3 +75,21 @@ export default {
     },
 }
 </script>
+<style scoped>
+
+.myButton{
+    font-size:18px;
+    box-shadow: 0 2px 4px #e9e9eb, 0 0 6px rgb(0 0 0 / 4%);
+    margin-bottom:2px;
+
+    /* box-shadow: 0 2px 4px #d1dbe5, 0 0 6px rgb(0 0 0 / 4%); */
+    /* --el-button-background-color: #d1dbe5;
+    --el-button-border-color: #d1dbe559; */
+    --el-button-background-color: #a0c7c7db;
+    --el-button-border-color: #b8e3f0;
+    --el-button-hover-color: #fd6659;
+    --el-button-active-font-color: #fd6659;;
+    --el-button-active-background-color: #fd6659;;
+    --el-button-active-border-color: #fd6659;;
+}
+</style>

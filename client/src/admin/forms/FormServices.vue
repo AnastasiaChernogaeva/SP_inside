@@ -1,4 +1,6 @@
 <template>
+<div>
+  <h3><em>Adding new one:</em></h3>
    <el-form
     ref="service"
     :model="service"
@@ -26,7 +28,9 @@
       > 
       <el-button @click="resetForm('service')">Reset</el-button>
     </el-form-item>
-  </el-form>    
+  </el-form>  
+</div>
+  
 </template>
 <script>
 import { ElLoading} from 'element-plus'
@@ -36,7 +40,7 @@ export default {
     emits:['added', 'closeNow', 'edited'],
     data(){
      return {
-      focused:false,
+      // focused:false,
       type:'services',
       service: {
         name: '',
@@ -52,8 +56,8 @@ export default {
         ],
         price: [
           {
-            type:"Number",
-            min:0,
+            // type:"Number",
+            // min:0,
             required: true,
             message: 'Please, input price',
             trigger: 'blur',
