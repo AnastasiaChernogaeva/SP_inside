@@ -31,7 +31,7 @@ router.post("/api/clients/", async (req, res) => {
 });
 
 router.put("/api/clients/", async (req, res) => {
-  const id = req.body.id;
+  const id = req.body._id;
   console.log("body", req.body);
   try {
     const response = await Client.findByIdAndUpdate(id, req.body.description);

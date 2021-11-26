@@ -6,7 +6,7 @@
   <hr>
   <h3><em>List of clinics:</em></h3>
 <div v-if="clinics.length!==0">
-    <div class="flex" v-for="clinic in clinics" :key="clinic._id">
+    <div  v-for="clinic in clinics" :key="clinic._id">
         <h1>{{clinic.name}}</h1>
         <h4>{{clinic.country}}, {{clinic.city}}</h4>
         <ul v-if="clinic.services.length!==0"><li v-for="serv in clinic.services" :key="serv">{{serv}}</li></ul>
@@ -78,3 +78,12 @@ export default {
     },
 }
 </script>
+<style scoped>
+
+img{
+
+  background:lightblue;
+  width:400px;
+  height:150px;;
+}
+</style>

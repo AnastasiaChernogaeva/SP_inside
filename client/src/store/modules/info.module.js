@@ -92,6 +92,7 @@ export default {
     },
 
     async addNew({ commit, dispatch }, payload) {
+      // console.log("data", payload.items);
       const { data } = await axios.post(
         `http://localhost:${PORT}/api/${payload.type}`,
         {

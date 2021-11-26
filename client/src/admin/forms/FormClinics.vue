@@ -176,9 +176,6 @@ export default {
      
       
     },
-    // mounted() {
-    //   this.focused = true
-    // },
 }
 
 </script>
