@@ -40,6 +40,14 @@
     </el-checkbox-group>
     </el-form-item>
 
+    <!-- <el-form-item label="Doctors" prop="doctors">
+    <el-checkbox-group v-model="clinic.doctors">
+      <el-checkbox-button v-for="doc in doctors" :key="doc._id" :label="doc.name" :value="doc._id">{{
+        doc.name
+      }}</el-checkbox-button>
+    </el-checkbox-group>
+    </el-form-item> -->
+
 
 
     <el-form-item label="Photo" prop="photo">
@@ -72,6 +80,7 @@ export default {
       // focused:false,
       type:'clinics',
       services:[],
+      doctors:[],
       clinic: {
         name: '',
         country:'',
@@ -172,7 +181,7 @@ export default {
         this.clinic = arr.find(elem=>elem._id==this.edit)
      }
         this.services =  await this.$store.dispatch('info/getInfo', {type:'services'}, {root:true,})
-
+        this.doctors = await this.$store.dispatch('info/getInfo', {type:'doctors'}, {root:true,})
      
       
     },
