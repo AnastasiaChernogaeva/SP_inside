@@ -17,16 +17,16 @@ const PetSchema = new Schema({
     type: String,
     required: true,
   },
-  dateOfBirth: {
-    // type: Date,
-    type: String,
-    required: true,
-  },
-  dateOfDeath: {
-    // type: Date,
-    type: String,
-    required: true,
-  },
+  // dateOfBirth: {
+  //   // type: Date,
+  //   type: String,
+  //   required: true,
+  // },
+  // dateOfDeath: {
+  //   // type: Date,
+  //   type: String,
+  //   required: true,
+  // },
   weight: {
     type: String,
     required: true,
@@ -47,37 +47,37 @@ const PetSchema = new Schema({
     type: Boolean,
     required: true,
   },
-  activeLifestyle: {
-    type: Boolean,
-    required: true,
-  },
-  activityForms: {
-    // type: Array,
-    type: String,
-    required: true,
-  },
+  // activeLifestyle: {
+  //   type: Boolean,
+  //   required: true,
+  // },
+  // activityForms: {
+  //   // type: Array,
+  //   type: String,
+  //   required: true,
+  // },
   photo: {
     type: String,
     required: false,
   },
-  diagnoses: {
-    type: String,
-    required: true,
-  },
-  appointments: {
-    // type: Array,
-    type: String,
-    required: true,
-  },
-  treatments: {
-    // type: Array,
-    type: String,
-    required: true,
-  },
-  owner: {
-    type: String,
-    required: true,
-  },
+  // diagnoses: {
+  //   type: String,
+  //   required: true,
+  // },
+  // appointments: {
+  //   // type: Array,
+  //   type: String,
+  //   // required: true,
+  // },
+  // treatments: {
+  //   // type: Array,
+  //   type: String,
+  //   // required: true,
+  // },
+  // owner: {
+  //   type: String,
+  //   // required: true,
+  // },
   date: {
     type: Date,
     default: Date.now,

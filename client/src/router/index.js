@@ -6,7 +6,7 @@ const NotFound = () => import("../layout/NotFound");
 const Main = () => import("../layout/Main.vue");
 const LogIn = () => import("../views/Auth.vue");
 const SignUp = () => import("../views/Register.vue");
-const Users = () => import("../user/views/MainUser.vue");
+const Clients = () => import("../client/views/Mainclient.vue");
 
 const MainDoc = () => import("../doctor/layout/MainDoc");
 const Primary = () => import("../doctor/views/Primary");
@@ -32,8 +32,8 @@ const router = createRouter({
           component: SignUp,
         },
         {
-          path: "users",
-          component: Users,
+          path: "clients",
+          component: Clients,
           meta: {
             auth: true,
           },
@@ -82,8 +82,8 @@ const router = createRouter({
       //         component: () => import("../admin/views/Pets"),
       //       },
       //       {
-      //         path: "users",
-      //         component: () => import("../admin/views/Users"),
+      //         path: "clients",
+      //         component: () => import("../admin/views/clients"),
       //       },
       //       {
       //         path: "treatments",
@@ -114,26 +114,26 @@ const router = createRouter({
           path: "services",
           component: () => import("../admin/views/Services"),
         },
-        {
-          path: "cities",
-          component: () => import("../admin/views/Cities"),
-        },
-        {
-          path: "workingtime",
-          component: () => import("../admin/views/WorkingTime"),
-        },
+        // {
+        //   path: "cities",
+        //   component: () => import("../admin/views/Cities"),
+        // },
+        // {
+        //   path: "workingtime",
+        //   component: () => import("../admin/views/WorkingTime"),
+        // },
         {
           path: "pets",
           component: () => import("../admin/views/Pets"),
         },
         {
-          path: "users",
-          component: () => import("../admin/views/Users"),
+          path: "clients",
+          component: () => import("../admin/views/Clients"),
         },
-        {
-          path: "treatments",
-          component: () => import("../admin/views/Treatments"),
-        },
+        // {
+        //   path: "treatments",
+        //   component: () => import("../admin/views/Treatments"),
+        // },
         {
           path: "shopgoods",
           component: () => import("../admin/views/ShopGoods"),
@@ -166,32 +166,32 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
   try {
-    const currentUser = store.state.auth.role;
+    const currentclient = store.state.auth.role;
     const requireAuth = to.matched.some((record) => record.meta.auth);
 
-    if (requireAuth && !currentUser) {
+    if (requireAuth && !currentclient) {
       next("/login?message=login");
     } else {
-      if (/^\/main_doc/.test(to.path) && currentUser !== "DOCTOR") {
-        switch (currentUser) {
+      if (/^\/main_doc/.test(to.path) && currentclient !== "DOCTOR") {
+        switch (currentclient) {
           case "ADMIN":
             next("/main_admin");
             break;
-          case "USER":
-            next("/main/users");
+          case "client":
+            next("/main/clients");
             break;
         }
-      } else if (/^\/main_admin/.test(to.path) && currentUser !== "ADMIN") {
-        switch (currentUser) {
+      } else if (/^\/main_admin/.test(to.path) && currentclient !== "ADMIN") {
+        switch (currentclient) {
           case "DOCTOR":
             next("/main_doc");
             break;
-          case "USER":
-            next("/main/users");
+          case "client":
+            next("/main/clients");
             break;
         }
-      } else if (/\/users/.test(to.path) && currentUser !== "USER") {
-        switch (currentUser) {
+      } else if (/\/clients/.test(to.path) && currentclient !== "client") {
+        switch (currentclient) {
           case "ADMIN":
             next("/main_admin");
             break;

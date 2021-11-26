@@ -14,14 +14,14 @@ const ClinicSchema = new Schema({
     required: true,
   },
   services: {
-    type: String,
+    type: Array,
     // type: Objectid,
     required: true,
   },
   doctors: {
-    type: String,
+    type: Array,
     // type: Objectid,
-    required: true,
+    // required: true,
   },
   photo: {
     type: String,

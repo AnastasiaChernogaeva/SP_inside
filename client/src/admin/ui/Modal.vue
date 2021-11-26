@@ -13,11 +13,11 @@
 import AppModal from '../../ui/AppModal.vue'
 import FormServices from "../forms/FormServices.vue"
 import FormShopgoods from "../forms/FormShopgoods.vue"
-
+import FormPets from "../forms/FormPets.vue"
+import FormClinics from "../forms/FormClinics.vue"
 // import FormCities from "../forms/FormServices.vue"
-// import FormClinics from "../forms/FormServices.vue"
 // import FormDoctors from "../forms/FormServices.vue"
-// import FormPets from "../forms/FormServices.vue"
+
 // import FormShopgoods from "../forms/FormServices.vue"
 // import FormTreatments from "../forms/FormServices.vue"
 // import FormUsers from "../forms/FormServices.vue"
@@ -31,10 +31,10 @@ export default {
       AppModal,
       FormShopgoods,
       FormServices,
+      FormPets,
+      FormClinics,
     //   FormCities,
-    //   FormClinics,
     //   FormDoctors,
-    //   FormPets,
     //   FormShopgoods,
     //   FormTreatments,
     //   FormUsers,
