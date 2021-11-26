@@ -6,7 +6,7 @@ const NotFound = () => import("../layout/NotFound");
 const Main = () => import("../layout/Main.vue");
 const LogIn = () => import("../views/Auth.vue");
 const SignUp = () => import("../views/Register.vue");
-const Clients = () => import("../client/views/Mainclient.vue");
+const Clients = () => import("../client/views/MainClient");
 
 const MainDoc = () => import("../doctor/layout/MainDoc");
 const Primary = () => import("../doctor/views/Primary");

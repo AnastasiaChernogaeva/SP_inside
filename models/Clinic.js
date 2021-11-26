@@ -16,7 +16,7 @@ const ClinicSchema = new Schema({
   services: {
     type: Array,
     // type: Objectid,
-    required: true,
+    // required: true,
   },
   doctors: {
     type: Array,

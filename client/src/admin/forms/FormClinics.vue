@@ -26,14 +26,20 @@
       <el-input v-model="clinic.description"  ></el-input>
     </el-form-item> 
 
-    <el-form-item label="Services" prop="services">
+    <!-- <el-form-item label="Services" prop="services">
       <el-select v-model="clinic.services" placeholder="Services">
         <el-option v-for="service in services" :key="service._id" :label="service.name" :value="service._id"></el-option>
-<!-- 
-        <el-option label="Male" value="Male"></el-option>
-        <el-option label="Female" value="Female"></el-option> -->
       </el-select>
+    </el-form-item> -->
+
+    <el-form-item label="Services" prop="services">
+    <el-checkbox-group v-model="clinic.services">
+      <el-checkbox-button v-for="service in services" :key="service._id" :label="service.name" :value="service._id">{{
+        service.name
+      }}</el-checkbox-button>
+    </el-checkbox-group>
     </el-form-item>
+
 
 
     <el-form-item label="Photo" prop="photo">
@@ -118,7 +124,7 @@ export default {
       this.$refs[formName].validate((valid) => {
         if (valid) {
           this.loading()
-          this.$store.dispatch('info/editElem', {item:this.shopgood, id:this.edit, type:this.type}, {root:true,})
+          this.$store.dispatch('info/editElem', {item:this.clinic, id:this.edit, type:this.type}, {root:true,})
         } else {
           console.log('error submit!!')
           return false
@@ -128,7 +134,7 @@ export default {
       this.$refs[formName].validate((valid) => {
         if (valid) {
           this.loading()
-          this.$store.dispatch('info/addNew', {items:this.shopgood, type:this.type}, {root:true,})
+          this.$store.dispatch('info/addNew', {items:this.clinic, type:this.type}, {root:true,})
                
         } else {
           console.log('error submit!!')
@@ -155,7 +161,7 @@ export default {
         }
        
         
-        this.resetForm('shopgood')
+        this.resetForm('clinic')
         loading.close()        
       }, 2000)
     },

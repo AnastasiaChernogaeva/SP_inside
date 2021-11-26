@@ -22,6 +22,10 @@ router.post("/api/clinics/", async (req, res) => {
   console.log(req.body);
   const newClinic = new Clinic(req.body);
   try {
+    let existedClinic = await Clinic.find(newClinic);
+    if (existedClinic) {
+      throw new Error("The clinic has already existed");
+    }
     const clinic = await newClinic.save();
     if (!clinic) throw new Error("Something went wrong saving the clinic");
     res.status(200).json(clinic);

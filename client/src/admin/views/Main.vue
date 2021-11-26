@@ -12,7 +12,7 @@
 
    <!-- <el-button type="info" class="myButton" @click="()=>{$router.push('/main_admin/workingtime')}">WorkingTime</el-button> -->
    <el-button type="info" class="myButton" @click="()=>{$router.push('/main_admin/pets')}">Pets</el-button>
-   <el-button type="info" class="myButton" @click="()=>{$router.push('/main_admin/users')}">Users</el-button>
+   <el-button type="info" class="myButton" @click="()=>{$router.push('/main_admin/clients')}">Clients</el-button>
    <!-- <el-button type="info" class="myButton" @click="()=>{$router.push('/main_admin/treatments')}">Treatments</el-button> -->
    <el-button type="info" class="myButton" @click="()=>{$router.push('/main_admin/shopgoods')}">ShopGoods</el-button>
 

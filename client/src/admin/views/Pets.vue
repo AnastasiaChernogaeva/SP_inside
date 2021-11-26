@@ -61,7 +61,7 @@ export default {
     async updateInfo(){
         const info = await this.$store.dispatch('info/getInfo', {type:this.type}, {root:true,})
         if(info)
-        this.shopgoods = info
+        this.pets = info
     },
     editInfo(id){
       this.modal = true

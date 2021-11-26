@@ -2,15 +2,16 @@
 <div class="card  container ">
   <h1 class="center">Clinics</h1>
   <hr>
-    <form-shopgoods @added="updateInfo"></form-shopgoods>
+    <form-clinics @added="updateInfo"></form-clinics>
   <hr>
   <h3><em>List of clinics:</em></h3>
 <div v-if="clinics.length!==0">
     <div class="flex" v-for="clinic in clinics" :key="clinic._id">
         <h1>{{clinic.name}}</h1>
         <h4>{{clinic.country}}, {{clinic.city}}</h4>
-        <ul><li>{{clinic.services}}</li></ul>
-        <p>{{clinic.doctors}}</p>
+        <ul v-if="clinic.services.length!==0"><li v-for="serv in clinic.services" :key="serv">{{serv}}</li></ul>
+        <ul v-if="clinic.doctors.length!==0"><li v-for="doc in clinic.doctors" :key="doc">{{doc}}</li></ul>
+
         <img :src="clinic.photo" alt="clinic">
         <p>{{clinic.description}}</p>
         <el-row>
@@ -60,7 +61,7 @@ export default {
     async updateInfo(){
         const info = await this.$store.dispatch('info/getInfo', {type:this.type}, {root:true,})
         if(info)
-        this.shopgoods = info
+        this.clinics = info
     },
     editInfo(id){
       this.modal = true
