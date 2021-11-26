@@ -20,8 +20,15 @@ router.get("/api/shopgoods/", async (req, res) => {
 
 router.post("/api/shopgoods/", async (req, res) => {
   // console.log(req.body);
-  const newshopgood = new Shopgood(req.body);
+
   try {
+    const { name } = req.body;
+    let existedShopgood = await Shopgood.findOne({ name });
+    if (existedShopgood) {
+      console.log(existedShopgood);
+      throw new Error("The item has already existed");
+    }
+    const newshopgood = new Shopgood(req.body);
     const shopgood = await newshopgood.save();
     if (!shopgood) throw new Error("Something went wrong saving the shopgood");
     res.status(200).json(shopgood);
@@ -32,13 +39,13 @@ router.post("/api/shopgoods/", async (req, res) => {
 
 router.put("/api/shopgoods/", async (req, res) => {
   const id = req.body._id;
-  const body = { name: req.body.name, price: req.body.price };
+  // const body = { name: req.body.name, price: req.body.price };
 
   // console.log("body", body);
   // console.log("id", id);
 
   try {
-    const response = await Shopgood.findByIdAndUpdate(id, body);
+    const response = await Shopgood.findByIdAndUpdate(id, req.body);
     if (!response) throw new Error("Something went wrong");
     const updated = { ...response._doc };
     // console.log("updated", updated);

@@ -21,33 +21,10 @@ const DoctorSchema = new Schema({
     type: String,
     required: true,
   },
-  // workPlace: {
-  //   type: String,
-  //   ref: "Clinic",
-  //   // type: Objectid,
-  //   // required: true,
-  // },
-  user: {
-    type: Object,
-    ref: "User",
+  id: {
+    type: String,
+    required: true,
   },
-  // login: {
-  //   type: String,
-  //   required: true,
-  // },
-  // password: {
-  //   type: String,
-  //   required: true,
-  // },
-  // status: {
-  //   type: String,
-  //   // type: Boolean,
-  //   required: true,
-  // },
-  // date: {
-  //   type: Date,
-  //   default: Date.now,
-  // },
 });
 
 const Doctor = model("doctor", DoctorSchema);

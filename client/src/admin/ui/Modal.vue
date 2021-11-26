@@ -15,12 +15,11 @@ import FormServices from "../forms/FormServices.vue"
 import FormShopgoods from "../forms/FormShopgoods.vue"
 import FormPets from "../forms/FormPets.vue"
 import FormClinics from "../forms/FormClinics.vue"
-// import FormCities from "../forms/FormServices.vue"
-// import FormDoctors from "../forms/FormServices.vue"
+import FormDoctors from "../forms/FormDoctors.vue"
+import FormClients from "../forms/FormClients.vue"
 
-// import FormShopgoods from "../forms/FormServices.vue"
+// import FormCities from "../forms/FormServices.vue"
 // import FormTreatments from "../forms/FormServices.vue"
-// import FormUsers from "../forms/FormServices.vue"
 // import FormWorkingtime from "../forms/FormServices.vue" @closeNow="close"
 
 
@@ -33,11 +32,10 @@ export default {
       FormServices,
       FormPets,
       FormClinics,
+      FormDoctors,
+      FormClients
     //   FormCities,
-    //   FormDoctors,
-    //   FormShopgoods,
     //   FormTreatments,
-    //   FormUsers,
     //   FormWorkingtime
     },
     data(){

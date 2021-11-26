@@ -17,16 +17,16 @@ const PetSchema = new Schema({
     type: String,
     required: true,
   },
-  // dateOfBirth: {
-  //   // type: Date,
-  //   type: String,
-  //   required: true,
-  // },
-  // dateOfDeath: {
-  //   // type: Date,
-  //   type: String,
-  //   required: true,
-  // },
+  dateOfBirth: {
+    // type: Date,
+    type: String,
+    required: true,
+  },
+  dateOfDeath: {
+    // type: Date,
+    type: String,
+    required: true,
+  },
   weight: {
     type: String,
     required: true,
@@ -35,18 +35,18 @@ const PetSchema = new Schema({
     type: String,
     required: true,
   },
-  homeless: {
-    type: Boolean,
-    required: true,
-  },
-  pedigree: {
-    type: Boolean,
-    required: true,
-  },
-  passport: {
-    type: Boolean,
-    required: true,
-  },
+  // homeless: {
+  //   type: Boolean,
+  //   required: true,
+  // },
+  // pedigree: {
+  //   type: Boolean,
+  //   required: true,
+  // },
+  // passport: {
+  //   type: Boolean,
+  //   required: true,
+  // },
   // activeLifestyle: {
   //   type: Boolean,
   //   required: true,

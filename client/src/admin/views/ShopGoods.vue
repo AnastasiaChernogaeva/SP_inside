@@ -6,10 +6,13 @@
   <hr>
   <h3><em>List of shopgoods:</em></h3>
 <div v-if="shopgoods.length!==0">
-    <div class="flex" v-for="good in shopgoods" :key="good._id">
+    <div v-for="good in shopgoods" :key="good._id">
         <h1>{{good.name}}</h1>
-        <ul><li>{{currency(good.price)}}</li></ul>
-        <img :src="good.photo" alt="shopgood">
+        <h3>{{currency(good.price)}}</h3>
+        <!-- <ul><li></li></ul> -->
+        <img :src="good.photo" alt="shopgood" v-if="good.photo">
+        <p v-else>No photo</p>
+        <h3>About the item:</h3>
         <p>{{good.description}}</p>
         <el-row>
             <el-button class="icon" type="primary" icon="el-icon-edit"  @click="()=>editInfo(good._id)" circle></el-button>
@@ -77,3 +80,9 @@ export default {
     },
 }
 </script>
+<style  scoped>
+img{
+  width:300px;
+  height:auto;
+}
+</style>

@@ -36,9 +36,9 @@ mongoose
 
 app.use(clientsRoutes);
 app.use(clinicsRoutes);
-app.use(illnessesRoutes);
+// app.use(illnessesRoutes);
 app.use(petsRoutes);
-app.use(treatmentsRoutes);
+// app.use(treatmentsRoutes);
 app.use(doctorsRoutes);
 app.use(servicesRoutes);
 app.use(shopgoodsRoutes);

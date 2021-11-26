@@ -72,5 +72,12 @@ body {
   color: #2c3e50;
   /* background: #2c3e50; */
 } 
+.border{
+  padding-bottom: 3%;
+  border-bottom:2px lightgrey solid
+}
+.border:last-child{
+border:none;
+}
 
 </style>
