@@ -13,11 +13,11 @@ const DoctorSchema = new Schema({
     type: String,
     required: true,
   },
-  experience: {
-    type: String,
-    required: true,
-  },
-  contacts: {
+  // experience: {
+  //   type: String,
+  //   required: true,
+  // },
+  phone: {
     type: String,
     required: true,
   },

@@ -2,68 +2,43 @@
 <div>
   <h3><em>Adding new one:</em></h3>
    <el-form
-    ref="clinic"
-    :model="clinic"
+    ref="doctor"
+    :model="doctor"
     :rules="rules"
     label-width="120px"
-    class="demo-clinic"
+    class="demo-doctor"
   >
     <el-form-item label="Name" prop="name">
-      <el-input v-model="clinic.name" ></el-input>
+      <el-input v-model="doctor.name" ></el-input>
+    </el-form-item> 
+    <el-form-item label="Surname" prop="surname">
+      <el-input v-model="doctor.surname" ></el-input>
+    </el-form-item> 
+    <el-form-item label="Post" prop="post">
+      <el-input v-model="doctor.post" ></el-input>
+    </el-form-item>  
+    <el-form-item label="Phone number" prop="phone">
+      <el-input v-model="doctor.phone" ></el-input>
     </el-form-item> 
 
-    <el-form-item label="Country" prop="country">
-        <el-input
-        v-model.number="clinic.country"
-      ></el-input>    
-    </el-form-item>
-
-    <el-form-item label="City" prop="city">
-      <el-input v-model="clinic.city"  ></el-input>
-    </el-form-item> 
-
-    <el-form-item label="Description" prop="description">
-      <el-input v-model="clinic.description"  ></el-input>
-    </el-form-item> 
-
-    <!-- <el-form-item label="Services" prop="services">
-      <el-select v-model="clinic.services" placeholder="Services">
-        <el-option v-for="service in services" :key="service._id" :label="service.name" :value="service._id"></el-option>
-      </el-select>
-    </el-form-item> -->
-
-    <el-form-item label="Services" prop="services">
-    <el-checkbox-group v-model="clinic.services">
-      <el-checkbox-button v-for="service in services" :key="service._id" :label="service.name" :value="service._id">{{
-        service.name
-      }}</el-checkbox-button>
-    </el-checkbox-group>
-    </el-form-item>
-
-    <el-form-item label="Doctors" prop="doctors">
-    <el-checkbox-group v-model="clinic.doctors">
-      <el-checkbox-button v-for="doc in doctors" :key="doc._id" :label="doc.name" :value="doc._id">{{
-        doc.name
-      }}</el-checkbox-button>
-    </el-checkbox-group>
-    </el-form-item>
+   
 
 
-
+<!-- 
     <el-form-item label="Photo" prop="photo">
         <el-input
-        v-model="clinic.photo"
+        v-model="doctor.photo"
       ></el-input>    
-    </el-form-item>
+    </el-form-item> -->
   
      <el-form-item>
-      <el-button type="primary" @click="editElem('clinic')" v-if="edit"
+      <el-button type="primary" @click="editElem('doctor')" v-if="edit"
         >Edit</el-button
       >
-     <el-button type="primary" @click="submitForm('clinic')" v-else
+     <el-button type="primary" @click="submitForm('doctor')" v-else
         >Save</el-button
       > 
-      <el-button @click="resetForm('clinic')">Reset</el-button>
+      <el-button @click="resetForm('doctor')">Reset</el-button>
     </el-form-item>
   </el-form>  
 </div>
@@ -78,23 +53,21 @@ export default {
     data(){
      return {
       // focused:false,
-      type:'clinics',
-      services:[],
-      doctors:[],
-      clinic: {
+      type:'doctors',
+      users:[],
+      doctor: {
         name: '',
-        country:'',
-        city:'',
-        services:[],
-        doctors:[],
+        surname:'',
+        post:'',
         photo:'',
-        description:'',
+        phone:'',
+        id:'',
       },
       rules: {
         name: [
           {
             required: true,
-            message: 'Please, input name of clinic',
+            message: 'Please, input name of doctor',
             trigger: 'blur',
           },
         ],
@@ -115,7 +88,7 @@ export default {
         description: [
           {
             required: true,
-            message: 'Please, input description of clinic',
+            message: 'Please, input description of doctor',
             trigger: 'blur',
           },
         ],
@@ -133,7 +106,7 @@ export default {
       this.$refs[formName].validate((valid) => {
         if (valid) {
           this.loading()
-          this.$store.dispatch('info/editElem', {item:this.clinic, id:this.edit, type:this.type}, {root:true,})
+          this.$store.dispatch('info/editElem', {item:this.doctor, id:this.edit, type:this.type}, {root:true,})
         } else {
           console.log('error submit!!')
           return false
@@ -143,7 +116,7 @@ export default {
       this.$refs[formName].validate((valid) => {
         if (valid) {
           this.loading()
-          this.$store.dispatch('info/addNew', {items:this.clinic, type:this.type}, {root:true,})
+          this.$store.dispatch('info/addNew', {items:this.doctor, type:this.type}, {root:true,})
                
         } else {
           console.log('error submit!!')
@@ -170,7 +143,7 @@ export default {
         }
        
         
-        this.resetForm('clinic')
+        this.resetForm('doctor')
         loading.close()        
       }, 2000)
     },
@@ -178,7 +151,7 @@ export default {
     async beforeMount() {
       if(this.edit){
         let arr = await this.$store.dispatch('info/getInfo', {type:this.type}, {root:true,})
-        this.clinic = arr.find(elem=>elem._id==this.edit)
+        this.doctor = arr.find(elem=>elem._id==this.edit)
      }
         this.services =  await this.$store.dispatch('info/getInfo', {type:'services'}, {root:true,})
         this.doctors = await this.$store.dispatch('info/getInfo', {type:'doctors'}, {root:true,})
