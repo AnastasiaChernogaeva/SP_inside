@@ -25,7 +25,7 @@ const PetSchema = new Schema({
   dateOfDeath: {
     // type: Date,
     type: String,
-    required: true,
+    // required: true,
   },
   weight: {
     type: String,

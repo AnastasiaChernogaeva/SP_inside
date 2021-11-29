@@ -10,9 +10,9 @@
         <h1>{{pet.fullname}}</h1>
         <h2>{{pet.nickname}}</h2>
 
-        <h4>{{pet.dateOfBirth}}, {{pet.dateOfDeath}}</h4>
+        <!-- <h4>{{pet.dateOfBirth}}, {{pet.dateOfDeath}}</h4> -->
         <ul>
-            <li>{{pet.gender}}</li>
+            <!-- <li>{{pet.gender}}</li> -->
             <li>{{pet.kind}}</li>
             <li>{{pet.weight}}</li>
         </ul>
@@ -22,6 +22,11 @@
 
         
         <!-- {{pet}} -->
+
+         <el-row>
+            <el-button class="icon" type="primary" icon="el-icon-edit"  @click="()=>editInfo(pet._id)" circle></el-button>
+            <el-button class="icon" type="danger" icon="el-icon-delete"  @click="()=>deleteInfo(pet._id)" circle></el-button>
+        </el-row>
         </div>
 </div>
 <h2 v-else>NO</h2>

@@ -8,8 +8,8 @@
     label-width="120px"
     class="demo-pet"
   >
-    <el-form-item label="Full Pet Name" prop="fullPetName">
-      <el-input v-model="pet.fullPetName"></el-input>
+    <el-form-item label="Full Pet Name" prop="fullname">
+      <el-input v-model="pet.fullname"></el-input>
     </el-form-item>
 
     <el-form-item label="Nickname" prop="nickname">
@@ -27,11 +27,11 @@
       </el-select>
     </el-form-item>
 
-    <!-- <el-form-item label="Period of Life" required>
+    <el-form-item label="Period of Life" required>
       <el-col :span="11">
-        <el-form-item prop="date1">
+        <el-form-item prop="dateOfBirth">
           <el-date-picker
-            v-model="pet.date1"
+            v-model="pet.dateOfBirth"
             type="date"
             placeholder="Pick a birth date"
             style="width: 100%"
@@ -40,15 +40,15 @@
       </el-col>
       <el-col class="line" :span="2">-</el-col>
       <el-col :span="11">
-        <el-form-item prop="date2">
+        <el-form-item prop="dateOfDeath">
           <el-date-picker
-            v-model="pet.date2"
+            v-model="pet.dateOfDeath"
             placeholder="Pick a death date"
             style="width: 100%"
           ></el-date-picker>
         </el-form-item>
       </el-col>
-    </el-form-item> -->
+    </el-form-item>
     
     <el-form-item label="Weight, kilos" prop="weight">
       <el-input v-model="pet.weight"></el-input>
@@ -57,7 +57,7 @@
     <el-form-item label="Appearance" prop="appearance">
       <el-input v-model="pet.appearance"></el-input>
     </el-form-item> 
-
+<!-- 
     <el-form-item label="Homeless" prop="homeless">
       <el-switch v-model="pet.homeless"></el-switch>
     </el-form-item>
@@ -68,7 +68,7 @@
 
     <el-form-item label="Passport" prop="passport">
       <el-switch v-model="pet.passport"></el-switch>
-    </el-form-item>
+    </el-form-item> -->
     
     <!-- <el-form-item label="Active Lifestyle" prop="activeLifestyle">
       <el-radio-group v-model="pet.activeLifestyle">
@@ -112,17 +112,17 @@ export default {
       // focused:false,
         type:'pets',
         pet: {
-        fullPetName: '',
+        fullname: '',
         nickname:'',
         kind:'',
         gender: '',
-        // date1: '',
-        // date2: '',
+        dateOfBirth: '',
+        dateOfDeath: '',
         weight:'',
         appearance:'',
-        homeless: false,
-        pedigree: false,
-        passport: false,
+        // homeless: false,
+        // pedigree: false,
+        // passport: false,
         // activeLifestyle: '',
         // activityForm: '',
         // diseases:'',
@@ -162,7 +162,7 @@ export default {
             trigger: 'change',
           },
         ],
-        date1: [
+        dateOfBirth: [
           {
             type: 'date',
             required: true,
@@ -170,7 +170,7 @@ export default {
             trigger: 'change',
           },
         ],
-        date2: [
+        dateOfDeath: [
           {
             type: 'date',
             required: false,
@@ -232,7 +232,7 @@ export default {
         if (valid) {
           this.loading()
           this.$store.dispatch('info/addNew', {items:this.pet, type:this.type}, {root:true,})
-               
+          this.resetForm('pet')    
         } else {
           console.log('error submit!!')
           return false
@@ -267,6 +267,9 @@ export default {
       if(this.edit){
         let arr = await this.$store.dispatch('info/getInfo', {type:this.type}, {root:true,})
         this.pet = arr.find(elem=>elem._id==this.edit)
+      }
+      else{
+        this.resetForm(this.type)
       }
       
     },

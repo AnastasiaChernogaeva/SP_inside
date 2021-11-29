@@ -21,8 +21,8 @@ router.get("/api/pets/", async (req, res) => {
 router.post("/api/pets/", async (req, res) => {
   console.log(req.body);
   try {
-    const { name } = req.body;
-    let existedPet = await Pet.findOne({ name });
+    const { fullname } = req.body;
+    let existedPet = await Pet.findOne({ fullname });
     if (existedPet) {
       console.log(existedPet);
       throw new Error("The pet has already existed");
@@ -40,7 +40,7 @@ router.put("/api/pets/", async (req, res) => {
   const id = req.body._id;
   console.log("body", req.body);
   try {
-    const response = await Pet.findByIdAndUpdate(id, req.body.description);
+    const response = await Pet.findByIdAndUpdate(id, req.body);
     if (!response) throw new Error("Something went wrong");
     const updated = { ...response._doc };
     console.log("updated", updated);

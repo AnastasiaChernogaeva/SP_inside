@@ -19,9 +19,9 @@
       ></el-input>
     </el-form-item>       
 
-    <el-form-item label="Doctor?" prop="doctor">
+    <!-- <el-form-item label="Doctor?" prop="doctor">
       <el-switch v-model="registrate.doctor"></el-switch>
-    </el-form-item>
+    </el-form-item> -->
 
 
     <el-form-item>
