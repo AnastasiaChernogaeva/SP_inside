@@ -20,8 +20,14 @@ router.get("/api/pets/", async (req, res) => {
 
 router.post("/api/pets/", async (req, res) => {
   console.log(req.body);
-  const newPet = new Pet(req.body);
   try {
+    const { name } = req.body;
+    let existedPet = await Pet.findOne({ name });
+    if (existedPet) {
+      console.log(existedPet);
+      throw new Error("The pet has already existed");
+    }
+    const newPet = new Pet(req.body);
     const pet = await newPet.save();
     if (!pet) throw new Error("Something went wrong saving the pet");
     res.status(200).json(pet);

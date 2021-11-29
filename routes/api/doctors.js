@@ -20,8 +20,14 @@ router.get("/api/doctors/", async (req, res) => {
 
 router.post("/api/doctors/", async (req, res) => {
   console.log(req.body);
-  const newDoctor = new Doctor(req.body);
   try {
+    const { name } = req.body;
+    let existedDoctor = await Doctor.findOne({ name });
+    if (existedDoctor) {
+      console.log(existedDoctor);
+      throw new Error("The doctor has already existed");
+    }
+    const newDoctor = new Doctor(req.body);
     const doctor = await newDoctor.save();
     if (!doctor) throw new Error("Something went wrong saving the doctor");
     res.status(200).json(doctor);

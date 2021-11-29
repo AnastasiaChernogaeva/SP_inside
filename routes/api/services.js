@@ -20,8 +20,14 @@ router.get("/api/services/", async (req, res) => {
 
 router.post("/api/services/", async (req, res) => {
   // console.log(req.body);
-  const newService = new Service(req.body);
   try {
+    const { name } = req.body;
+    let existedService = await Service.findOne({ name });
+    if (existedService) {
+      console.log(existedService);
+      throw new Error("The service has already existed");
+    }
+    const newService = new Service(req.body);
     const service = await newService.save();
     if (!service) throw new Error("Something went wrong saving the service");
     res.status(200).json(service);

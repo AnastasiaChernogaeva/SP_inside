@@ -20,8 +20,14 @@ router.get("/api/clients/", async (req, res) => {
 
 router.post("/api/clients/", async (req, res) => {
   console.log(req.body);
-  const newClient = new Client(req.body);
   try {
+    const { name } = req.body;
+    let existedClient = await Client.findOne({ name });
+    if (existedClient) {
+      console.log(existedClient);
+      throw new Error("The client has already existed");
+    }
+    const newClient = new Client(req.body);
     const client = await newClient.save();
     if (!client) throw new Error("Something went wrong saving the client");
     res.status(200).json(client);
