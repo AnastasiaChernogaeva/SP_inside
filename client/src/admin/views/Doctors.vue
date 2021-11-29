@@ -22,6 +22,8 @@
 </template>
 
 <script>
+import { ElMessage } from 'element-plus'
+
 export default {
     data(){
         return{
@@ -40,7 +42,29 @@ export default {
       await this.$store.dispatch('info/deleteItem', {type:this.type, id:id}, {root:true,})
       this.updateInfo()
     },
+    open(){
+        ElMessage({
+        showClose: true,
+        message: this.message,
+        type: 'error',
+      })
+      }
     },
+    watch:{
+    message(){
+      if(this.message!=''){
+        setTimeout(()=>{
+        this.open()
+        this.$store.commit('info/deleteError',{root:true})
+       }, 2025)
+      }
+    }
+  },
+  computed:{
+    message(){
+      return this.$store.state.info.error
+    },
+  },
     beforeMount() {
         this.updateInfo()
     },

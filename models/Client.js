@@ -9,10 +9,6 @@ const ClientSchema = new Schema({
     type: String,
     required: true,
   },
-  id: {
-    type: String,
-    required: true,
-  },
   pets: {
     type: Array,
     required: true,

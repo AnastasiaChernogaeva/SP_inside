@@ -51,7 +51,12 @@ export default {
       // }
     },
     beforeMount() {
-        this.type = this.$route.path.split('/')[this.$route.path.split('/').length-1]
+      let type = this.$route.path.split('/')[this.$route.path.split('/').length-1]
+
+      if(type === 'clInfo')
+        this.type = 'clients'
+      else
+        this.type = type
     },
 }
 </script>

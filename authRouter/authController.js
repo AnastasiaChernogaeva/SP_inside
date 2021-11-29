@@ -23,7 +23,7 @@ class authController {
           .status(400);
       }
 
-      const { username, password, role } = req.body;
+      const { username, password, role, infoId } = req.body;
 
       const candidate = await User.findOne({ username });
       if (candidate) {
@@ -42,6 +42,7 @@ class authController {
         username,
         password: hashPassword,
         roles: [userRole.value],
+        infoId,
       });
 
       await user.save();

@@ -105,7 +105,7 @@ export default {
           this.$router.push('/main_admin')
         }
         else if(this.$store.state.auth.role==="USER"){
-          this.$router.push('/main/users')
+          this.$router.push('/main/clients')
         }
         }
         loading.close()

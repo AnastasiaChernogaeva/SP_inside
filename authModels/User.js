@@ -16,9 +16,9 @@ const User = new Schema({
       ref: "Role",
     },
   ],
-  // infoId: {
-  //   type: String,
-  //   required: true,
-  // },
+  infoId: {
+    type: String,
+    required: true,
+  },
 });
 module.exports = model("User", User);

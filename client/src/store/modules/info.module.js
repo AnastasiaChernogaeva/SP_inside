@@ -15,6 +15,7 @@ export default {
       users: [],
       treatments: [],
       shopgoods: [],
+      error: "",
     };
   },
   mutations: {
@@ -80,6 +81,12 @@ export default {
           break;
       }
     },
+    setError(state, error) {
+      state.error = error;
+    },
+    deleteError(state) {
+      state.error = "";
+    },
   },
   actions: {
     async editElem({ commit, dispatch }, payload) {
@@ -89,6 +96,7 @@ export default {
           ...payload.item,
         }
       );
+      commit("setError", data.message);
     },
 
     async addNew({ commit, dispatch }, payload) {
@@ -99,7 +107,9 @@ export default {
           ...payload.items,
         }
       );
+      commit("setError", data.message);
       commit("addInfo", data, payload.type);
+      return data;
     },
 
     async deleteItem(_, payload) {
