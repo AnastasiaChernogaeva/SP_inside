@@ -126,9 +126,13 @@ const router = createRouter({
           path: "pets",
           component: () => import("../admin/views/Pets"),
         },
+        // {
+        //   path: "clients",
+        //   component: () => import("../admin/views/Clients"),
+        // },
         {
-          path: "clients",
-          component: () => import("../admin/views/Clients"),
+          path: "clInfo",
+          component: () => import("../admin/views/Cl"),
         },
         // {
         //   path: "treatments",
