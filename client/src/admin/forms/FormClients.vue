@@ -2,23 +2,23 @@
 <div>
   <h3><em>Adding new one:</em></h3>
    <el-form
-    ref="doctor"
-    :model="doctor"
+    ref="client"
+    :model="client"
     :rules="rules"
     label-width="120px"
-    class="demo-doctor"
+    class="demo-client"
   >
     <el-form-item label="Name" prop="name">
-      <el-input v-model="doctor.name" ></el-input>
+      <el-input v-model="client.name" ></el-input>
     </el-form-item> 
     <el-form-item label="Surname" prop="surname">
-      <el-input v-model="doctor.surname" ></el-input>
+      <el-input v-model="client.surname" ></el-input>
     </el-form-item> 
     <el-form-item label="Post" prop="post">
-      <el-input v-model="doctor.post" ></el-input>
+      <el-input v-model="client.post" ></el-input>
     </el-form-item>  
     <el-form-item label="Phone number" prop="phone">
-      <el-input v-model="doctor.phone" ></el-input>
+      <el-input v-model="client.phone" ></el-input>
     </el-form-item> 
 
    
@@ -27,18 +27,18 @@
 <!-- 
     <el-form-item label="Photo" prop="photo">
         <el-input
-        v-model="doctor.photo"
+        v-model="client.photo"
       ></el-input>    
     </el-form-item> -->
   
      <el-form-item>
-      <el-button type="primary" @click="editElem('doctor')" v-if="edit"
+      <el-button type="primary" @click="editElem('client')" v-if="edit"
         >Edit</el-button
       >
-     <el-button type="primary" @click="submitForm('doctor')" v-else
+     <el-button type="primary" @click="submitForm('client')" v-else
         >Save</el-button
       > 
-      <el-button @click="resetForm('doctor')">Reset</el-button>
+      <el-button @click="resetForm('client')">Reset</el-button>
     </el-form-item>
   </el-form>  
 </div>
@@ -53,51 +53,51 @@ export default {
     data(){
      return {
       // focused:false,
-      type:'doctors',
+      type:'clients',
       users:[],
-      doctor: {
+      client: {
         name: '',
         surname:'',
-        post:'',
-        photo:'',
-        phone:'',
-        id:'',
+        pets:[],
+        // photo:'',
+        // phone:'',
+        // id:'',
       },
       rules: {
         name: [
           {
             required: true,
-            message: 'Please, input name of doctor',
+            message: 'Please, input name of client',
             trigger: 'blur',
           },
         ],
-        country: [
+        surname: [
           {
             required: true,
-            message: 'Please, input country',
+            message: 'Please, input surname',
             trigger: 'blur',
           },
         ],
-        city: [
-          {
-            required: true,
-            message: 'Please, input city',
-            trigger: 'blur',
-          },
-        ],
-        description: [
-          {
-            required: true,
-            message: 'Please, input description of doctor',
-            trigger: 'blur',
-          },
-        ],
-        photo: [
-          {
-            message: 'Please, input url for a photo',
-            trigger: 'blur',
-          },
-        ],
+        // city: [
+        //   {
+        //     required: true,
+        //     message: 'Please, input city',
+        //     trigger: 'blur',
+        //   },
+        // ],
+        // description: [
+        //   {
+        //     required: true,
+        //     message: 'Please, input description of client',
+        //     trigger: 'blur',
+        //   },
+        // ],
+        // photo: [
+        //   {
+        //     message: 'Please, input url for a photo',
+        //     trigger: 'blur',
+        //   },
+        // ],
       },
     }
     },
@@ -106,7 +106,7 @@ export default {
       this.$refs[formName].validate((valid) => {
         if (valid) {
           this.loading()
-          this.$store.dispatch('info/editElem', {item:this.doctor, id:this.edit, type:this.type}, {root:true,})
+          this.$store.dispatch('info/editElem', {item:this.client, id:this.edit, type:this.type}, {root:true,})
         } else {
           console.log('error submit!!')
           return false
@@ -116,7 +116,7 @@ export default {
       this.$refs[formName].validate((valid) => {
         if (valid) {
           this.loading()
-          this.$store.dispatch('info/addNew', {items:this.doctor, type:this.type}, {root:true,})
+          this.$store.dispatch('info/addNew', {items:this.client, type:this.type}, {root:true,})
                
         } else {
           console.log('error submit!!')
@@ -143,7 +143,7 @@ export default {
         }
        
         
-        this.resetForm('doctor')
+        this.resetForm('client')
         loading.close()        
       }, 2000)
     },
@@ -151,10 +151,10 @@ export default {
     async beforeMount() {
       if(this.edit){
         let arr = await this.$store.dispatch('info/getInfo', {type:this.type}, {root:true,})
-        this.doctor = arr.find(elem=>elem._id==this.edit)
+        this.client = arr.find(elem=>elem._id==this.edit)
      }
         this.services =  await this.$store.dispatch('info/getInfo', {type:'services'}, {root:true,})
-        this.doctors = await this.$store.dispatch('info/getInfo', {type:'doctors'}, {root:true,})
+        this.clients = await this.$store.dispatch('info/getInfo', {type:'clients'}, {root:true,})
      
       
     },
