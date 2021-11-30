@@ -80,5 +80,11 @@ export default {
         data: { infoId: payload.infoId },
       });
     },
+
+    async updateUser(_, payload) {
+      await axios.delete(`http://localhost:${PORT}/auth/updateUser`, {
+        ...payload.item,
+      });
+    },
   },
 };

@@ -122,10 +122,17 @@ export default {
     methods:{
         submitForms(){
           this.loading()
+          let response 
           
           this.$refs['client'].validate(async(valid) => {
             if (valid) {
-             let response = await this.$store.dispatch('info/addNew', {items:this.client, type:'clients'}, {root:true,})
+              if(this.edit){
+                response = await this.$store.dispatch('info/editElem', {item:this.client, type:'clients'}, {root:true,})
+              }
+              else{
+                response = await this.$store.dispatch('info/addNew', {items:this.client, type:'clients'}, {root:true,})
+              }
+             
             // console.log(response, '- I am that response')
             
              this.id=response._id
@@ -144,22 +151,27 @@ export default {
       this.$refs['registrate'].resetFields()
 
     },
-      editElem(formName){ 
-      this.$refs[formName].validate((valid) => {
-        if (valid) {
-          this.loading()
-          this.$store.dispatch('info/editElem', {item:this.client, id:this.edit, type:this.type}, {root:true,})
-        } else {
-          console.log('error submit!!')
-          return false
-        } } )},
+      // editElem(formName){ 
+      // this.$refs[formName].validate((valid) => {
+      //   if (valid) {
+      //     this.loading()
+      //     this.$store.dispatch('info/editElem', {item:this.client, id:this.edit, type:this.type}, {root:true,})
+      //   } else {
+      //     console.log('error submit!!')
+      //     return false
+      //   } } )},
 
       submitForm(formName) {      
       this.$refs[formName].validate((valid) => {
         if (valid) {
           this.loading()
           const {username, password} = this.registrate
-          this.$store.dispatch('auth/registrate', {username, password, role:'USER', infoId:this.id}, {root:true,})   
+          if(this.edit){
+            this.$store.dispatch('auth/updateUser', {item:{username, password, role:'USER', infoId:this.id}}, {root:true,})   
+          }
+          else{
+            this.$store.dispatch('auth/registrate', {username, password, role:'USER', infoId:this.id}, {root:true,})   
+          }
                
         } else {
           console.log('error submit!!')

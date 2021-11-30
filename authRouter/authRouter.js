@@ -18,6 +18,8 @@ router.post("/login", controller.login);
 
 router.delete("/deleteUser", controller.deleteUser);
 
+router.put("/updateUser", controller.updateUser);
+
 router.get("/users", controller.getUsers);
 // roleMiddleware(["ADMIN"]),
 
