@@ -47,17 +47,6 @@
     </el-form-item>
   </el-form>
   
-     <!-- <el-form-item>
-
-      <el-button type="primary" @click="editElem('client')" v-if="edit"
-        >Edit</el-button
-      >
-     <el-button type="primary" @click="submitForm('client')" v-else
-        >Save</el-button
-      > 
-      <el-button @click="resetForm('client')">Reset</el-button>
-    </el-form-item>
-  </el-form>   -->
 </div>
   
 </template>
@@ -198,9 +187,6 @@ export default {
     },  
     
   computed:{
-      // message(){
-      //   return this.$store.state.auth.error
-      // },
       submittedInfo(){
         if(this.client.name && this.client.surname)
         return true
@@ -208,17 +194,6 @@ export default {
         return false
       }
   },  
-  // computed:{
-  //     message(){
-  //       return this.$store.state.info.error
-  //     },
-  //     submittedInfo(){
-  //       if(this.info.name && this.info.surname)
-  //       return true
-  //       else
-  //       return false
-  //     }
-  // },
     async beforeMount() {
       if(this.edit){
         let arr = await this.$store.dispatch('info/getInfo', {type:this.type}, {root:true,})
