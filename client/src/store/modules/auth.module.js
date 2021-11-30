@@ -76,7 +76,7 @@ export default {
     },
 
     async deleteUser(_, payload) {
-      await axios.delete(`http://localhost:${PORT}/api/deleteUser`, {
+      await axios.delete(`http://localhost:${PORT}/auth/deleteUser`, {
         data: { infoId: payload.infoId },
       });
     },
