@@ -61,7 +61,7 @@ export default {
     },
     methods:{
     edited(){
-      console.log('inside the pets')
+      // console.log('inside the pets')
       this.modal=false
       this.updateInfo()
       },

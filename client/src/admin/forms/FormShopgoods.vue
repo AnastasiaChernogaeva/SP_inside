@@ -127,7 +127,7 @@ export default {
         this.$emit('added') 
         else  {
              this.$emit('edited') 
-             console.log('Inside the form')
+            //  console.log('Inside the form')
         }
        
         

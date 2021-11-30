@@ -228,7 +228,7 @@ export default {
           this.loading()
           this.$store.commit('addNewFormInsidePetsBase', this.petForm )
         } else {
-          console.log('error submit!!')
+          // console.log('error submit!!')
           return false
         }        
       })

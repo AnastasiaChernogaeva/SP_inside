@@ -5,7 +5,7 @@ const router = Router();
 
 router.get("/api/clinics/", async (req, res) => {
   try {
-    console.log("Success");
+    // console.log("Success");
     const clinics = await Clinic.find();
     if (!clinics) throw new Error("No clinics");
     const sorted = clinics.sort((a, b) => {
@@ -19,7 +19,7 @@ router.get("/api/clinics/", async (req, res) => {
 });
 
 router.post("/api/clinics/", async (req, res) => {
-  console.log(req.body);
+  // console.log(req.body);
   // const newClinic = new Clinic(req.body);
   // console.log("a", newClinic);
   // let existedClinic = await Clinic.findOne(req.body.name);
@@ -29,7 +29,7 @@ router.post("/api/clinics/", async (req, res) => {
     const { name } = req.body;
     let existedClinic = await Clinic.findOne({ name });
     if (existedClinic) {
-      console.log(existedClinic);
+      // console.log(existedClinic);
       throw new Error("The clinic has already existed");
     }
     const newClinic = new Clinic(req.body);
@@ -48,7 +48,7 @@ router.put("/api/clinics/", async (req, res) => {
     const response = await Clinic.findByIdAndUpdate(id, req.body);
     if (!response) throw new Error("Something went wrong");
     const updated = { ...response._doc };
-    console.log("updated", updated);
+    // console.log("updated", updated);
     res.status(200).json(updated);
   } catch (error) {
     res.status(500).json({ message: error.message });

@@ -65,7 +65,7 @@ export default {
     },
     methods:{
     edited(){
-      console.log('inside the clinis')
+      // console.log('inside the clinis')
       this.modal=false
       this.updateInfo()
       },

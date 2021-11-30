@@ -25,7 +25,7 @@ router.post("/api/shopgoods/", async (req, res) => {
     const { name } = req.body;
     let existedShopgood = await Shopgood.findOne({ name });
     if (existedShopgood) {
-      console.log(existedShopgood);
+      // console.log(existedShopgood);
       throw new Error("The item has already existed");
     }
     const newshopgood = new Shopgood(req.body);

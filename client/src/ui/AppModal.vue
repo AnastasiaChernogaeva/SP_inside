@@ -12,7 +12,7 @@ export default {
   methods:{
     clOOse(){
       this.$emit('close')
-      console.log('CLOSECLOSECLOSE')
+      // console.log('CLOSECLOSECLOSE')
     }
   }
 }

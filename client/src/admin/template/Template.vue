@@ -64,7 +64,7 @@ export default {
     },
     methods:{
     edited(){
-      console.log('inside the services')
+      // console.log('inside the services')
       this.modal=false
       this.updateInfo()
       },

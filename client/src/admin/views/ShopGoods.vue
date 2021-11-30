@@ -58,7 +58,7 @@ export default {
     },
     methods:{
     edited(){
-      console.log('inside the shopgoods')
+      // console.log('inside the shopgoods')
       this.modal=false
       this.updateInfo()
       },

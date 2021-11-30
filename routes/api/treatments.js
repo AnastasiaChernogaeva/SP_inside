@@ -5,7 +5,7 @@ const router = Router();
 
 router.get("/api/treatments/", async (req, res) => {
   try {
-    console.log("Success");
+    // console.log("Success");
     const treatments = await Treatment.find();
     if (!treatments) throw new Error("No treatments");
     const sorted = treatments.sort((a, b) => {
@@ -19,7 +19,7 @@ router.get("/api/treatments/", async (req, res) => {
 });
 
 router.post("/api/treatments/", async (req, res) => {
-  console.log(req.body);
+  // console.log(req.body);
   const newTreatment = new Treatment(req.body);
   try {
     const treatment = await newTreatment.save();
@@ -33,7 +33,7 @@ router.post("/api/treatments/", async (req, res) => {
 
 router.put("/api/treatments/", async (req, res) => {
   const id = req.body.id;
-  console.log("body", req.body);
+  // console.log("body", req.body);
   try {
     const response = await Treatment.findByIdAndUpdate(
       id,
@@ -41,7 +41,7 @@ router.put("/api/treatments/", async (req, res) => {
     );
     if (!response) throw new Error("Something went wrong");
     const updated = { ...response._doc };
-    console.log("updated", updated);
+    // console.log("updated", updated);
     res.status(200).json(updated);
   } catch (error) {
     res.status(500).json({ message: error.message });

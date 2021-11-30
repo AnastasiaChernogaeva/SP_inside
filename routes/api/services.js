@@ -24,7 +24,7 @@ router.post("/api/services/", async (req, res) => {
     const { name } = req.body;
     let existedService = await Service.findOne({ name });
     if (existedService) {
-      console.log(existedService);
+      // console.log(existedService);
       throw new Error("The service has already existed");
     }
     const newService = new Service(req.body);

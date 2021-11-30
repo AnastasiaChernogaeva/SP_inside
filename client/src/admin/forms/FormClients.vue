@@ -120,7 +120,7 @@ export default {
           this.$refs['client'].validate(async(valid) => {
             if (valid) {
              let response = await this.$store.dispatch('info/addNew', {items:this.client, type:'clients'}, {root:true,})
-            console.log(response, '- I am that response')
+            // console.log(response, '- I am that response')
             
              this.id=response._id
              this.submitForm('registrate')
@@ -176,7 +176,7 @@ export default {
         this.$emit('added') 
         else  {
              this.$emit('edited') 
-             console.log('Inside the form')
+            //  console.log('Inside the form')
         }
        
         

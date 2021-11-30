@@ -5,7 +5,7 @@ const router = Router();
 
 router.get("/api/pets/", async (req, res) => {
   try {
-    console.log("Success");
+    // console.log("Success");
     const pets = await Pet.find();
     if (!pets) throw new Error("No pets");
     const sorted = pets.sort((a, b) => {
@@ -19,12 +19,12 @@ router.get("/api/pets/", async (req, res) => {
 });
 
 router.post("/api/pets/", async (req, res) => {
-  console.log(req.body);
+  // console.log(req.body);
   try {
     const { fullname } = req.body;
     let existedPet = await Pet.findOne({ fullname });
     if (existedPet) {
-      console.log(existedPet);
+      // console.log(existedPet);
       throw new Error("The pet has already existed");
     }
     const newPet = new Pet(req.body);
@@ -43,7 +43,7 @@ router.put("/api/pets/", async (req, res) => {
     const response = await Pet.findByIdAndUpdate(id, req.body);
     if (!response) throw new Error("Something went wrong");
     const updated = { ...response._doc };
-    console.log("updated", updated);
+    // console.log("updated", updated);
     res.status(200).json(updated);
   } catch (error) {
     res.status(500).json({ message: error.message });

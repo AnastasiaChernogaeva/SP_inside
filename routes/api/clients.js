@@ -5,7 +5,7 @@ const router = Router();
 
 router.get("/api/clients/", async (req, res) => {
   try {
-    console.log("Success");
+    // console.log("Success");
     const clients = await Client.find();
     if (!clients) throw new Error("No clients");
     const sorted = clients.sort((a, b) => {
@@ -19,12 +19,12 @@ router.get("/api/clients/", async (req, res) => {
 });
 
 router.post("/api/clients/", async (req, res) => {
-  console.log(req.body);
+  // console.log(req.body);
   try {
     const { name } = req.body;
     let existedClient = await Client.findOne({ name });
     if (existedClient) {
-      console.log(existedClient);
+      // console.log(existedClient);
       throw new Error("The client has already existed");
     }
     const newClient = new Client(req.body);
@@ -38,12 +38,12 @@ router.post("/api/clients/", async (req, res) => {
 
 router.put("/api/clients/", async (req, res) => {
   const id = req.body._id;
-  console.log("body", req.body);
+  // console.log("body", req.body);
   try {
     const response = await Client.findByIdAndUpdate(id, req.body.description);
     if (!response) throw new Error("Something went wrong");
     const updated = { ...response._doc };
-    console.log("updated", updated);
+    // console.log("updated", updated);
     res.status(200).json(updated);
   } catch (error) {
     res.status(500).json({ message: error.message });

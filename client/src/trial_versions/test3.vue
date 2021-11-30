@@ -278,7 +278,7 @@ export default {
     methods: {
     submitForm(formName) {
       this.$refs[formName].validate((valid) => {
-          console.log('valid', valid)
+          // console.log('valid', valid)
         if (valid) {
           alert('submit!')
         } else {

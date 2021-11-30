@@ -49,7 +49,7 @@ export default {
     editInfo(id){
       this.modal = true
       this.editId = id
-      console.log('id in edit', id)
+      // console.log('id in edit', id)
     },
     async deleteInfo(id){
       await this.$store.dispatch('info/deleteItem', {type:this.type, id:id}, {root:true,})
