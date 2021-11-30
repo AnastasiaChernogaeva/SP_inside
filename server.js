@@ -31,7 +31,7 @@ mongoose
     useUnifiedTopology: true,
     useFindAndModify: false,
   })
-  .then(() => console.log("MongoDB database Connected..."))
+  // .then(() => console.log("MongoDB database Connected..."))
   .catch((err) => console.log(err));
 
 app.use(clientsRoutes);

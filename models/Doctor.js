@@ -13,10 +13,6 @@ const DoctorSchema = new Schema({
     type: String,
     required: true,
   },
-  // experience: {
-  //   type: String,
-  //   required: true,
-  // },
   phone: {
     type: String,
     required: true,
@@ -25,10 +21,10 @@ const DoctorSchema = new Schema({
     type: Array,
     default: [],
   },
-  // id: {
-  //   type: String,
-  //   required: true,
-  // },
+  photo: {
+    type: String,
+    default: "",
+  },
 });
 
 const Doctor = model("doctor", DoctorSchema);

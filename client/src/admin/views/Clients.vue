@@ -54,7 +54,7 @@ export default {
     },
     methods:{
     edited(){
-      console.log('inside the clients')
+      // console.log('inside the clients')
       this.modal=false
       this.updateInfo()
       },
@@ -71,6 +71,8 @@ export default {
     async deleteInfo(id){
       await this.$store.dispatch('info/deleteItem', {type:this.type, id:id}, {root:true,})
       this.updateInfo()
+      await this.$store.dispatch('auth/deleteUser', { infoId:id}, {root:true,})
+      
     },
     open(){
         ElMessage({

@@ -99,6 +99,19 @@ class authController {
       console.log(e);
     }
   }
+  async deleteUser(req, res) {
+    const id = req.body.infoId;
+
+    console.log("Inside the delete room", id);
+    // try {
+    const removed = await User.findOne({ infoId: id });
+    console.log("element to delete", removed);
+    //   if (!removed) throw new Error("Something went wrong");
+    //   res.status(200).json(removed);
+    // } catch (error) {
+    //   res.status(500).json({ message: error.message });
+    // }
+  }
 }
 
 module.exports = new authController();

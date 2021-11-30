@@ -1,39 +1,56 @@
 <template>
+<div class="card  container ">
+  <h1 class="center">Doctors</h1>
+  <hr>
+    <form-doctors @added="updateInfo"></form-doctors>
+  <hr>
+  <h3><em>List of doctors:</em></h3>
 <div v-if="doctors.length!==0">
-    <div class="flex" v-for="doctor in doctors" :key="doctor.id">
-         <div v-for="doctor in doctors" :key="doctor.id">
-        <h1>{{doctor.name}}</h1>
-        <h4>{{doctor.country}}, {{doctor.city}}</h4>
-        <ul><li>{{doctor.services}}</li></ul>
-        <p>{{doctor.doctors}}</p>
-        <img :src="doctor.photo" alt="doctor">
-        <p>{{doctor.description}}</p>
+    <div v-for="doctor in doctors" :key="doctor._id">
+        <h3>{{doctor.name}} {{doctor.surname}}</h3>
+        <h4>{{doctor.post}}</h4>
+        <ul v-if="doctor.appointments.length!==0"><li v-for="(appointment, idx) in doctor.appointments" :key="idx*Math.random()">{{appointment}}</li></ul>
+        <p><em>Phone:</em>{{doctor.phone}}</p>
+        <el-avatar :src="doctor.photo"></el-avatar>
+
         <el-row>
             <el-button class="icon" type="primary" icon="el-icon-edit"  @click="()=>editInfo(doctor._id)" circle></el-button>
             <el-button class="icon" type="danger" icon="el-icon-delete"  @click="()=>deleteInfo(doctor._id)" circle></el-button>
         </el-row>
 
-        
-        </div>{{doctor}}</div>
+        </div>
 </div>
 <h2 v-else>NO</h2>
-
+<hr>
    <el-button type="info" class="myButton" @click="()=>{$router.push('/main_admin')}">Back</el-button>
-    
+</div> 
 </template>
 
 <script>
+import FormDoctors from '../forms/FormDoctors.vue'
+import Modal from '../ui/Modal.vue'
 import { ElMessage } from 'element-plus'
 
 export default {
+    components:{
+        FormDoctors,
+        Modal
+    },
     data(){
         return{
+            editId:'',
+            modal:false,
             type:'doctors',
             doctors:[],
 
         }
     },
-    methods:{
+    methods:{      
+    edited(){
+      // console.log('inside the doctors')
+      this.modal=false
+      this.updateInfo()
+      },
     async updateInfo(){
         const info = await this.$store.dispatch('info/getInfo', {type:this.type}, {root:true,})
         if(info)

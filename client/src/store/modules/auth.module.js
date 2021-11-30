@@ -63,6 +63,7 @@ export default {
         commit("setRole", payload.role);
       }
     },
+
     async registrate({ commit, dispatch }, payload) {
       const { data } = await axios.post(
         `http://localhost:${PORT}/auth/registration`,
@@ -72,6 +73,12 @@ export default {
       );
 
       commit("setError", data.message);
+    },
+
+    async deleteUser(_, payload) {
+      await axios.delete(`http://localhost:${PORT}/api/deleteUser`, {
+        data: { infoId: payload.infoId },
+      });
     },
   },
 };
