@@ -100,7 +100,7 @@ export default {
     },
 }
 </script>
-<style scoped>
+<style>
 
 .myButton{
     font-size:18px;

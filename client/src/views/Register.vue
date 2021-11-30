@@ -13,11 +13,15 @@
 
     <el-form-item label="Surname" prop="surname">
         <el-input v-model="info.surname"></el-input>
-    </el-form-item>       
+    </el-form-item> 
     
-    <el-form-item label="Photo" prop="photo">
+    <el-form-item label="Phone number" prop="phone">
+      <el-input v-model="info.phone" ></el-input>
+    </el-form-item>        
+    
+    <!-- <el-form-item label="Photo" prop="photo">
         <el-input v-model="info.photo"></el-input>
-    </el-form-item>   
+    </el-form-item>    -->
 
     <!-- <el-form-item label="Doctor?" prop="doctor">
       <el-switch v-model="registrate.doctor"></el-switch>
@@ -86,7 +90,7 @@ export default {
       info:{
           name:'',
           surname:'',
-          photo:'',
+          // photo:'',
           pets:[],
       },
        infoRules: {
@@ -106,8 +110,15 @@ export default {
         ],
         photo: [
           {
-            required: true,
+            // required: true,
             message: 'Please, input photo',
+            trigger: 'blur',
+          },
+        ],        
+        phone: [
+          {
+            required: true,
+            message: 'Please, input phone number',
             trigger: 'blur',
           },
         ],
@@ -238,6 +249,7 @@ export default {
               surname:'',
               photo:'',
               pets:[],
+              phone:'',
            }
            this.registrate = {
               username: '',
@@ -261,7 +273,7 @@ export default {
         return this.$store.state.auth.error
       },
       submittedInfo(){
-        if(this.info.name && this.info.surname && this.info.photo)
+        if(this.info.name && this.info.surname)
         return true
         else
         return false

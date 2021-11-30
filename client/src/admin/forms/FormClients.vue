@@ -14,24 +14,41 @@
     <el-form-item label="Surname" prop="surname">
       <el-input v-model="client.surname" ></el-input>
     </el-form-item> 
-    <el-form-item label="Post" prop="post">
-      <el-input v-model="client.post" ></el-input>
-    </el-form-item>  
     <el-form-item label="Phone number" prop="phone">
       <el-input v-model="client.phone" ></el-input>
     </el-form-item> 
+     </el-form>
+  <el-form
+    v-if="submittedInfo"
+    ref="registrate"
+    :model="registrate"
+    :rules="regRules"
+    label-width="120px"
+    class="demo-registrate animated"
+  >
+    <el-form-item label="Username" prop="username">
+      <el-input v-model="registrate.username"></el-input>
+    </el-form-item> 
 
-   
-
-
-<!-- 
-    <el-form-item label="Photo" prop="photo">
+    <el-form-item label="Password" prop="password">
         <el-input
-        v-model="client.photo"
-      ></el-input>    
-    </el-form-item> -->
+        v-model="registrate.password"
+        type="password"
+        autocomplete="off"
+      ></el-input>
+    </el-form-item>       
+
+    <el-form-item>
+      <el-button type="primary" @click="submitForms"
+        >Sign up</el-button
+      >
+      <el-button @click="resetForms">Reset</el-button>
+
+    </el-form-item>
+  </el-form>
   
-     <el-form-item>
+     <!-- <el-form-item>
+
       <el-button type="primary" @click="editElem('client')" v-if="edit"
         >Edit</el-button
       >
@@ -40,7 +57,7 @@
       > 
       <el-button @click="resetForm('client')">Reset</el-button>
     </el-form-item>
-  </el-form>  
+  </el-form>   -->
 </div>
   
 </template>
@@ -52,16 +69,19 @@ export default {
     emits:['added', 'closeNow', 'edited'],
     data(){
      return {
-      // focused:false,
       type:'clients',
-      users:[],
+      id:'',
+      registrate: {
+        username: '',
+        password:'',
+        doctor: false,     
+      },
+      clients:[],
       client: {
         name: '',
         surname:'',
         pets:[],
-        // photo:'',
-        // phone:'',
-        // id:'',
+        phone:'',
       },
       rules: {
         name: [
@@ -78,30 +98,57 @@ export default {
             trigger: 'blur',
           },
         ],
-        // city: [
-        //   {
-        //     required: true,
-        //     message: 'Please, input city',
-        //     trigger: 'blur',
-        //   },
-        // ],
-        // description: [
-        //   {
-        //     required: true,
-        //     message: 'Please, input description of client',
-        //     trigger: 'blur',
-        //   },
-        // ],
-        // photo: [
-        //   {
-        //     message: 'Please, input url for a photo',
-        //     trigger: 'blur',
-        //   },
-        // ],
+        phone: [
+          {
+            required: true,
+            message: 'Please, input phone number',
+            trigger: 'blur',
+          },
+        ],
+      },
+       regRules: {
+        username: [
+          {
+            required: true,
+            message: 'Please, input username',
+            trigger: 'blur',
+          },
+        ],
+        password: [
+          {
+            required: true,
+            message: 'Please, input password',
+            trigger: 'blur',
+          },
+        ],
       },
     }
     },
     methods:{
+        submitForms(){
+          this.loading()
+          
+          this.$refs['client'].validate(async(valid) => {
+            if (valid) {
+             let response = await this.$store.dispatch('info/addNew', {items:this.info, type:'clients'}, {root:true,})
+            console.log(response, '- I am that response')
+            
+             this.id=response._id
+             this.submitForm('registrate')
+            }
+            else {
+              console.log('error submit!!')
+              return false
+            }  
+          })      
+
+
+    },
+    resetForms(){
+      this.$refs['client'].resetFields()
+      this.$refs['registrate'].resetFields()
+
+    },
       editElem(formName){ 
       this.$refs[formName].validate((valid) => {
         if (valid) {
@@ -147,13 +194,35 @@ export default {
         loading.close()        
       }, 2000)
     },
-    },
+    },  
+    
+  computed:{
+      // message(){
+      //   return this.$store.state.auth.error
+      // },
+      submittedInfo(){
+        if(this.client.name && this.client.surname)
+        return true
+        else
+        return false
+      }
+  },  
+  // computed:{
+  //     message(){
+  //       return this.$store.state.info.error
+  //     },
+  //     submittedInfo(){
+  //       if(this.info.name && this.info.surname)
+  //       return true
+  //       else
+  //       return false
+  //     }
+  // },
     async beforeMount() {
       if(this.edit){
         let arr = await this.$store.dispatch('info/getInfo', {type:this.type}, {root:true,})
         this.client = arr.find(elem=>elem._id==this.edit)
      }
-        this.services =  await this.$store.dispatch('info/getInfo', {type:'services'}, {root:true,})
         this.clients = await this.$store.dispatch('info/getInfo', {type:'clients'}, {root:true,})
      
       
