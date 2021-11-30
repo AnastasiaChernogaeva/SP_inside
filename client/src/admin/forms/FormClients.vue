@@ -130,7 +130,7 @@ export default {
           
           this.$refs['client'].validate(async(valid) => {
             if (valid) {
-             let response = await this.$store.dispatch('info/addNew', {items:this.info, type:'clients'}, {root:true,})
+             let response = await this.$store.dispatch('info/addNew', {items:this.client, type:'clients'}, {root:true,})
             console.log(response, '- I am that response')
             
              this.id=response._id
@@ -163,7 +163,8 @@ export default {
       this.$refs[formName].validate((valid) => {
         if (valid) {
           this.loading()
-          this.$store.dispatch('info/addNew', {items:this.client, type:this.type}, {root:true,})
+          const {username, password} = this.registrate
+          this.$store.dispatch('auth/registrate', {username, password, role:'USER', infoId:this.id}, {root:true,})   
                
         } else {
           console.log('error submit!!')
