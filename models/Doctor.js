@@ -21,10 +21,14 @@ const DoctorSchema = new Schema({
     type: String,
     required: true,
   },
-  id: {
-    type: String,
-    required: true,
+  appointments: {
+    type: Array,
+    default: [],
   },
+  // id: {
+  //   type: String,
+  //   required: true,
+  // },
 });
 
 const Doctor = model("doctor", DoctorSchema);

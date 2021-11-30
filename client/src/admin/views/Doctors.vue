@@ -18,6 +18,7 @@
 </div>
 <h2 v-else>NO</h2>
 
+   <el-button type="info" class="myButton" @click="()=>{$router.push('/main_admin')}">Back</el-button>
     
 </template>
 
