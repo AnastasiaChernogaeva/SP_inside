@@ -1,6 +1,6 @@
 <template>
 <div>
-  <h3><em>Adding new one:</em></h3>
+  <h3><em>{{edit?'Editing':'Adding new one'}}</em></h3>
    <el-form
     ref="doctor"
     :model="doctor"
@@ -23,13 +23,6 @@
 
    
 
-
-<!-- 
-    <el-form-item label="Photo" prop="photo">
-        <el-input
-        v-model="doctor.photo"
-      ></el-input>    
-    </el-form-item> -->
   
      <el-form-item>
       <el-button type="primary" @click="editElem('doctor')" v-if="edit"

@@ -1,6 +1,6 @@
 <template>
 <div>
-  <h3><em>Adding new one:</em></h3>
+  <h3><em>{{edit?'Editing':'Adding new one'}}</em></h3>
    <el-form
     ref="clinic"
     :model="clinic"

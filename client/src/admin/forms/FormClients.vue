@@ -1,6 +1,6 @@
 <template>
 <div>
-  <h3><em>Adding new one:</em></h3>
+  <h3><em>{{edit?'Editing':'Adding new one'}}:</em></h3>
    <el-form
     ref="client"
     :model="client"
@@ -39,6 +39,12 @@
     </el-form-item>       
 
     <el-form-item>
+        <!-- <el-button type="primary" @click="editElem('client')" v-if="edit"
+        >Edit</el-button
+      >
+     <el-button type="primary" @click="submitForm('doctor')" v-else
+        >Save</el-button
+      >  -->
       <el-button type="primary" @click="submitForms"
         >Sign up</el-button
       >
