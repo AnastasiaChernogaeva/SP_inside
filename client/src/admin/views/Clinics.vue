@@ -1,8 +1,11 @@
 <template>
 <div class="card  container ">
   <h1 class="center">Clinics</h1>
-  <hr>
-    <form-clinics @added="updateInfo"></form-clinics>
+  <!-- <hr> -->
+    <el-button class="icon" :type="addNewOne?'danger':'success'" @click="addNewOne=!addNewOne" :icon="addNewOne?'el-icon-minus':'el-icon-plus'"></el-button>
+    <el-button class="icon" :type="search?'danger':'success'" @click="search=!search" :icon="search?'el-icon-close':'el-icon-search'"></el-button>
+    <form-clinics v-if="addNewOne" @added="updateInfo"></form-clinics>
+    <filter-clinics v-if="search" @filtered="()=>console.log('ff', info)"></filter-clinics>
   <hr>
   <h3><em>List of clinics:</em></h3>
 <div v-if="clinics.length!==0">
@@ -45,16 +48,22 @@
 
 <script>
 import FormClinics from '../forms/FormClinics.vue'
+import FilterClinics from '../filters/FilterClinics.vue'
+
 import Modal from '../ui/Modal.vue'
 
 
 export default { 
     components:{
       FormClinics,
+      FilterClinics,
       Modal
     },
     data(){
         return{
+            addNewOne:false,
+            search:false,
+
             editId:'',
             modal:false,
             type:'clinics',
@@ -63,6 +72,9 @@ export default {
         }
     },
     methods:{
+    checkIt(info){
+      console.log(info)
+    },
     edited(){
       // console.log('inside the clinis')
       this.modal=false
