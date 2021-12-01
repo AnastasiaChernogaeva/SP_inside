@@ -79,6 +79,7 @@ export default {
       await axios.delete(`http://localhost:${PORT}/auth/deleteUser`, {
         data: { infoId: payload.infoId },
       });
+      commit("setError", data.message);
     },
 
     // async updateUser(_, payload) {

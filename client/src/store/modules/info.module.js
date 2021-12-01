@@ -117,6 +117,7 @@ export default {
       await axios.delete(`http://localhost:${PORT}/api/${payload.type}/`, {
         data: { id: payload.id },
       });
+      commit("setError", data.message);
     },
 
     async getInfo({ commit }, payload) {

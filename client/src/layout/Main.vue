@@ -59,11 +59,19 @@ export default {
       }
   },
   watch:{
-    message(){
-      if(this.message!=''){
+    messageAuth(){
+      if(this.messageAuth!==''){
         setTimeout(()=>{
         this.open()
         this.$store.commit('auth/deleteError',{root:true})
+       }, 2025)
+      }
+    },
+    messageInfo(){
+      if(this.messageInfo!==''){
+        setTimeout(()=>{
+        this.open()
+        this.$store.commit('info/deleteError',{root:true})
        }, 2025)
       }
     }
@@ -72,8 +80,11 @@ export default {
     auth(){
       return this.$store.state.auth.role==="USER"?true:false
     },
-    message(){
+    messageAuth(){
       return this.$store.state.auth.error
+    },    
+    messageInfo(){
+      return this.$store.state.info.error
     },
     info(){
       if(this.$route.path == '/main' || this.$route.path == '/' ){
