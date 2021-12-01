@@ -32,7 +32,7 @@
 
 <script>
 import Info from '../views/Info'
-import { ElMessage } from 'element-plus'
+// import { ElMessage } from 'element-plus'
 
 export default {
   components:{
@@ -50,52 +50,52 @@ export default {
       logout(){
         this.$store.commit('auth/logout',{root:true})
       },
-      open(type){
-        if(type==='auth'){
-           ElMessage({
-            showClose: true,
-            message: this.messageAuth,
-            type: 'error',
-          })
-        }
-        else if(type==='info'){
-           ElMessage({
-            showClose: true,
-            message: this.messageInfo,
-            type: 'error',
-          })
-        }
+      // open(type){
+      //   if(type==='auth'){
+      //      ElMessage({
+      //       showClose: true,
+      //       message: this.messageAuth,
+      //       type: 'error',
+      //     })
+      //   }
+      //   else if(type==='info'){
+      //      ElMessage({
+      //       showClose: true,
+      //       message: this.messageInfo,
+      //       type: 'error',
+      //     })
+      //   }
        
-      }
+      // }
   },
-  watch:{
-    messageAuth(){
-      if(this.messageAuth!==''){
-        setTimeout(()=>{
-        this.open('auth')
-        this.$store.commit('auth/deleteError',{root:true})
-       }, 2025)
-      }
-    },
-    messageInfo(){
-      if(this.messageInfo!==''){
-        setTimeout(()=>{
-        this.open('info')
-        this.$store.commit('info/deleteError',{root:true})
-       }, 2025)
-      }
-    }
-  },
+  // watch:{
+  //   messageAuth(){
+  //     if(this.messageAuth!==''){
+  //       setTimeout(()=>{
+  //       this.open('auth')
+  //       this.$store.commit('auth/deleteError',{root:true})
+  //      }, 2025)
+  //     }
+  //   },
+  //   messageInfo(){
+  //     if(this.messageInfo!==''){
+  //       setTimeout(()=>{
+  //       this.open('info')
+  //       this.$store.commit('info/deleteError',{root:true})
+  //      }, 2025)
+  //     }
+  //   }
+  // },
   computed:{
     auth(){
       return this.$store.state.auth.role==="USER"?true:false
     },
-    messageAuth(){
-      return this.$store.state.auth.error
-    },    
-    messageInfo(){
-      return this.$store.state.info.error
-    },
+    // messageAuth(){
+    //   return this.$store.state.auth.error
+    // },    
+    // messageInfo(){
+    //   return this.$store.state.info.error
+    // },
     info(){
       if(this.$route.path == '/main' || this.$route.path == '/' ){
         return true

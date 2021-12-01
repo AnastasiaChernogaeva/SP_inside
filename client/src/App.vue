@@ -1,6 +1,63 @@
 <template>
   <router-view></router-view>  
 </template>
+<script>
+import { ElMessage } from 'element-plus'
+
+export default {
+  methods:{
+      open(type){
+        if(type==='auth'){
+           ElMessage({
+            showClose: true,
+            message: this.messageAuth,
+            type: 'error',
+          })
+        }
+        else if(type==='info'){
+           ElMessage({
+            showClose: true,
+            message: this.messageInfo,
+            type: 'error',
+          })
+        }
+       
+      }
+  },
+  watch:{
+    messageAuth(){
+      if(this.messageAuth!==''&&this.messageAuth!=undefined &&this.messageAuth!=null){
+        setTimeout(()=>{
+        this.open('auth')
+        this.$store.commit('auth/deleteError',{root:true})
+       }, 2025)
+      }
+    },
+    messageInfo(){
+      if(this.messageInfo!==''&&this.messageInfo!=undefined &&this.messageInfo!=null){
+        setTimeout(()=>{
+        this.open('info')
+        this.$store.commit('info/deleteError',{root:true})
+       }, 2025)
+      }
+    }
+  },
+  computed:{
+    messageAuth(){
+      return this.$store.state.auth.error
+    },    
+    messageInfo(){
+      return this.$store.state.info.error
+    },
+   },
+      // route(){
+      //   switch(this.$route.path){
+      //     case 
+      //   }
+      // }
+
+    }
+</script>
 <style>
 a{
     color:white;

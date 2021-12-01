@@ -27,9 +27,11 @@
 </template>
 
 <script>
+// import { ElMessage } from 'element-plus'
 
 
 export default {
+  
 
   data(){
     return{
@@ -39,8 +41,53 @@ export default {
   methods:{
     logout(){
         this.$store.commit('auth/logout',{root:true})
-    }
-  }
+    },
+      // open(type){
+      //   if(type==='auth'){
+      //      ElMessage({
+      //       showClose: true,
+      //       message: this.messageAuth,
+      //       type: 'error',
+      //     })
+      //   }
+      //   else if(type==='info'){
+      //      ElMessage({
+      //       showClose: true,
+      //       message: this.messageInfo,
+      //       type: 'error',
+      //     })
+      //   }
+       
+      // }
+
+  },
+  // watch:{
+  //   messageAuth(){
+  //     if(this.messageAuth!==''){
+  //       setTimeout(()=>{
+  //       this.open('auth')
+  //       this.$store.commit('auth/deleteError',{root:true})
+  //      }, 2025)
+  //     }
+  //   },
+  //   messageInfo(){
+  //     if(this.messageInfo!==''){
+  //       setTimeout(()=>{
+  //       this.open('info')
+  //       this.$store.commit('info/deleteError',{root:true})
+  //      }, 2025)
+  //     }
+  //   }
+  // },
+  // computed:{
+  //   messageAuth(){
+  //     return this.$store.state.auth.error
+  //   },    
+  //   messageInfo(){
+  //     return this.$store.state.info.error
+  //   },
+
+  //   }
   
 }
 </script>
