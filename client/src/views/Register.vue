@@ -43,6 +43,7 @@
 
     <el-form-item>
       <el-button type="primary" @click="submitForms"
+      :disabled="disabled"
         >Sign up</el-button
       >
       <el-button @click="resetForms">Reset</el-button>
@@ -56,6 +57,7 @@ import { ElLoading } from 'element-plus'
 export default {
   data() {
     return { 
+      disabled:false,
       id:'',
       registrate: {
         username: '',
@@ -107,7 +109,9 @@ export default {
         password: [
           {
             required: true,
-            message: 'Please, input password',
+            message: 'Please, input password more than 5 and less than 10 ',
+            min:5,
+            max:10,
             trigger: 'blur',
           },
         ],
@@ -120,12 +124,18 @@ export default {
           
           this.$refs['info'].validate(async(valid) => {
             if (valid) {
-             let response = await this.$store.dispatch('info/addNew', {items:this.info, type:'clients'}, {root:true,})
-            // console.log(response, '- I am that response')
+               this.$refs['registrate'].validate(async(valid) => {
+                 if (valid) {
+                   let response = await this.$store.dispatch('info/addNew', {items:this.info, type:'clients'}, {root:true,})
+                  // console.log(response, '- I am that response')
             
-             this.id=response._id
-             this.submitForm('registrate')
+                    this.id=response._id
+                    this.submitForm('registrate')
             }
+            else{
+              this.disabled = true
+            }
+            })}
             else {
               console.log('error submit!!')
               return false
@@ -145,7 +155,7 @@ export default {
         if (valid) {
           this.loading()
 
-          this.$refs['info'].validate((valid) => {
+          this.$refs['registrate'].validate((valid) => {
             if (valid) {
                 const {username, password} = this.registrate
                 this.$store.dispatch('auth/registrate', {username, password, role:this.role, infoId:this.id}, {root:true,})       
