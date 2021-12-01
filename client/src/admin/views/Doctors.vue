@@ -21,6 +21,7 @@
         </div>
 </div>
 <h2 v-else>NO</h2>
+<modal v-if="modal" @closeForm="modal=false" :edit="editId" @closeModal="edited"/>
 <hr>
    <el-button type="info" class="myButton" @click="()=>{$router.push('/main_admin')}">Back</el-button>
 </div> 
@@ -56,9 +57,16 @@ export default {
         if(info)
         this.doctors = info
     },    
+    editInfo(id){
+      this.modal = true
+      this.editId = id
+      // console.log('id in edit', id)
+    },
     async deleteInfo(id){
       await this.$store.dispatch('info/deleteItem', {type:this.type, id:id}, {root:true,})
       this.updateInfo()
+      await this.$store.dispatch('auth/deleteUser', { infoId:id}, {root:true,})
+      
     },
     open(){
         ElMessage({

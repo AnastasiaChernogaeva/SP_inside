@@ -90,6 +90,7 @@ export default {
   },
   actions: {
     async editElem({ commit, dispatch }, payload) {
+      console.log("PAYLOAD", payload.item);
       const { data } = await axios.put(
         `http://localhost:${PORT}/api/${payload.type}`,
         {

@@ -47,16 +47,10 @@
     </el-form-item>    
 
     <el-form-item>
-        <!-- <el-button type="primary" @click="editElem('client')" v-if="edit"
-        >Edit</el-button
-      >
-     <el-button type="primary" @click="submitForm('doctor')" v-else
-        >Save</el-button
-      >  -->
       <el-button type="primary" @click="submitForms"
         >Save</el-button
       >
-      <el-button @click="resetForms">Reset</el-button>
+      <el-button @click="reset">Reset</el-button>
 
     </el-form-item>
   </el-form>
@@ -147,11 +141,6 @@ export default {
 
 
     },    
-    resetForms(){
-      this.$refs['client'].resetFields()
-      this.$refs['registrate'].resetFields()
-
-    },
       editElem(formName){ 
       this.$refs[formName].validate((valid) => {
         if (valid) {
@@ -177,6 +166,16 @@ export default {
     },
     resetForm(formName) {
       this.$refs[formName].resetFields()
+
+    },
+    reset(){
+       this.resetForm('client')
+        this.registrate = {          
+          username: '',
+          password:'',
+          doctor: false,     
+        }
+      
     },
     loading(){
       const loading = ElLoading.service({
@@ -190,12 +189,9 @@ export default {
         this.$emit('added') 
         else  {
              this.$emit('edited') 
-            //  console.log('Inside the form')
         }
-       
-        
-        this.resetForm('client')
-        loading.close()        
+        this.reset()
+        loading.close()     
       }, 2000)
     },
     },  
