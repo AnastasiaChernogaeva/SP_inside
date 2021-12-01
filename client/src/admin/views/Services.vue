@@ -6,7 +6,7 @@
   <hr>
   <h3><em>List of services:</em></h3>
     <div v-if="services.length!==0">
-       <div class="flex" v-for="serv in services" :key="serv._id">
+       <div class="flex border" v-for="serv in services" :key="serv._id">
             <h3>{{serv.name}}</h3>
             <h4>{{currency(serv.price)}}</h4>
             <el-row>

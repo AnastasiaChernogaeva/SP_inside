@@ -6,7 +6,7 @@
   <hr>
   <h3><em>List of doctors:</em></h3>
 <div v-if="doctors.length!==0">
-    <div v-for="doctor in doctors" :key="doctor._id">
+    <div class="border" v-for="doctor in doctors" :key="doctor._id">
         <h3>{{doctor.name}} {{doctor.surname}}</h3>
         <h4>{{doctor.post}}</h4>
         <ul v-if="doctor.appointments.length!==0"><li v-for="(appointment, idx) in doctor.appointments" :key="idx*Math.random()">{{appointment}}</li></ul>

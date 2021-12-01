@@ -6,7 +6,7 @@
   <hr>
   <h3><em>List of shopgoods:</em></h3>
 <div v-if="shopgoods.length!==0">
-    <div v-for="good in shopgoods" :key="good._id">
+    <div class="border" v-for="good in shopgoods" :key="good._id">
         <h1>{{good.name}}</h1>
         <h3>{{currency(good.price)}}</h3>
         <!-- <ul><li></li></ul> -->
