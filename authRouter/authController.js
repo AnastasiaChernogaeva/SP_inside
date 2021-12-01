@@ -112,9 +112,10 @@ class authController {
       res.status(500).json({ message: error.message });
     }
   }
-  async updateUser(req, res) {
-    // const response = await User.findByIdAndUpdate(id, req.body.description);
-  }
+  // async updateUser(req, res) {
+  //   // const response = await User.findByIdAndUpdate(id, req.body.description);
+  //   console.log("Update User", req.body);
+  // }
 }
 
 module.exports = new authController();

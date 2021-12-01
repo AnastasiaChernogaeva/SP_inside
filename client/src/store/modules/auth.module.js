@@ -81,10 +81,10 @@ export default {
       });
     },
 
-    async updateUser(_, payload) {
-      await axios.delete(`http://localhost:${PORT}/auth/updateUser`, {
-        ...payload.item,
-      });
-    },
+    // async updateUser(_, payload) {
+    //   await axios.delete(`http://localhost:${PORT}/auth/updateUser`, {
+    //     ...payload.item,
+    //   });
+    // },
   },
 };

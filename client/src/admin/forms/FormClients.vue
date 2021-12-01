@@ -17,9 +17,17 @@
     <el-form-item label="Phone number" prop="phone">
       <el-input v-model="client.phone" ></el-input>
     </el-form-item> 
+    <el-form-item v-if="edit">
+         <el-button type="primary" @click="editElem('client')" 
+        >Edit</el-button
+      >
+      <el-button @click="resetForm('client')">Reset</el-button>
+
+    </el-form-item>
+    
      </el-form>
   <el-form
-    v-if="submittedInfo"
+    v-if="submittedInfo&&!edit"
     ref="registrate"
     :model="registrate"
     :rules="regRules"
@@ -36,7 +44,7 @@
         type="password"
         autocomplete="off"
       ></el-input>
-    </el-form-item>       
+    </el-form-item>    
 
     <el-form-item>
         <!-- <el-button type="primary" @click="editElem('client')" v-if="edit"
@@ -46,7 +54,7 @@
         >Save</el-button
       >  -->
       <el-button type="primary" @click="submitForms"
-        >Sign up</el-button
+        >Save</el-button
       >
       <el-button @click="resetForms">Reset</el-button>
 
@@ -126,14 +134,7 @@ export default {
           
           this.$refs['client'].validate(async(valid) => {
             if (valid) {
-              if(this.edit){
-                response = await this.$store.dispatch('info/editElem', {item:this.client, type:'clients'}, {root:true,})
-              }
-              else{
                 response = await this.$store.dispatch('info/addNew', {items:this.client, type:'clients'}, {root:true,})
-              }
-             
-            // console.log(response, '- I am that response')
             
              this.id=response._id
              this.submitForm('registrate')
@@ -145,33 +146,28 @@ export default {
           })      
 
 
-    },
+    },    
     resetForms(){
       this.$refs['client'].resetFields()
       this.$refs['registrate'].resetFields()
 
     },
-      // editElem(formName){ 
-      // this.$refs[formName].validate((valid) => {
-      //   if (valid) {
-      //     this.loading()
-      //     this.$store.dispatch('info/editElem', {item:this.client, id:this.edit, type:this.type}, {root:true,})
-      //   } else {
-      //     console.log('error submit!!')
-      //     return false
-      //   } } )},
+      editElem(formName){ 
+      this.$refs[formName].validate((valid) => {
+        if (valid) {
+          this.loading()
+          this.$store.dispatch('info/editElem', {item:this.client, id:this.edit, type:this.type}, {root:true,})
+        } else {
+          console.log('error submit!!')
+          return false
+        } } )},
 
       submitForm(formName) {      
       this.$refs[formName].validate((valid) => {
         if (valid) {
           this.loading()
           const {username, password} = this.registrate
-          if(this.edit){
-            this.$store.dispatch('auth/updateUser', {item:{username, password, role:'USER', infoId:this.id}}, {root:true,})   
-          }
-          else{
-            this.$store.dispatch('auth/registrate', {username, password, role:'USER', infoId:this.id}, {root:true,})   
-          }
+          this.$store.dispatch('auth/registrate', {username, password, role:'USER', infoId:this.id}, {root:true,})   
                
         } else {
           console.log('error submit!!')

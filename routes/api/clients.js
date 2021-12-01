@@ -38,9 +38,14 @@ router.post("/api/clients/", async (req, res) => {
 
 router.put("/api/clients/", async (req, res) => {
   const id = req.body._id;
-  // console.log("body", req.body);
+  const { name, surname, phone } = req.body;
+  console.log("body", req.body);
   try {
-    const response = await Client.findByIdAndUpdate(id, req.body.description);
+    const response = await Client.findByIdAndUpdate(id, {
+      name,
+      surname,
+      phone,
+    });
     if (!response) throw new Error("Something went wrong");
     const updated = { ...response._doc };
     // console.log("updated", updated);
