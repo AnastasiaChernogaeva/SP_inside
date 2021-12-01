@@ -17,26 +17,12 @@
    <!-- <el-button type="info" class="myButton" @click="()=>{$router.push('/main_admin/clients')}">Clients</el-button> -->
    <!-- <el-button type="info" class="myButton" @click="()=>{$router.push('/main_admin/treatments')}">Treatments</el-button> -->
    <el-button type="info" class="myButton" @click="()=>{$router.push('/main_admin/shopgoods')}">ShopGoods</el-button>
+   <!-- <el-button type="info" class="myButton" @click="()=>{$router.push('/main_admin/shopgoods')}"><a class="nesti">ShopGoods</a></el-button> -->
+
 
 
 
 </div>
-
-<!-- <div class="center gr-button">
-   <el-button type="info" class="myButton" @click="()=>{$router.push('/main_admin/templ/clinics')}">Clinics</el-button>
-   <el-button type="info" class="myButton" @click="()=>{$router.push('/main_admin/templ/doctors')}">Doctors</el-button>
-   <el-button type="info" class="myButton" @click="()=>{$router.push('/main_admin/templ/services')}">Services</el-button>
-   <el-button type="info" class="myButton" @click="()=>{$router.push('/main_admin/templ/cities')}">Cities</el-button>
-
-   <el-button type="info" class="myButton" @click="()=>{$router.push('/main_admin/templ/working_time')}">WorkingTime</el-button>
-   <el-button type="info" class="myButton" @click="()=>{$router.push('/main_admin/templ/pets')}">Pets</el-button>
-   <el-button type="info" class="myButton" @click="()=>{$router.push('/main_admin/templ/users')}">Users</el-button>
-   <el-button type="info" class="myButton" @click="()=>{$router.push('/main_admin/templ/treatments')}">Treatments</el-button>
-   <el-button type="info" class="myButton" @click="()=>{$router.push('/main_admin/templ/shop_goods')}">ShopGoods</el-button>
-
-
-
-</div> -->
 </div>
 </template>
 

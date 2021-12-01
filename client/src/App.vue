@@ -80,6 +80,11 @@ body {
 border:none;
 }
 
+/* .nesti {
+  width: 100%;
+  height: 100%;
+} */
+
 .myButton{
     font-size:18px;
     box-shadow: 0 2px 4px #e9e9eb, 0 0 6px rgb(0 0 0 / 4%);
