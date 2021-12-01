@@ -14,7 +14,7 @@ router.get("/api/shopgoods/", async (req, res) => {
     res.status(200).json(sorted);
   } catch (error) {
     console.log(`Error ${error}`);
-    res.status(500).json({ message: error.message });
+    res.json({ message: error.message }).status(500);
   }
 });
 
@@ -33,7 +33,7 @@ router.post("/api/shopgoods/", async (req, res) => {
     if (!shopgood) throw new Error("Something went wrong saving the shopgood");
     res.status(200).json(shopgood);
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.json({ message: error.message }).status(500);
   }
 });
 
@@ -51,7 +51,7 @@ router.put("/api/shopgoods/", async (req, res) => {
     // console.log("updated", updated);
     res.status(200).json(updated);
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.json({ message: error.message }).status(500);
   }
 });
 
@@ -62,7 +62,7 @@ router.delete(`/api/shopgoods/`, async (req, res) => {
     if (!removed) throw new Error("Something went wrong");
     res.status(200).json(removed);
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.json({ message: error.message }).status(500);
   }
 });
 

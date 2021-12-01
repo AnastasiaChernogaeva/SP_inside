@@ -46,7 +46,6 @@
 <script>
 import FormClinics from '../forms/FormClinics.vue'
 import Modal from '../ui/Modal.vue'
-import { ElMessage } from 'element-plus'
 
 
 export default { 
@@ -83,29 +82,7 @@ export default {
       await this.$store.dispatch('info/deleteItem', {type:this.type, id:id}, {root:true,})
       this.updateInfo()
     },
-    open(){
-        ElMessage({
-        showClose: true,
-        message: this.message,
-        type: 'error',
-      })
-      }
     },
-    watch:{
-    message(){
-      if(this.message!=''){
-        setTimeout(()=>{
-        this.open()
-        this.$store.commit('info/deleteError',{root:true})
-       }, 2025)
-      }
-    }
-  },
-  computed:{
-    message(){
-      return this.$store.state.info.error
-    },
-  },
     beforeMount() {
         this.updateInfo()
     },

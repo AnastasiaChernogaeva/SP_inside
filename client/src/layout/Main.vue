@@ -50,19 +50,29 @@ export default {
       logout(){
         this.$store.commit('auth/logout',{root:true})
       },
-      open(){
-        ElMessage({
-        showClose: true,
-        message: this.message,
-        type: 'error',
-      })
+      open(type){
+        if(type==='auth'){
+           ElMessage({
+            showClose: true,
+            message: this.messageAuth,
+            type: 'error',
+          })
+        }
+        else if(type==='info'){
+           ElMessage({
+            showClose: true,
+            message: this.messageInfo,
+            type: 'error',
+          })
+        }
+       
       }
   },
   watch:{
     messageAuth(){
       if(this.messageAuth!==''){
         setTimeout(()=>{
-        this.open()
+        this.open('auth')
         this.$store.commit('auth/deleteError',{root:true})
        }, 2025)
       }
@@ -70,7 +80,7 @@ export default {
     messageInfo(){
       if(this.messageInfo!==''){
         setTimeout(()=>{
-        this.open()
+        this.open('info')
         this.$store.commit('info/deleteError',{root:true})
        }, 2025)
       }

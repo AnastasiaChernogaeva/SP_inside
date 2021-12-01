@@ -14,7 +14,7 @@ router.get("/api/services/", async (req, res) => {
     res.status(200).json(sorted);
   } catch (error) {
     console.log(`Error ${error}`);
-    res.status(500).json({ message: error.message });
+    res.json({ message: error.message }).status(500);
   }
 });
 
@@ -32,7 +32,7 @@ router.post("/api/services/", async (req, res) => {
     if (!service) throw new Error("Something went wrong saving the service");
     res.status(200).json(service);
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.json({ message: error.message }).status(500);
   }
 });
 
@@ -50,7 +50,7 @@ router.put("/api/services/", async (req, res) => {
     // console.log("updated", updated);
     res.status(200).json(updated);
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.json({ message: error.message }).status(500);
   }
 });
 
@@ -61,7 +61,7 @@ router.delete(`/api/services/`, async (req, res) => {
     if (!removed) throw new Error("Something went wrong");
     res.status(200).json(removed);
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.json({ message: error.message }).status(500);
   }
 });
 

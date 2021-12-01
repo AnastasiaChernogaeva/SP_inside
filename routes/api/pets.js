@@ -14,7 +14,7 @@ router.get("/api/pets/", async (req, res) => {
     res.status(200).json(sorted);
   } catch (error) {
     console.log(`Error ${error}`);
-    res.status(500).json({ message: error.message });
+    res.json({ message: error.message }).status(500);
   }
 });
 
@@ -32,7 +32,7 @@ router.post("/api/pets/", async (req, res) => {
     if (!pet) throw new Error("Something went wrong saving the pet");
     res.status(200).json(pet);
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.json({ message: error.message }).status(500);
   }
 });
 
@@ -46,7 +46,7 @@ router.put("/api/pets/", async (req, res) => {
     // console.log("updated", updated);
     res.status(200).json(updated);
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.json({ message: error.message }).status(500);
   }
 });
 
@@ -58,7 +58,7 @@ router.delete("/api/pets/", async (req, res) => {
     if (!removed) throw new Error("Something went wrong");
     res.status(200).json(removed);
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.json({ message: error.message }).status(500);
   }
 });
 

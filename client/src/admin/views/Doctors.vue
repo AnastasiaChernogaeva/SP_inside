@@ -30,7 +30,6 @@
 <script>
 import FormDoctors from '../forms/FormDoctors.vue'
 import Modal from '../ui/Modal.vue'
-import { ElMessage } from 'element-plus'
 
 export default {
     components:{
@@ -68,29 +67,7 @@ export default {
       await this.$store.dispatch('auth/deleteUser', { infoId:id}, {root:true,})
       
     },
-    open(){
-        ElMessage({
-        showClose: true,
-        message: this.message,
-        type: 'error',
-      })
-      }
     },
-    watch:{
-    message(){
-      if(this.message!=''){
-        setTimeout(()=>{
-        this.open()
-        this.$store.commit('info/deleteError',{root:true})
-       }, 2025)
-      }
-    }
-  },
-  computed:{
-    message(){
-      return this.$store.state.info.error
-    },
-  },
     beforeMount() {
         this.updateInfo()
     },
