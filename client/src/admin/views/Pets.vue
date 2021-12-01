@@ -6,7 +6,7 @@
   <hr>
   <h3><em>List of pets:</em></h3>
 <div v-if="pets.length!==0">
-    <div class="border" v-for="pet in pets" :key="pet._id">
+    <div class="border container" v-for="pet in pets" :key="pet._id">
         <h1>{{pet.fullname}}</h1>
         <h2>{{pet.nickname}}</h2>
 

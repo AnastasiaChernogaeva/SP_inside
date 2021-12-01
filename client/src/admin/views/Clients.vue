@@ -6,7 +6,7 @@
   <hr>
   <h3><em>List of clients:</em></h3>
 <div v-if="clients.length!==0">
-    <div class="border" v-for="client in clients" :key="client._id">
+    <div class="border container" v-for="client in clients" :key="client._id">
         <h3>{{client.name}} {{client.surname}}</h3>
         <ul v-if="client.pets.length!==0"><li v-for="(pet, idx) in clients.pets" :key="idx*Math.random()">{{pet}}</li></ul>
         <ul v-if="client.appointments.length!==0"><li v-for="(appointment, idx) in clients.appointments" :key="idx*Math.random()">{{appointment}}</li></ul>
