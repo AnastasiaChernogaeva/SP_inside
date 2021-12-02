@@ -43,9 +43,9 @@
             <!-- <el-form-item label="City" prop="city">
                 <el-input v-model="city" ></el-input>
             </el-form-item>  -->
-            <el-form-item label="Services" prop="services">
+            <!-- <el-form-item label="Services" prop="services">
                 <el-input v-model="services" ></el-input>
-            </el-form-item> 
+            </el-form-item>  -->
             <el-form-item label="Doctors" prop="doctors">
                 <el-input v-model="doctors" ></el-input>
             </el-form-item> 
@@ -62,6 +62,9 @@
       <p>
           {{countries}}
       </p>
+      <p>
+          {{services}}
+      </p>
 </div>
 </template>
 <script>
@@ -73,10 +76,11 @@ export default {
             // clinics
                 name: '',
                 co:[],
+                se:[],
                 // country:'',
 
                 city:'',
-                services:'',
+                // services:'',
                 doctors:'',
             // filtered:{
                
@@ -131,6 +135,13 @@ export default {
             console.log('countriesS', countriesS)
             let reC = countriesS.map(elem => ({'value':elem, 'label':elem, }))
             return reC
+        },
+        services(){
+            let servicesS=[...this.info.map(clinic =>
+                clinic.services).concat()]
+            console.log('servicesS', servicesS)
+            // let reC = countriesS.map(elem => ({'value':elem, 'label':elem, }))
+            return servicesS
         }
     }
 }
