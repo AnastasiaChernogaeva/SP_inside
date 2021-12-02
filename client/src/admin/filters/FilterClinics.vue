@@ -37,7 +37,42 @@
                     >
                     </el-option>
                 </el-select>
-                <!-- <el-input v-model="country" ></el-input> -->
+            </el-form-item> 
+            <el-form-item label="Services" >
+                <el-select
+                    v-model="se"
+                    multiple
+                    filterable
+                    allow-create
+                    default-first-option
+                    placeholder="Choose services"
+                >
+                    <el-option
+                    v-for="item in services"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value"
+                    >
+                    </el-option>
+                </el-select>
+            </el-form-item> 
+            <el-form-item label="Doctors" >
+                <el-select
+                    v-model="doc"
+                    multiple
+                    filterable
+                    allow-create
+                    default-first-option
+                    placeholder="Choose doctors"
+                >
+                    <el-option
+                    v-for="item in doctors"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value"
+                    >
+                    </el-option>
+                </el-select>
             </el-form-item> 
 
             <!-- <el-form-item label="City" prop="city">
@@ -46,16 +81,16 @@
             <!-- <el-form-item label="Services" prop="services">
                 <el-input v-model="services" ></el-input>
             </el-form-item>  -->
-            <el-form-item label="Doctors" prop="doctors">
+            <!-- <el-form-item label="Doctors" prop="doctors">
                 <el-input v-model="doctors" ></el-input>
-            </el-form-item> 
+            </el-form-item>  -->
             <el-form-item>
                 <!-- <el-button class="icon" type="danger" icon="el-icon-close" @click="()=>resetForm('filtered')"></el-button> -->
 
                 <el-button  type="danger"  @click="reset">Clear</el-button>
             </el-form-item>
       </el-form>
-      <p>
+      <!-- <p>
           {{info}}
       </p>
       
@@ -64,7 +99,10 @@
       </p>
       <p>
           {{services}}
-      </p>
+      </p> -->
+     <!-- <p>{{doctors}}</p> -->
+     <p>{{doctors}}</p>
+
 </div>
 </template>
 <script>
@@ -77,11 +115,12 @@ export default {
                 name: '',
                 co:[],
                 se:[],
+                doc:[],
                 // country:'',
 
                 city:'',
                 // services:'',
-                doctors:'',
+                // doctors:'',
             // filtered:{
                
             // }
@@ -103,10 +142,10 @@ export default {
     },
     reset(){
         this.name='';
-        this.country='';
+        this.co=[];
         this.city='';
-        this.services='';
-        this.doctors='';
+        this.se=[];
+        this.doc=[];
     }
     },
 
@@ -130,18 +169,20 @@ export default {
 
         },
         countries(){
-            let countriesS=this.info.map(clinic =>
-                clinic.country)
-            console.log('countriesS', countriesS)
-            let reC = countriesS.map(elem => ({'value':elem, 'label':elem, }))
-            return reC
+            let countriesS=this.info.map(clinic =>clinic.country).map(elem => ({'value':elem, 'label':elem, }))
+            return countriesS
         },
         services(){
-            let servicesS=[...this.info.map(clinic =>
-                clinic.services).concat()]
-            console.log('servicesS', servicesS)
-            // let reC = countriesS.map(elem => ({'value':elem, 'label':elem, }))
+            let arr = this.info.map(clinic =>clinic.services).flat()
+            let servicesS=arr.filter((elem, idx)=> arr.indexOf(elem) === idx).map(elem => ({'value':elem, 'label':elem, }))
+
             return servicesS
+        },
+        doctors(){
+            let arr = this.info.map(clinic =>clinic.doctors).flat()
+            let doctorsS=arr.filter((elem, idx)=> arr.indexOf(elem) === idx).map(elem => ({'value':elem, 'label':elem, }))
+
+            return doctorsS
         }
     }
 }
