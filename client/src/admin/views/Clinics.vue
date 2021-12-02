@@ -5,9 +5,10 @@
     <el-button class="icon" :type="addNewOne?'danger':'success'" @click="addNewOne=!addNewOne" :icon="addNewOne?'el-icon-minus':'el-icon-plus'"></el-button>
     <el-button class="icon" :type="search?'danger':'success'" @click="search=!search" :icon="search?'el-icon-close':'el-icon-search'"></el-button>
     <form-clinics v-if="addNewOne" @added="updateInfo"></form-clinics>
-    <filter-clinics v-if="search" @filtered="()=>console.log('ff', info)"></filter-clinics>
+    <filter-clinics v-if="search" :info="clinics" @filtered="(info)=>checkIt(info)"></filter-clinics>
   <hr>
   <h3><em>List of clinics:</em></h3>
+  <p>{{searchedClinics}}</p>
 <div v-if="clinics.length!==0">
     <div class="border" v-for="clinic in clinics" :key="clinic._id">
         <h1>{{clinic.name}}</h1>
@@ -63,6 +64,7 @@ export default {
         return{
             addNewOne:false,
             search:false,
+            searchedClinics:[],
 
             editId:'',
             modal:false,
@@ -73,7 +75,23 @@ export default {
     },
     methods:{
     checkIt(info){
+      // if(info!=undefined){
+      //   this.clinics.forEach(clinic=>{
+      //     // console.log(clinic.name)
+      //     if(clinic.name.includes(info.name))
+      //     !this.searchedClinics.includes(clinic)&&this.searchedClinics.push(clinic)
+      //     // this.searchedClinics.includes(clinic)&& this.searchedClinics=[]
+
+      //   })
+      //   //  console.log(info)
+      // }
+      // else{
+      //   this.searchedClinics=[]
+      // }
+        //  console.log(this.clinics)
       console.log(info)
+     
+
     },
     edited(){
       // console.log('inside the clinis')

@@ -1,48 +1,86 @@
 <template>
 <div>
     <h1>
-        Kkkk
+        Search
     </h1>
+    <!-- 
+          ref="filtered"
+          :model="filtered"
+          class="demo-filtered"
+     -->
       <el-form
-            ref="filtered"
-            :model="filtered"
+          
             label-width="120px"
-            class="demo-filtered"
+         
         >
             <el-form-item label="Name" prop="name">
-                <el-input v-model="filtered.name" ></el-input>
+                <el-input v-model="name" ></el-input>
             </el-form-item> 
-            <el-form-item label="Country" prop="country">
-                <el-input v-model="filtered.country" ></el-input>
+            <!-- <el-form-item label="Country" prop="country">
+                <el-input v-model="country" ></el-input>
+            </el-form-item>  -->
+            
+            <el-form-item label="Country" >
+                <el-select
+                    v-model="co"
+                    multiple
+                    filterable
+                    allow-create
+                    default-first-option
+                    placeholder="Choose country"
+                >
+                    <el-option
+                    v-for="item in countries"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value"
+                    >
+                    </el-option>
+                </el-select>
+                <!-- <el-input v-model="country" ></el-input> -->
             </el-form-item> 
-            <el-form-item label="City" prop="city">
-                <el-input v-model="filtered.city" ></el-input>
-            </el-form-item> 
+
+            <!-- <el-form-item label="City" prop="city">
+                <el-input v-model="city" ></el-input>
+            </el-form-item>  -->
             <el-form-item label="Services" prop="services">
-                <el-input v-model="filtered.services" ></el-input>
+                <el-input v-model="services" ></el-input>
             </el-form-item> 
             <el-form-item label="Doctors" prop="doctors">
-                <el-input v-model="filtered.doctors" ></el-input>
+                <el-input v-model="doctors" ></el-input>
             </el-form-item> 
             <el-form-item>
-                <el-button class="icon" type="danger" icon="el-icon-close" @click="()=>resetForm('filtered')"></el-button>
+                <!-- <el-button class="icon" type="danger" icon="el-icon-close" @click="()=>resetForm('filtered')"></el-button> -->
+
+                <el-button  type="danger"  @click="reset">Clear</el-button>
             </el-form-item>
       </el-form>
-      <p>{{this.filtered}}</p>
+      <p>
+          {{info}}
+      </p>
+      
+      <p>
+          {{countries}}
+      </p>
 </div>
 </template>
 <script>
 export default {
     emits:['filtered'],
+    props:['info'],
     data(){
         return{
-            filtered:{
+            // clinics
                 name: '',
-                country:'',
+                co:[],
+                // country:'',
+
                 city:'',
                 services:'',
                 doctors:'',
-            }
+            // filtered:{
+               
+            // }
         }
     },
     methods:{
@@ -59,12 +97,40 @@ export default {
     resetForm(formName) {
       this.$refs[formName].resetFields()
     },
+    reset(){
+        this.name='';
+        this.country='';
+        this.city='';
+        this.services='';
+        this.doctors='';
+    }
     },
 
     watch:{
-        filtered(){
-            console.log('hjjjj')
+        filtered(){   
+            // if(this.filtered!=undefined)     
             this.$emit('filtered', this.filtered)
+        },
+    },
+    computed:{
+        filtered(){
+               if(this.name || this.country || this.city ||this.services ||this.doctors){
+                   return ({                       
+                        name: this.name?this.name:'',
+                        country: this.country?this.country:'',
+                        city: this.city?this.city:'',
+                        services: this.services?this.services:'',
+                        doctors: this.doctors?this.doctors:'',
+                   })
+               }
+
+        },
+        countries(){
+            let countriesS=this.info.map(clinic =>
+                clinic.country)
+            console.log('countriesS', countriesS)
+            let reC = countriesS.map(elem => ({'value':elem, 'label':elem, }))
+            return reC
         }
     }
 }
