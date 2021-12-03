@@ -215,7 +215,7 @@ export default {
           else return clinic
         })
         .filter(clinic =>{
-          if(this.filter.co){
+          if(this.filter.co&&this.filter.co.length>0){
             let cl
             this.filter.co.forEach(countryInFilter => {
                 if(clinic.country.toLowerCase().includes(countryInFilter.toLowerCase()))
@@ -226,7 +226,7 @@ export default {
           else return clinic
         })
         .filter(clinic =>{
-          if(this.filter.se){
+          if(this.filter.se&&this.filter.se.length>0){
             let cl
             this.filter.se.forEach(s => {
                 if(clinic.services.find(serv => {
@@ -239,7 +239,7 @@ export default {
           else return clinic
         })
         .filter(clinic =>{
-          if(this.filter.doc){
+          if(this.filter.doc&&this.filter.doc.length>0){
             let cl
             this.filter.doc.forEach(docName => {
                 if(clinic.doctors.find(doct => {
