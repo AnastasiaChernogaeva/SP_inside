@@ -9,7 +9,7 @@
   <hr>
   <h3><em>List of clinics:</em></h3>
   <!-- <p>{{searchedClinics}}</p> -->
-<div v-if="searchedClinics.length!==0">
+<div v-if="filtered&&search&&searchedClinics.length!==0">
     <div class="border" v-for="clinic in searchedClinics" :key="clinic._id">
         <h1>{{clinic.name}}</h1>
         <h4>{{clinic.country}}, {{clinic.city}}</h4>
@@ -34,7 +34,7 @@
         
         </div>
 </div>
-<div v-else-if="clinics.length!==0">
+<div v-else-if="!filtered&&clinics.length!==0">
     <div class="border" v-for="clinic in clinics" :key="clinic._id">
         <h1>{{clinic.name}}</h1>
         <h4>{{clinic.country}}, {{clinic.city}}</h4>
@@ -95,6 +95,7 @@ export default {
             modal:false,
             type:'clinics',
             clinics:[],
+            filtered:false,
 
         }
     },
@@ -114,7 +115,8 @@ export default {
       //   this.searchedClinics=[]
       // }
         //  console.log(this.clinics)
-        this.searchedClinics=info
+        this.filtered=info.filter!={}?true:false
+        this.searchedClinics=info.info
       console.log("checkIn",info)
      
 

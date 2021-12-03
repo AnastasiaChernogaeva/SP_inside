@@ -129,7 +129,7 @@ export default {
         },
         filtered(){   
             console.log('ff', this.filtered)   
-            this.$emit('filtered', this.filtered)
+            this.$emit('filtered', {filter:this.filter, info:this.filtered})
         },
     },
     computed:{
