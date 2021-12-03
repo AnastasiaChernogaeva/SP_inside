@@ -3,22 +3,12 @@
     <h1>
         Search
     </h1>
-    <!-- 
-          ref="filtered"
-          :model="filtered"
-          class="demo-filtered"
-     -->
-      <el-form
-          
-            label-width="120px"
-         
+      <el-form          
+            label-width="120px"         
         >
             <el-form-item label="Name" prop="name">
                 <el-input v-model="name" ></el-input>
             </el-form-item> 
-            <!-- <el-form-item label="Country" prop="country">
-                <el-input v-model="country" ></el-input>
-            </el-form-item>  -->
             
             <el-form-item label="Country" >
                 <el-select
@@ -74,49 +64,31 @@
                     </el-option>
                 </el-select>
             </el-form-item> 
-
-            <!-- <el-form-item label="City" prop="city">
-                <el-input v-model="city" ></el-input>
-            </el-form-item>  -->
-            <!-- <el-form-item label="Services" prop="services">
-                <el-input v-model="services" ></el-input>
-            </el-form-item>  -->
-            <!-- <el-form-item label="Doctors" prop="doctors">
-                <el-input v-model="doctors" ></el-input>
-            </el-form-item>  -->
             <el-form-item>
-                <!-- <el-button class="icon" type="danger" icon="el-icon-close" @click="()=>resetForm('filtered')"></el-button> -->
 
                 <el-button  type="danger"  @click="reset">Clear</el-button>
             </el-form-item>
       </el-form>
-      <!-- <p>
-          {{info}}
+
+       <h3>Неотфильтрованные клиники:</h3>
+       <p v-for="(filtr, idx) in info" :key="idx">
+          <em>{{idx+1}}.&nbsp;<br>
+          {{filtr.name}}</em>
+          {{filtr.country}},{{filtr.city}}<br>
+          <span v-for="(fl, idx) in filtr.services" :key="idx">{{fl}}&nbsp;</span><br>
+          <span v-for="(d, idx) in filtr.doctors" :key="idx">{{d}}</span><br>
+
       </p>
-      
-      <p>
-          {{countries}}
+          <h3>Отфильтрованные клиники:</h3>
+          
+       <p v-for="(filtr, idx) in filtered" :key="idx">
+          <em>{{idx+1}}.&nbsp;<br>
+          {{filtr.name}}</em>
+          {{filtr.country}},{{filtr.city}}<br>
+          <span v-for="(fl, idx) in filtr.services" :key="idx">{{fl}}&nbsp;</span><br>
+          <span v-for="(d, idx) in filtr.doctors" :key="idx">{{d}}</span><br>
+
       </p>
-      <p>
-          {{services}}
-      </p> -->
-     <!-- <p>{{doctors}}</p> -->
-     <!-- <p>{{filtered}}</p> -->
-     <!-- <p v-for="inf in info" :key="inf._id">{{inf}}</p> -->
-     <!-- <div v-for="(no, idx) in filteredInformation" :key="idx">
-         <em>
-             <p>
-                 <b>{{idx+1}}. &nbsp;</b> 
-                 <span>{{no}}</span>
-
-             </p>
-         </em>
-     </div> -->
-
-     <p>{{info}}</p>
-
-
-
 </div>
 </template>
 <script>
@@ -129,118 +101,83 @@ export default {
                 co:[],
                 se:[],
                 doc:[],
-                city:'',
-                filteredInformation:[],
-                // country:'',
-                // services:'',
-                // doctors:'',
-            // filtered:{
-               
-            // }
+                filter:{},
         }
     },
     methods:{
-
-      submitForm(formName) {      
-      this.$refs[formName].validate((valid) => {
-        if (valid) {
-        } else {
-          console.log('error submit!!')
-          return false
-        }        
-      })
-    },
-    resetForm(formName) {
-      this.$refs[formName].resetFields()
-    },
     reset(){
         this.name='';
         this.co=[];
-        this.city='';
         this.se=[];
         this.doc=[];
+        this.filter={};
     }
     },
 
     watch:{
-        filtered(){   
-            // if(this.filtered!=undefined)     
+        name(){
+            this.filter['name']=this.name
+        },
+        co(){
+            this.filter['co']=this.co
+        },
+        se(){
+            this.filter['se']=this.se        
+        },
+        doc(){
+            this.filter['doc']=this.doc         
+        },
+        filtered(){      
             this.$emit('filtered', this.filtered)
         },
     },
     computed:{
-        filtered(){
-            //    if(this.name || this.co|| this.se ||this.doc){
-                //    let arr =[]
-                //     if(this.name!==''){
-                //        arr=this.info.filter(elem => elem.name.includes(this.name))
-                //        arr.forEach(item => {
-                //            if(!this.filteredInformation.includes(item))
-                //             this.filteredInformation.push(...arr)
-                //        })
-                       
-                //        return arr
-                //     }
-                //     else if(this.name===''){}
-                //     if(this.co!==[]){
-                //         this.co.forEach(element => {
-                //             // arr=this.info.filter(elem => elem.country.includes(element))
-                //             arr=this.info.filter(elem => elem.country.includes(element))
-                //             this.filteredInformation.push(...arr)
-
-
-                //         });                       
-                //        return arr
-                //    }
-                //     if(this.se!==[]){
-                //         this.se.forEach(element => {
-                //             arr=this.info.filter(elem => elem.country.includes(element))
-                //             this.filteredInformation.push(...arr)
-                            
-                //         });                       
-                //        return arr
-                //    }
-                //     if(this.doc!==[]){
-                //         this.doc.forEach(element => {
-                //             arr=this.info.filter(elem => elem.country.includes(element))
-                //             this.filteredInformation.push(...arr)
-
-                //         });                       
-                //        return arr
-                //    }
-                //   let inTh=this.info.includes({                       
-                //         name: this.name?this.name:'',
-                //         co: this.co?this.co:'',
-                //         // city: this.city?this.city:'',
-                //         se: this.se?this.se:'',
-                //         doc: this.doc?this.doc:'',
-                //    })
-                //    console.log('inTh', arr)
-                //    return false
-                //    return ({                       
-                //         name: this.name?this.name:'',
-                //         co: this.co?this.co:'',
-                //         // city: this.city?this.city:'',
-                //         se: this.se?this.se:'',
-                //         doc: this.doc?this.doc:'',
-                //    })
-
-
-
-                
-                // let arr = this.info.slice().filter((elem)=>{
-                //     this.name!==''&&elem.name==this.name
-                //     this.se!==[]&&this.se.filter(s=>elem.services.map(ser=> ser===s ))
-                //     this.doc!==[]&&this.doc.filter(s=>elem.services.map(ser=> ser===s ))
-                //     this.co!==[]&&this.co.filter(s=>elem.services.map(ser=> ser===s ))
-
-
-                // })
-                // return arr
-
-               }
-
+        filtered(){ let appropriateInf=this.info.filter(clinic =>{
+          if(this.filter.name){
+            return clinic.name.toLowerCase().includes(this.filter.name.toLowerCase())
+          }
+          else return clinic
+        })
+        .filter(clinic =>{
+          if(this.filter.co&&this.filter.co.length>0){
+            let cl
+            this.filter.co.forEach(countryInFilter => {
+                if(clinic.country.toLowerCase().includes(countryInFilter.toLowerCase()))
+                 cl=clinic 
+                })
+            return cl
+          }
+          else return clinic
+        })
+        .filter(clinic =>{
+          if(this.filter.se&&this.filter.se.length>0){
+            let cl
+            this.filter.se.forEach(s => {
+                if(clinic.services.find(serv => {
+                    return serv.toLowerCase().includes(s.toLowerCase())
+                    }))
+                 cl=clinic 
+                })
+            return cl
+          }
+          else return clinic
+        })
+        .filter(clinic =>{
+          if(this.filter.doc&&this.filter.doc.length>0){
+            let cl
+            this.filter.doc.forEach(docName => {
+                if(clinic.doctors.find(doct => {
+                    return doct.toLowerCase().includes(docName.toLowerCase())
+                    }))
+                 cl=clinic 
+                })
+            return cl
+          }
+          else return clinic
+        })
+            return appropriateInf
         },
+
         countries(){
             let countriesS=this.info.map(clinic =>clinic.country).map(elem => ({'value':elem, 'label':elem, }))
             return countriesS
@@ -258,5 +195,5 @@ export default {
             return doctorsS
         }
     }
-// }
+}
 </script>
