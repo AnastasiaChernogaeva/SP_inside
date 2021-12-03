@@ -70,7 +70,7 @@
             </el-form-item>
       </el-form>
 
-       <h3>Неотфильтрованные клиники:</h3>
+       <!-- <h3>Неотфильтрованные клиники:</h3>
        <p v-for="(filtr, idx) in info" :key="idx">
           <em>{{idx+1}}.&nbsp;<br>
           {{filtr.name}}</em>
@@ -88,7 +88,7 @@
           <span v-for="(fl, idx) in filtr.services" :key="idx">{{fl}}&nbsp;</span><br>
           <span v-for="(d, idx) in filtr.doctors" :key="idx">{{d}}</span><br>
 
-      </p>
+      </p> -->
 </div>
 </template>
 <script>
@@ -127,7 +127,8 @@ export default {
         doc(){
             this.filter['doc']=this.doc         
         },
-        filtered(){      
+        filtered(){   
+            console.log('ff', this.filtered)   
             this.$emit('filtered', this.filtered)
         },
     },
