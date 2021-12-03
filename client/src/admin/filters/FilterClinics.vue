@@ -78,7 +78,7 @@
           <span v-for="(fl, idx) in filtr.services" :key="idx">{{fl}}&nbsp;</span><br>
           <span v-for="(d, idx) in filtr.doctors" :key="idx">{{d}}</span><br>
 
-      </p>
+      </p> -->
           <h3>Отфильтрованные клиники:</h3>
           
        <p v-for="(filtr, idx) in filtered" :key="idx">
@@ -88,7 +88,7 @@
           <span v-for="(fl, idx) in filtr.services" :key="idx">{{fl}}&nbsp;</span><br>
           <span v-for="(d, idx) in filtr.doctors" :key="idx">{{d}}</span><br>
 
-      </p> -->
+      </p>
 </div>
 </template>
 <script>
