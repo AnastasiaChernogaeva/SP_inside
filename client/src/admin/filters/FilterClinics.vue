@@ -101,7 +101,21 @@
           {{services}}
       </p> -->
      <!-- <p>{{doctors}}</p> -->
-     <p>{{doctors}}</p>
+     <!-- <p>{{filtered}}</p> -->
+     <!-- <p v-for="inf in info" :key="inf._id">{{inf}}</p> -->
+     <!-- <div v-for="(no, idx) in filteredInformation" :key="idx">
+         <em>
+             <p>
+                 <b>{{idx+1}}. &nbsp;</b> 
+                 <span>{{no}}</span>
+
+             </p>
+         </em>
+     </div> -->
+
+     <p>{{info}}</p>
+
+
 
 </div>
 </template>
@@ -111,14 +125,13 @@ export default {
     props:['info'],
     data(){
         return{
-            // clinics
                 name: '',
                 co:[],
                 se:[],
                 doc:[],
-                // country:'',
-
                 city:'',
+                filteredInformation:[],
+                // country:'',
                 // services:'',
                 // doctors:'',
             // filtered:{
@@ -157,14 +170,74 @@ export default {
     },
     computed:{
         filtered(){
-               if(this.name || this.country || this.city ||this.services ||this.doctors){
-                   return ({                       
-                        name: this.name?this.name:'',
-                        country: this.country?this.country:'',
-                        city: this.city?this.city:'',
-                        services: this.services?this.services:'',
-                        doctors: this.doctors?this.doctors:'',
-                   })
+            //    if(this.name || this.co|| this.se ||this.doc){
+                //    let arr =[]
+                //     if(this.name!==''){
+                //        arr=this.info.filter(elem => elem.name.includes(this.name))
+                //        arr.forEach(item => {
+                //            if(!this.filteredInformation.includes(item))
+                //             this.filteredInformation.push(...arr)
+                //        })
+                       
+                //        return arr
+                //     }
+                //     else if(this.name===''){}
+                //     if(this.co!==[]){
+                //         this.co.forEach(element => {
+                //             // arr=this.info.filter(elem => elem.country.includes(element))
+                //             arr=this.info.filter(elem => elem.country.includes(element))
+                //             this.filteredInformation.push(...arr)
+
+
+                //         });                       
+                //        return arr
+                //    }
+                //     if(this.se!==[]){
+                //         this.se.forEach(element => {
+                //             arr=this.info.filter(elem => elem.country.includes(element))
+                //             this.filteredInformation.push(...arr)
+                            
+                //         });                       
+                //        return arr
+                //    }
+                //     if(this.doc!==[]){
+                //         this.doc.forEach(element => {
+                //             arr=this.info.filter(elem => elem.country.includes(element))
+                //             this.filteredInformation.push(...arr)
+
+                //         });                       
+                //        return arr
+                //    }
+                //   let inTh=this.info.includes({                       
+                //         name: this.name?this.name:'',
+                //         co: this.co?this.co:'',
+                //         // city: this.city?this.city:'',
+                //         se: this.se?this.se:'',
+                //         doc: this.doc?this.doc:'',
+                //    })
+                //    console.log('inTh', arr)
+                //    return false
+                //    return ({                       
+                //         name: this.name?this.name:'',
+                //         co: this.co?this.co:'',
+                //         // city: this.city?this.city:'',
+                //         se: this.se?this.se:'',
+                //         doc: this.doc?this.doc:'',
+                //    })
+
+
+
+                
+                // let arr = this.info.slice().filter((elem)=>{
+                //     this.name!==''&&elem.name==this.name
+                //     this.se!==[]&&this.se.filter(s=>elem.services.map(ser=> ser===s ))
+                //     this.doc!==[]&&this.doc.filter(s=>elem.services.map(ser=> ser===s ))
+                //     this.co!==[]&&this.co.filter(s=>elem.services.map(ser=> ser===s ))
+
+
+                // })
+                // return arr
+
                }
 
         },
@@ -185,5 +258,5 @@ export default {
             return doctorsS
         }
     }
-}
+// }
 </script>

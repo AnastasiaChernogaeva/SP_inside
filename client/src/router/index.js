@@ -15,6 +15,8 @@ const PetInfo = () => import("../doctor/views/PetInfo");
 
 const MainAdmin = () => import("../admin/layout/MainAdmin");
 
+const Test = () => import("../trial_versions/FilterTest/Test");
+
 const router = createRouter({
   history: createWebHistory(),
   routes: [
@@ -163,6 +165,7 @@ const router = createRouter({
     },
 
     { path: "/:notFound(.*)", component: NotFound },
+    { path: "/test", component: Test },
   ],
   linkActiveClass: "el-link",
   linkExactActiveClass: "el-link",
