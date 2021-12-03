@@ -3,13 +3,13 @@
   <h1 class="center">Clinics</h1>
   <!-- <hr> -->
     <el-button class="icon" :type="addNewOne?'danger':'success'" @click="addNewOne=!addNewOne" :icon="addNewOne?'el-icon-minus':'el-icon-plus'"></el-button>
-    <el-button class="icon" :type="search?'danger':'success'" @click="search=!search" :icon="search?'el-icon-close':'el-icon-search'"></el-button>
+    <el-button class="icon" :type="search?'danger':'success'" @click="changeSearch" :icon="search?'el-icon-close':'el-icon-search'"></el-button>
     <form-clinics v-if="addNewOne" @added="updateInfo"></form-clinics>
     <filter-clinics v-if="search" :info="clinics" @filtered="(info)=>checkIt(info)"></filter-clinics>
   <hr>
   <h3><em>List of clinics:</em></h3>
   <!-- <p>{{searchedClinics}}</p> -->
-<div v-if="filtered&&search&&searchedClinics.length!==0">
+<div v-if="search&&filtered&&search&&searchedClinics.length!==0">
     <div class="border" v-for="clinic in searchedClinics" :key="clinic._id">
         <h1>{{clinic.name}}</h1>
         <h4>{{clinic.country}}, {{clinic.city}}</h4>
@@ -34,7 +34,7 @@
         
         </div>
 </div>
-<div v-else-if="!filtered&&clinics.length!==0">
+<div v-else-if="!search&&!filtered&&clinics.length!==0">
     <div class="border" v-for="clinic in clinics" :key="clinic._id">
         <h1>{{clinic.name}}</h1>
         <h4>{{clinic.country}}, {{clinic.city}}</h4>
@@ -100,6 +100,13 @@ export default {
         }
     },
     methods:{
+    changeSearch(){
+      console.log('s', this.search)
+   
+      this.search=!this.search
+      if(this.search===false)
+      this.filtered=false
+    },
     checkIt(info){
       // if(info!=undefined){
       //   this.clinics.forEach(clinic=>{
@@ -117,9 +124,6 @@ export default {
         //  console.log(this.clinics)
         this.filtered=info.filter!={}?true:false
         this.searchedClinics=info.info
-      console.log("checkIn",info)
-     
-
     },
     edited(){
       // console.log('inside the clinis')
