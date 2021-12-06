@@ -11,7 +11,25 @@
   <!-- <hr> -->
   <!-- <hr> -->
   <h3><em>List of shopgoods:</em></h3>
-<div v-if="shopgoods.length!==0">
+<div v-if="search&&filtered&&search&&searchedShopgoods.length!==0">
+    <div class="border container" v-for="good in searchedShopgoods" :key="good._id">
+        <h1>{{good.name}}</h1>
+        <h3>{{currency(good.price)}}</h3>
+        <!-- <ul><li></li></ul> -->
+        <img :src="good.photo" alt="shopgood" v-if="good.photo">
+        <p v-else>No photo</p>
+        <h3>About the item:</h3>
+        <p>{{good.description}}</p>
+        <el-row>
+            <el-button class="icon" type="primary" icon="el-icon-edit"  @click="()=>editInfo(good._id)" circle></el-button>
+            <el-button class="icon" type="danger" icon="el-icon-delete"  @click="()=>deleteInfo(good._id)" circle></el-button>
+        </el-row>
+
+        
+        </div>
+        <!-- {{shopgood}} -->
+</div>
+<div v-else-if="!filtered&&shopgoods.length!==0">
     <div class="border container" v-for="good in shopgoods" :key="good._id">
         <h1>{{good.name}}</h1>
         <h3>{{currency(good.price)}}</h3>
@@ -28,7 +46,7 @@
         
         </div>
         <!-- {{shopgood}} -->
-        </div>
+</div>
 <h2 v-else>NO</h2>
 <modal v-if="modal" @closeForm="modal=false" :edit="editId" @closeModal="edited"/>
 
@@ -65,6 +83,7 @@ export default {
             currency,
             type:'shopgoods',
             shopgoods:[],
+            filtered:false,
 
         }
     },

@@ -11,7 +11,23 @@
     <!-- <form-clients @added="updateInfo"></form-clients> -->
   <!-- <hr> -->
   <h3><em>List of clients:</em></h3>
-<div v-if="clients.length!==0">
+  <div v-if="search&&filtered&&search&&searchedClients.length!==0">
+    <div class="border container" v-for="client in searchedClients" :key="client._id">
+        <h3>{{client.name}} {{client.surname}}</h3>
+        <ul v-if="client.pets.length!==0"><li v-for="(pet, idx) in clients.pets" :key="idx*Math.random()">{{pet}}</li></ul>
+        <ul v-if="client.appointments.length!==0"><li v-for="(appointment, idx) in clients.appointments" :key="idx*Math.random()">{{appointment}}</li></ul>
+        <el-avatar :src="client.photo"></el-avatar>
+        <!-- <img  alt="client"> -->
+        <p><em>Phone:</em>{{client.phone}}</p>
+        <el-row>
+            <el-button class="icon" type="primary" icon="el-icon-edit"  @click="()=>editInfo(client._id)" circle></el-button>
+            <el-button class="icon" type="danger" icon="el-icon-delete"  @click="()=>deleteInfo(client._id)" circle></el-button>
+        </el-row>
+
+        
+        </div>
+</div>
+<div v-else-if="!filtered&&clients.length!==0">
     <div class="border container" v-for="client in clients" :key="client._id">
         <h3>{{client.name}} {{client.surname}}</h3>
         <ul v-if="client.pets.length!==0"><li v-for="(pet, idx) in clients.pets" :key="idx*Math.random()">{{pet}}</li></ul>
@@ -63,6 +79,7 @@ export default {
             modal:false,
             type:'clients',
             clients:[],
+            filtered:false,
 
         }
     },

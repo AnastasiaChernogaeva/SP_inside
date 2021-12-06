@@ -9,7 +9,31 @@
     <filter-pets v-if="search" :info="pets" @filtered="(info)=>checkIt(info)"></filter-pets>
   <!-- <hr> -->
   <h3><em>List of pets:</em></h3>
-<div v-if="pets.length!==0">
+<div v-if="search&&filtered&&search&&searchedPets.length!==0">
+    <div class="border container" v-for="pet in searchedPets" :key="pet._id">
+        <h1>{{pet.fullname}}</h1>
+        <h2>{{pet.nickname}}</h2>
+
+        <!-- <h4>{{pet.dateOfBirth}}, {{pet.dateOfDeath}}</h4> -->
+        <ul>
+            <!-- <li>{{pet.gender}}</li> -->
+            <li>{{pet.kind}}</li>
+            <li>{{pet.weight}}</li>
+        </ul>
+        <p>{{pet.appearance}}</p>
+        <img :src="pet.photo" alt="pet">
+        <!-- <p>{{pet.description}}</p> -->
+
+        
+        <!-- {{pet}} -->
+
+         <el-row>
+            <el-button class="icon" type="primary" icon="el-icon-edit"  @click="()=>editInfo(pet._id)" circle></el-button>
+            <el-button class="icon" type="danger" icon="el-icon-delete"  @click="()=>deleteInfo(pet._id)" circle></el-button>
+        </el-row>
+        </div>
+</div>
+<div v-else-if="!filtered&&pets.length!==0">
     <div class="border container" v-for="pet in pets" :key="pet._id">
         <h1>{{pet.fullname}}</h1>
         <h2>{{pet.nickname}}</h2>
@@ -67,6 +91,7 @@ export default {
             modal:false,
             type:'pets',
             pets:[],
+            filtered:false,
 
         }
     },

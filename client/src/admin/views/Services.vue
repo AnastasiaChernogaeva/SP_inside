@@ -10,7 +10,17 @@
 
   <!-- <hr> -->
   <h3><em>List of services:</em></h3>
-    <div v-if="services.length!==0">
+    <div v-if="search&&filtered&&search&&searchedServices.length!==0">
+       <div class="flex border" v-for="serv in searchedServices" :key="serv._id">
+            <h3>{{serv.name}}</h3>
+            <h4>{{currency(serv.price)}}</h4>
+            <el-row>
+            <el-button class="icon" type="primary" icon="el-icon-edit"  @click="()=>editInfo(serv._id)" circle></el-button>
+            <el-button class="icon" type="danger" icon="el-icon-delete"  @click="()=>deleteInfo(serv._id)" circle></el-button>
+           </el-row>
+      </div>
+    </div>
+    <div v-else-if="!filtered&&services.length!==0">
        <div class="flex border" v-for="serv in services" :key="serv._id">
             <h3>{{serv.name}}</h3>
             <h4>{{currency(serv.price)}}</h4>
@@ -60,7 +70,8 @@ export default {
       modal:false,
       currency,
       type:'services',
-      services:[]
+      services:[],
+      filtered:false,
       
     }
     },

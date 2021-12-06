@@ -9,7 +9,22 @@
     <filter-doctors v-if="search" :info="docotors" @filtered="(info)=>checkIt(info)"></filter-doctors>
   <!-- <hr> -->
   <h3><em>List of doctors:</em></h3>
-<div v-if="doctors.length!==0">
+<div v-if="search&&filtered&&search&&searchedDoctors.length!==0">
+    <div class="border container" v-for="doctor in searchedDoctors" :key="doctor._id">
+        <h3>{{doctor.name}} {{doctor.surname}}</h3>
+        <h4>{{doctor.post}}</h4>
+        <ul v-if="doctor.appointments.length!==0"><li v-for="(appointment, idx) in doctor.appointments" :key="idx*Math.random()">{{appointment}}</li></ul>
+        <p><em>Phone:</em>{{doctor.phone}}</p>
+        <el-avatar :src="doctor.photo"></el-avatar>
+
+        <el-row>
+            <el-button class="icon" type="primary" icon="el-icon-edit"  @click="()=>editInfo(doctor._id)" circle></el-button>
+            <el-button class="icon" type="danger" icon="el-icon-delete"  @click="()=>deleteInfo(doctor._id)" circle></el-button>
+        </el-row>
+
+        </div>
+</div>
+<div v-if="!filtered&&doctors.length!==0">
     <div class="border container" v-for="doctor in doctors" :key="doctor._id">
         <h3>{{doctor.name}} {{doctor.surname}}</h3>
         <h4>{{doctor.post}}</h4>
@@ -55,6 +70,7 @@ export default {
             modal:false,
             type:'doctors',
             doctors:[],
+            filtered:false,
 
         }
     },
