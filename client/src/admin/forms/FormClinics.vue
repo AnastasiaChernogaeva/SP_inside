@@ -9,7 +9,7 @@
     class="demo-clinic"
   >
     <el-form-item label="Name" prop="name">
-      <el-input v-model="clinic.name" ></el-input>
+      <el-input v-model="clinic.name"  ></el-input>
     </el-form-item> 
 
     <el-form-item label="Country" prop="country">
@@ -50,11 +50,24 @@
 
 
 
-    <el-form-item label="Photo" prop="photo">
+    <!-- <el-form-item label="Photo" prop="photo">
         <el-input
         v-model="clinic.photo"
       ></el-input>    
+    </el-form-item> -->
+
+    <el-form-item>
+      <el-upload
+        action="https://jsonplaceholder.typicode.com/posts/"
+        list-type="picture-card"
+        :on-change="handleAdd"
+        :on-remove="handleRemove"
+      >
+        <el-icon><plus /></el-icon>
+      </el-upload>
     </el-form-item>
+
+ <!-- :on-preview="handlePictureCardPreview" -->
   
      <el-form-item>
       <el-button type="primary" @click="editElem('clinic')" v-if="edit"
@@ -66,18 +79,26 @@
       <el-button @click="resetForm('clinic')">Reset</el-button>
     </el-form-item>
   </el-form>  
+
+  <!-- <img v-if="clinic.photo" :src="clinic.photo
+  " alt=""> -->
 </div>
   
 </template>
 <script>
 import { ElLoading } from 'element-plus'
+import { Plus } from '@element-plus/icons'
 
 export default {
     props:['edit'],
     emits:['added', 'closeNow', 'edited'],
+    components:{
+      Plus
+    },
     data(){
      return {
       // focused:false,
+      dialogVisible: false,
       type:'clinics',
       services:[],
       doctors:[],
@@ -87,6 +108,7 @@ export default {
         city:'',
         services:[],
         doctors:[],
+        // photo:'',
         photo:'',
         description:'',
       },
@@ -129,6 +151,17 @@ export default {
     }
     },
     methods:{
+    handleAdd(file){
+      console.log('file', file.url)
+      this.clinic.photo = file.url
+    },
+    handleRemove(file, fileList) {
+      console.log(file, fileList)
+    },
+    handlePictureCardPreview(file) {
+      this.clinic.photo = file.url
+      this.dialogVisible = true
+    },
       editElem(formName){ 
       this.$refs[formName].validate((valid) => {
         if (valid) {
@@ -139,7 +172,8 @@ export default {
           return false
         } } )},
 
-      submitForm(formName) {      
+      submitForm(formName) {     
+        // console.log(formName, this.clinic) 
       this.$refs[formName].validate((valid) => {
         if (valid) {
           this.loading()

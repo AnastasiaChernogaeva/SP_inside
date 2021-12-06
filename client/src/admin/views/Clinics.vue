@@ -34,7 +34,9 @@
         
         </div>
 </div>
-<div v-else-if="!search&&!filtered&&clinics.length!==0">
+<!-- <div v-else-if="!search&&!filtered&&clinics.length!==0"> -->
+<div v-else-if="!filtered&&clinics.length!==0">
+  
     <div class="border" v-for="clinic in clinics" :key="clinic._id">
         <h1>{{clinic.name}}</h1>
         <h4>{{clinic.country}}, {{clinic.city}}</h4>
