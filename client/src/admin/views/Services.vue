@@ -1,9 +1,14 @@
 <template>
 <div class="card  container ">
-  <h1 class="center">Services</h1>
-  <hr>
-    <form-services @added="updateInfo"></form-services>
-  <hr>
+  <h1 class="center" name="Top">Services</h1>
+  <el-button type="info" class="myButton" @click="()=>{$router.push('/main_admin')}">Back</el-button>
+  <el-button class="icon" :type="addNewOne?'danger':'success'" @click="addNewOne=!addNewOne" :icon="addNewOne?'el-icon-minus':'el-icon-plus'"></el-button>
+  <el-button class="icon" :type="search?'danger':'success'" @click="changeSearch" :icon="search?'el-icon-close':'el-icon-search'"></el-button>
+   <hr>
+    <form-services  v-if="addNewOne" @added="updateInfo"></form-services>
+    <filter-services v-if="search" :info="services" @filtered="(info)=>checkIt(info)"></filter-services>
+
+  <!-- <hr> -->
   <h3><em>List of services:</em></h3>
     <div v-if="services.length!==0">
        <div class="flex border" v-for="serv in services" :key="serv._id">
@@ -20,7 +25,8 @@
 
 
 <hr>
-   <el-button type="info" class="myButton" @click="()=>{$router.push('/main_admin')}">Back</el-button>
+   <!-- <el-button type="info" class="myButton" @click="()=>{$router.push('/main_admin')}">Back</el-button> -->
+   <a href="#Top"><el-button type="info" class="myButton"> Up</el-button></a>
 
 </div>
 
@@ -30,6 +36,8 @@
 
 <script>
 import FormServices from '../forms/FormServices.vue'
+import FilterServices from '../filters/FilterServices.vue'
+
 import Modal from '../ui/Modal.vue'
 import {currency} from '../../use/currency'
 
@@ -39,10 +47,15 @@ import {currency} from '../../use/currency'
 export default {
     components:{
       FormServices,
+      FilterServices,
       Modal
     },
     data(){
      return {
+      addNewOne:false,
+      search:false,
+      searchedServices:[],
+
       editId:'',
       modal:false,
       currency,
@@ -52,6 +65,17 @@ export default {
     }
     },
     methods:{
+    changeSearch(){
+      console.log('s', this.search)
+   
+      this.search=!this.search
+      if(this.search===false)
+      this.filtered=false
+    },
+    checkIt(info){
+        this.filtered=info.filter!={}?true:false
+        this.searchedServices=info.info
+    },
     edited(){
       // console.log('inside the services')
       this.modal=false

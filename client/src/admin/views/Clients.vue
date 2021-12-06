@@ -1,9 +1,15 @@
 <template>
 <div class="card  container ">
-  <h1 class="center">Clients</h1>
-  <hr>
-    <form-clients @added="updateInfo"></form-clients>
-  <hr>
+  <h1 class="center" name="Top" >Clients</h1>
+  
+    <el-button type="info" class="myButton" @click="()=>{$router.push('/main_admin')}">Back</el-button>
+    <el-button class="icon" :type="addNewOne?'danger':'success'" @click="addNewOne=!addNewOne" :icon="addNewOne?'el-icon-minus':'el-icon-plus'"></el-button>
+    <el-button class="icon" :type="search?'danger':'success'" @click="changeSearch" :icon="search?'el-icon-close':'el-icon-search'"></el-button>
+   <hr>
+    <form-clients v-if="addNewOne" @added="updateInfo"></form-clients>
+    <filter-clients v-if="search" :info="clients" @filtered="(info)=>checkIt(info)"></filter-clients>
+    <!-- <form-clients @added="updateInfo"></form-clients> -->
+  <!-- <hr> -->
   <h3><em>List of clients:</em></h3>
 <div v-if="clients.length!==0">
     <div class="border container" v-for="client in clients" :key="client._id">
@@ -26,7 +32,9 @@
 
 
 <hr>
-   <el-button type="info" class="myButton" @click="()=>{$router.push('/main_admin')}">Back</el-button>
+   <!-- <el-button type="info" class="myButton" @click="()=>{$router.push('/main_admin')}">Back</el-button> -->
+   <a href="#Top"><el-button type="info" class="myButton"> Up</el-button></a>
+
 
 </div>
     
@@ -34,16 +42,23 @@
 
 <script>
 import FormClients from '../forms/FormClients.vue'
+import FilterClients from '../filters/FilterClients.vue'
+
 import Modal from '../ui/Modal.vue'
 
 export default {
   
     components:{
         FormClients,
+        FilterClients,
         Modal
     },
     data(){
         return{
+            addNewOne:false,
+            search:false,
+            searchedClients:[],
+
             editId:'',
             modal:false,
             type:'clients',
@@ -52,6 +67,17 @@ export default {
         }
     },
     methods:{
+    changeSearch(){
+      console.log('s', this.search)
+   
+      this.search=!this.search
+      if(this.search===false)
+      this.filtered=false
+    },
+    checkIt(info){
+        this.filtered=info.filter!={}?true:false
+        this.searchedClients=info.info
+    },
     edited(){
       // console.log('inside the clients')
       this.modal=false

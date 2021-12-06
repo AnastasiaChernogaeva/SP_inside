@@ -98,6 +98,8 @@
       <el-button @click="resetForm('pet')">Reset</el-button>
     </el-form-item>
   </el-form>  
+  <hr>
+
 </div>
   
 </template>

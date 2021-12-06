@@ -1,9 +1,13 @@
 <template>
 <div class="card  container ">
-  <h1 class="center">Pets</h1>
-  <hr>
-    <form-pets @added="updateInfo"></form-pets>
-  <hr>
+  <h1 class="center" name="Top">Pets</h1>
+    <el-button type="info" class="myButton" @click="()=>{$router.push('/main_admin')}">Back</el-button>
+    <el-button class="icon" :type="addNewOne?'danger':'success'" @click="addNewOne=!addNewOne" :icon="addNewOne?'el-icon-minus':'el-icon-plus'"></el-button>
+    <el-button class="icon" :type="search?'danger':'success'" @click="changeSearch" :icon="search?'el-icon-close':'el-icon-search'"></el-button>
+   <hr>
+    <form-pets v-if="addNewOne" @added="updateInfo"></form-pets>
+    <filter-pets v-if="search" :info="pets" @filtered="(info)=>checkIt(info)"></filter-pets>
+  <!-- <hr> -->
   <h3><em>List of pets:</em></h3>
 <div v-if="pets.length!==0">
     <div class="border container" v-for="pet in pets" :key="pet._id">
@@ -34,7 +38,8 @@
 
 
 <hr>
-   <el-button type="info" class="myButton" @click="()=>{$router.push('/main_admin')}">Back</el-button>
+   <!-- <el-button type="info" class="myButton" @click="()=>{$router.push('/main_admin')}">Back</el-button> -->
+   <a href="#Top"><el-button type="info" class="myButton"> Up</el-button></a>
 
 </div>
     
@@ -42,15 +47,22 @@
 
 <script>
 import FormPets from '../forms/FormPets.vue'
+import FilterPets from '../filters/FilterPets.vue'
+
 import Modal from '../ui/Modal.vue'
 
 export default {
     components:{
       FormPets,
+      FilterPets,
       Modal
     },
     data(){
         return{
+            addNewOne:false,
+            search:false,
+            searchedPets:[],
+
             editId:'',
             modal:false,
             type:'pets',
@@ -59,6 +71,17 @@ export default {
         }
     },
     methods:{
+    changeSearch(){
+      console.log('s', this.search)
+   
+      this.search=!this.search
+      if(this.search===false)
+      this.filtered=false
+    },
+    checkIt(info){
+        this.filtered=info.filter!={}?true:false
+        this.searchedPets=info.info
+    },
     edited(){
       // console.log('inside the pets')
       this.modal=false

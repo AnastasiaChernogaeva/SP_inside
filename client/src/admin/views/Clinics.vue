@@ -1,12 +1,14 @@
 <template>
 <div class="card  container ">
-  <h1 class="center">Clinics</h1>
+  <h1 class="center" name="Top">Clinics</h1>
   <!-- <hr> -->
+    <el-button type="info" class="myButton" @click="()=>{$router.push('/main_admin')}">Back</el-button>
     <el-button class="icon" :type="addNewOne?'danger':'success'" @click="addNewOne=!addNewOne" :icon="addNewOne?'el-icon-minus':'el-icon-plus'"></el-button>
     <el-button class="icon" :type="search?'danger':'success'" @click="changeSearch" :icon="search?'el-icon-close':'el-icon-search'"></el-button>
+   <hr>
     <form-clinics v-if="addNewOne" @added="updateInfo"></form-clinics>
     <filter-clinics v-if="search" :info="clinics" @filtered="(info)=>checkIt(info)"></filter-clinics>
-  <hr>
+  <!-- <hr> -->
   <h3><em>List of clinics:</em></h3>
   <!-- <p>{{searchedClinics}}</p> -->
 <div v-if="search&&filtered&&search&&searchedClinics.length!==0">
@@ -66,7 +68,9 @@
 
 
 <hr>
-   <el-button type="info" class="myButton" @click="()=>{$router.push('/main_admin')}">Back</el-button>
+   <!-- <el-button type="info" class="myButton" @click="()=>{$router.push('/main_admin')}">Back</el-button> -->
+   <a href="#Top"><el-button type="info" class="myButton"> Up</el-button></a>
+
 
 </div>
 

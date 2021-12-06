@@ -28,7 +28,9 @@
       > 
       <el-button @click="resetForm('service')">Reset</el-button>
     </el-form-item>
-  </el-form>  
+  </el-form> 
+  <hr>
+
 </div>
   
 </template>

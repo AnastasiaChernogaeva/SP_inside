@@ -39,6 +39,8 @@
       <el-button @click="resetForm('shopgood')">Reset</el-button>
     </el-form-item>
   </el-form>  
+  <hr>
+
 </div>
   
 </template>

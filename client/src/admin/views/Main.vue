@@ -5,23 +5,35 @@
   <el-button type="danger" @click="logout">Log out</el-button>
 </div>
 <div class="center gr-button">
-   <el-button type="info" class="myButton" @click="()=>{$router.push('/main_admin/clinics')}">Clinics</el-button>
-   <el-button type="info" class="myButton" @click="()=>{$router.push('/main_admin/doctors')}">Doctors</el-button>
+   <a  href="/main_admin/clinics"><el-button type="info" class="myButton" @click="()=>{$router.push('/main_admin/clinics')}">Clinics</el-button></a>
+   <a  href="/main_admin/doctors"><el-button type="info" class="myButton" @click="()=>{$router.push('/main_admin/clinics')}">Doctors</el-button></a>
+   <a  href="/main_admin/services"><el-button type="info" class="myButton" @click="()=>{$router.push('/main_admin/clinics')}">Services</el-button></a>
+   <a  href="/main_admin/pets"><el-button type="info" class="myButton" @click="()=>{$router.push('/main_admin/clinics')}">Pets</el-button></a>
+   <a  href="/main_admin/clInfo"><el-button type="info" class="myButton" @click="()=>{$router.push('/main_admin/clinics')}">Clients</el-button></a>
+   <a  href="/main_admin/shopgoods"><el-button type="info" class="myButton" @click="()=>{$router.push('/main_admin/clinics')}">ShopGoods</el-button></a>
+   
+ 
+    <!-- <a class="aButton" href="/main_admin/clinics"><el-button type="info" class="myButton" @click="()=>{$router.push('/main_admin/clinics')}">Clinics</el-button></a>
+   <a class="aButton" href="/main_admin/doctors"><el-button type="info" class="myButton" @click="()=>{$router.push('/main_admin/clinics')}">Doctors</el-button></a>
+   <a class="aButton" href="/main_admin/services"><el-button type="info" class="myButton" @click="()=>{$router.push('/main_admin/clinics')}">Services</el-button></a>
+   <a class="aButton" href="/main_admin/pets"><el-button type="info" class="myButton" @click="()=>{$router.push('/main_admin/clinics')}">Pets</el-button></a>
+   <a class="aButton" href="/main_admin/clInfo"><el-button type="info" class="myButton" @click="()=>{$router.push('/main_admin/clinics')}">Clients</el-button></a>
+   <a class="aButton" href="/main_admin/shopgoods"><el-button type="info" class="myButton" @click="()=>{$router.push('/main_admin/clinics')}">ShopGoods</el-button></a>
+    -->
+ 
+ 
+ <!-- <el-button type="info" class="myButton" @click="()=>{$router.push('/main_admin/clinics')}">Clinics</el-button> -->
+   <!-- <el-button type="info" class="myButton" @click="()=>{$router.push('/main_admin/doctors')}">Doctors</el-button>
    <el-button type="info" class="myButton" @click="()=>{$router.push('/main_admin/services')}">Services</el-button>
-   <!-- <el-button type="info" class="myButton" @click="()=>{$router.push('/main_admin/cities')}">Cities</el-button> -->
-
-   <!-- <el-button type="info" class="myButton" @click="()=>{$router.push('/main_admin/workingtime')}">WorkingTime</el-button> -->
    <el-button type="info" class="myButton" @click="()=>{$router.push('/main_admin/pets')}">Pets</el-button>
    <el-button type="info" class="myButton" @click="()=>{$router.push('/main_admin/clInfo')}">Clients</el-button>
+   <el-button type="info" class="myButton" @click="()=>{$router.push('/main_admin/shopgoods')}">ShopGoods</el-button> -->
 
-   <!-- <el-button type="info" class="myButton" @click="()=>{$router.push('/main_admin/clients')}">Clients</el-button> -->
+
+
+   <!-- <el-button type="info" class="myButton" @click="()=>{$router.push('/main_admin/cities')}">Cities</el-button> -->
+   <!-- <el-button type="info" class="myButton" @click="()=>{$router.push('/main_admin/workingtime')}">WorkingTime</el-button> -->
    <!-- <el-button type="info" class="myButton" @click="()=>{$router.push('/main_admin/treatments')}">Treatments</el-button> -->
-   <el-button type="info" class="myButton" @click="()=>{$router.push('/main_admin/shopgoods')}">ShopGoods</el-button>
-   <!-- <el-button type="info" class="myButton" @click="()=>{$router.push('/main_admin/shopgoods')}"><a class="nesti">ShopGoods</a></el-button> -->
-
-
-
-
 </div>
 </div>
 </template>
@@ -101,6 +113,7 @@ export default {
     font-size:18px;
     box-shadow: 0 2px 4px #e9e9eb, 0 0 6px rgb(0 0 0 / 4%);
     margin-bottom:2px;
+    width: 100%;
 
     /* box-shadow: 0 2px 4px #d1dbe5, 0 0 6px rgb(0 0 0 / 4%); */
     /* --el-button-background-color: #d1dbe5;
@@ -121,4 +134,8 @@ export default {
   margin-top:2%;
   margin-bottom: 2%;
 }
+/* .aButton{
+  width:100%;
+  height:auto;
+} */
 </style>

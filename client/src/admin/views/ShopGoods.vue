@@ -1,9 +1,15 @@
 <template>
 <div class="card  container ">
-  <h1 class="center">Shopgoods</h1>
-  <hr>
-    <form-shopgoods @added="updateInfo"></form-shopgoods>
-  <hr>
+  <h1 class="center" name="Top">Shopgoods</h1>
+  <!-- <hr> -->
+   <el-button type="info" class="myButton" @click="()=>{$router.push('/main_admin')}">Back</el-button>
+    <el-button class="icon" :type="addNewOne?'danger':'success'" @click="addNewOne=!addNewOne" :icon="addNewOne?'el-icon-minus':'el-icon-plus'"></el-button>
+    <el-button class="icon" :type="search?'danger':'success'" @click="changeSearch" :icon="search?'el-icon-close':'el-icon-search'"></el-button>
+   <hr>
+    <filter-shopgoods v-if="search" :info="shopgoods" @filtered="(info)=>checkIt(info)"></filter-shopgoods>
+    <form-shopgoods v-if="addNewOne" @added="updateInfo"></form-shopgoods>
+  <!-- <hr> -->
+  <!-- <hr> -->
   <h3><em>List of shopgoods:</em></h3>
 <div v-if="shopgoods.length!==0">
     <div class="border container" v-for="good in shopgoods" :key="good._id">
@@ -28,7 +34,7 @@
 
 
 <hr>
-   <el-button type="info" class="myButton" @click="()=>{$router.push('/main_admin')}">Back</el-button>
+   <a href="#Top"><el-button type="info" class="myButton"> Up</el-button></a>
 
 </div>
     
@@ -36,6 +42,8 @@
 
 <script>
 import FormShopgoods from '../forms/FormShopgoods.vue'
+import FilterShopgoods from '../filters/FilterShopgoods.vue'
+
 import Modal from '../ui/Modal.vue'
 import {currency} from '../../use/currency'
 
@@ -43,10 +51,15 @@ import {currency} from '../../use/currency'
 export default {
     components:{
       FormShopgoods,
+      FilterShopgoods,
       Modal
     },
     data(){
         return{
+            addNewOne:false,
+            search:false,
+            searchedShopgoods:[],
+
             editId:'',
             modal:false,
             currency,
@@ -56,6 +69,17 @@ export default {
         }
     },
     methods:{
+    changeSearch(){
+      console.log('s', this.search)
+   
+      this.search=!this.search
+      if(this.search===false)
+      this.filtered=false
+    },
+    checkIt(info){
+        this.filtered=info.filter!={}?true:false
+        this.searchedShopgoods=info.info
+    },
     edited(){
       // console.log('inside the shopgoods')
       this.modal=false

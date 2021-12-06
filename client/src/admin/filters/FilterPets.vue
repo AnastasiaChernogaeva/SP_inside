@@ -89,7 +89,8 @@
           <span v-for="(d, idx) in filtr.doctors" :key="idx">{{d}}</span><br>
 
       </p> -->
-      <hr>
+  <hr>
+
 </div>
 </template>
 <script>

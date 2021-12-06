@@ -102,6 +102,7 @@
 
   <!-- <img v-if="clinic.photo" :src="clinic.photo
   " alt=""> -->
+      <hr>
 </div>
   
 </template>
