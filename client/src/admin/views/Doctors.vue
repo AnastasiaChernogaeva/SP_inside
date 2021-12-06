@@ -6,7 +6,7 @@
     <el-button class="icon" :type="search?'danger':'success'" @click="changeSearch" :icon="search?'el-icon-close':'el-icon-search'"></el-button>
    <hr>
     <form-doctors v-if="addNewOne" @added="updateInfo"></form-doctors>
-    <filter-doctors v-if="search" :info="docotors" @filtered="(info)=>checkIt(info)"></filter-doctors>
+    <filter-doctors v-if="search" :info="doctors" @filtered="(info)=>checkIt(info)"></filter-doctors>
   <!-- <hr> -->
   <h3><em>List of doctors:</em></h3>
 <div v-if="search&&filtered&&search&&searchedDoctors.length!==0">
