@@ -9,7 +9,7 @@
     class="demo-clinic"
   >
     <el-form-item label="Name" prop="name">
-      <el-input v-model="clinic.name"  ></el-input>
+      <el-input v-model="clinic.name"></el-input>
     </el-form-item> 
 
     <el-form-item label="Country" prop="country">
@@ -50,22 +50,42 @@
 
 
 
-    <!-- <el-form-item label="Photo" prop="photo">
+    <el-form-item label="Photo" prop="photo">
         <el-input
         v-model="clinic.photo"
       ></el-input>    
-    </el-form-item> -->
+    </el-form-item>
 
-    <el-form-item>
+    <!-- <el-form-item>
+      
       <el-upload
-        action="https://jsonplaceholder.typicode.com/posts/"
+        class="avatar-uploader"        
         list-type="picture-card"
         :on-change="handleAdd"
-        :on-remove="handleRemove"
+        v-if="!clinic.photo"
+        
       >
         <el-icon><plus /></el-icon>
+        
+        
       </el-upload>
+      
     </el-form-item>
+    <el-form-item v-if="clinic.photo">
+      <img  :src="clinic.photo" class="avatar" />
+    </el-form-item> -->
+
+    <!-- <el-form-item>
+       <el-uploadaction="https://jsonplaceholder.typicode.com/posts/"
+          class="avatar-uploader"
+          action="https://jsonplaceholder.typicode.com/posts/"
+          :on-change="handleAdd"
+
+        >
+          <img v-if="clinic.photo" :src="clinic.photo" class="avatar" />
+          <el-icon v-else class="avatar-uploader-icon"><plus /></el-icon>
+        </el-uploadaction=>
+    </el-form-item> -->
 
  <!-- :on-preview="handlePictureCardPreview" -->
   
@@ -87,14 +107,14 @@
 </template>
 <script>
 import { ElLoading } from 'element-plus'
-import { Plus } from '@element-plus/icons'
+// import { Plus } from '@element-plus/icons'
 
 export default {
     props:['edit'],
     emits:['added', 'closeNow', 'edited'],
-    components:{
-      Plus
-    },
+    // components:{
+    //   Plus
+    // },
     data(){
      return {
       // focused:false,
@@ -151,17 +171,22 @@ export default {
     }
     },
     methods:{
-    handleAdd(file){
-      console.log('file', file.url)
-      this.clinic.photo = file.url
-    },
-    handleRemove(file, fileList) {
-      console.log(file, fileList)
-    },
-    handlePictureCardPreview(file) {
-      this.clinic.photo = file.url
-      this.dialogVisible = true
-    },
+    // handleAvatarSuccess(res, file) {
+    //   console.log("NEWFile",file)
+    //   this.clinic.photo = URL.createObjectURL(file.raw)
+    // },
+
+    // handleAdd(file){
+    //   console.log('file', file.url)
+    //   this.clinic.photo = file.url
+    // },
+    // handleRemove(file, fileList) {
+    //   console.log(file, fileList)
+    // },
+    // handlePictureCardPreview(file) {
+    //   this.clinic.photo = file.url
+    //   this.dialogVisible = true
+    // },
       editElem(formName){ 
       this.$refs[formName].validate((valid) => {
         if (valid) {
@@ -222,4 +247,32 @@ export default {
 }
 
 </script>
+
+<style>
+/* .avatar-uploader .el-upload {
+  border: 1px dashed #d9d9d9;
+  border-radius: 6px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+.avatar-uploader .el-upload:hover {
+  border-color: #409eff;
+}
+.avatar-uploader-icon {
+  font-size: 28px;
+  color: #8c939d;
+  width: 178px;
+  height: 178px;
+  text-align: center;
+}
+.avatar-uploader-icon svg {
+  margin-top: 74px; /* (178px - 28px) / 2 - 1px */
+/* }
+.avatar {
+  width: 178px;
+  height: 178px;
+  display: block;
+} */ 
+</style>
 
