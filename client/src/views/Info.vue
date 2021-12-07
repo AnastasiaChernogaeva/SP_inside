@@ -12,21 +12,6 @@
     <h1 class="center">
         Clinics
     </h1>
-      <!-- <el-carousel :interval="5000" arrow="always">
-        <el-carousel-item v-for="(item, idx)  in photos" :key="idx" >
-        <img :src="item" alt="animal">
-        </el-carousel-item>
-    </el-carousel> -->
-
-      <!-- <el-carousel :interval="4000" type="card" width="1000px">
-    <el-carousel-item v-for="(item, idx) in photos" :key="idx" >
-       
-        
-        <img :src="item" alt="animal">
-
-    </el-carousel-item>
-  </el-carousel> -->
-
     <div v-if="search&&filtered&&search&&searchedClinics.length!==0">
     <div class="border" v-for="clinic in searchedClinics" :key="clinic._id">
         <h1>{{clinic.name}}</h1>
@@ -45,10 +30,8 @@
 
         <h3>About the clinic:</h3>
         <p>{{clinic.description}}</p>
-        <el-row>
-            <el-button class="icon" type="primary" icon="el-icon-edit"  @click="()=>editInfo(clinic._id)" circle></el-button>
-            <el-button class="icon" type="danger" icon="el-icon-delete"  @click="()=>deleteInfo(clinic._id)" circle></el-button>
-        </el-row>
+        <div class="appointmentButton"> <el-button type="danger" plain @click="()=>makeAnAppointment(clinic._id)">Make an appointment</el-button></div> 
+
         
         </div>
 </div>
@@ -72,6 +55,8 @@
 
         <h3>About the clinic:</h3>
         <p>{{clinic.description}}</p>
+          <div class="appointmentButton"> <el-button type="danger" plain @click="()=>makeAnAppointment(clinic._id)">Make an appointment</el-button></div> 
+        
         
         </div>
 </div>
@@ -90,8 +75,15 @@ export default {
             search:false,
             filtered:false,
             // photos:[],
-            photos:['https://forevervets.com/wp-content/uploads/bb-plugin/cache/mobile-dog-panorama.jpg', 'https://gaapp.org/wp-content/uploads/2021/05/Katze_1000x500.jpg', 'https://content.alphapaw.com/wp-content/uploads/2020/12/Hot-Spots-on-Dogs-Causes-Treatment-Pre....jpg', 'https://www.hamptonvetcentre.co.uk/wp-content/uploads/sites/12/2017/12/Misc-3-1000x500.jpg', 'https://advancedpetvet.com/wp-content/uploads/bb-plugin/cache/Advanced-Care-12-3-2019-6814-edit-panorama.jpg', 'https://www.winsfordvets.co.uk/wp-content/uploads/sites/10/2017/02/Emergency-care-1000x500.jpg', 'https://meowwiki.com/images/cat-cancer-treatment-1000x500.jpg' ]
+            photos:['https://forevervets.com/wp-content/uploads/bb-plugin/cache/mobile-dog-panorama.jpg', 'https://gaapp.org/wp-content/uploads/2021/05/Katze_1000x500.jpg', 'https://content.alphapaw.com/wp-content/uploads/2020/12/Hot-Spots-on-Dogs-Causes-Treatment-Pre....jpg', 'https://www.hamptonvetcentre.co.uk/wp-content/uploads/sites/12/2017/12/Misc-3-1000x500.jpg', 'https://advancedpetvet.com/wp-content/uploads/bb-plugin/cache/Advanced-Care-12-3-2019-6814-edit-panorama.jpg', 'https://www.winsfordvets.co.uk/wp-content/uploads/sites/10/2017/02/Emergency-care-1000x500.jpg', 'https://meowwiki.com/images/cat-cancer-treatment-1000x500.jpg' ],
+            appointment:false,
 
+        }
+    },
+    methods:{
+        makeAnAppointment(id){
+            this.appointment=true
+            console.log("clinic id", id)
         }
     },
     async beforeMount() {
@@ -125,6 +117,9 @@ export default {
      width: auto; */
     width: 100%; 
     margin: -10% 0 0 0; 
+}
+.appointmentButton{
+    text-align: center;
 }
 /* button.el-carousel__arrow{
     top:82%;
