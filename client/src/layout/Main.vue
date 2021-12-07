@@ -14,13 +14,10 @@
         <el-menu-item index="0" @click="()=>{$router.push('/')}"> Main </el-menu-item>
         <el-menu-item index="1" v-if="!auth" @click="()=>{$router.push('/login')}"> Log In</el-menu-item>
         <el-menu-item index="2" v-if="!auth" @click="()=>{$router.push('/signup')}">  Sign Up</el-menu-item>
-     
 
+        <el-menu-item index="1" v-if="auth" @click="()=>{$router.push('/cl')}" > <el-avatar  src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"></el-avatar> </el-menu-item>
+        <el-menu-item index="2" v-if="auth" @click="logout"> Log Out</el-menu-item>
 
-     <!-- <router-link to="login"><el-menu-item index="1" v-if="!auth" @click="$route.path=='/login'?true:false"> Log In</el-menu-item></router-link>
-     <router-link to="signup"><el-menu-item index="2" v-if="!auth" @click="$route.path=='/signup'?true:false">  Sign Up</el-menu-item>  </router-link>  -->
-     
-        <el-menu-item index="1" v-if="auth" @click="logout"> Log Out</el-menu-item>
   </el-menu>  
   </div>
   <hr>
@@ -32,6 +29,7 @@
 
 <script>
 import Info from '../views/Info'
+
 // import { ElMessage } from 'element-plus'
 
 export default {

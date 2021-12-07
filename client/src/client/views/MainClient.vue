@@ -1,6 +1,6 @@
 <template>
 <div>
-    <top/>
+    <!-- <top/> -->
     <h1>
         USER
         
@@ -8,10 +8,10 @@
 </div>
 </template>
 <script>
-import Top from '../components/Top.vue'
+// import Top from '../components/Top.vue'
 export default {
-   components:{
-       top:Top,
-   }
+//    components:{
+//        top:Top,
+//    }
 }
 </script>

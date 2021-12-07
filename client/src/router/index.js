@@ -34,7 +34,7 @@ const router = createRouter({
           component: SignUp,
         },
         {
-          path: "clients",
+          path: "cl",
           component: Clients,
           meta: {
             auth: true,
