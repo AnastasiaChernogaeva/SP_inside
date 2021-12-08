@@ -7,7 +7,7 @@
             label-width="120px"         
         >
             <el-form-item label="Name" prop="name">
-                <el-input v-model="name" autofocus ></el-input>
+                <el-input v-model="name" class="hey" ></el-input>
             </el-form-item> 
             
             <el-form-item label="Country" >

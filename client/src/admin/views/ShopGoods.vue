@@ -1,4 +1,8 @@
 <template>
+<div>
+  <el-affix :offset="880" position="top">
+    <a href="#Top"><el-button type="primary" class="myButton"> Up</el-button></a>
+  </el-affix>
 <div class="card  container ">
   <h1 class="center" name="Top">Shopgoods</h1>
   <!-- <hr> -->
@@ -51,9 +55,10 @@
 <modal v-if="modal" @closeForm="modal=false" :edit="editId" @closeModal="edited"/>
 
 
-<hr>
-   <a href="#Top"><el-button type="info" class="myButton"> Up</el-button></a>
+<!-- <hr>
+   <a href="#Top"><el-button type="info" class="myButton"> Up</el-button></a> -->
 
+</div>
 </div>
     
 </template>

@@ -12,7 +12,9 @@
    <a  href="/main_admin/clInfo"><el-button type="info" class="myButton" @click="()=>{$router.push('/main_admin/clinics')}">Clients</el-button></a>
    <a  href="/main_admin/shopgoods"><el-button type="info" class="myButton" @click="()=>{$router.push('/main_admin/clinics')}">ShopGoods</el-button></a>
    
- 
+
+  
+
     <!-- <a class="aButton" href="/main_admin/clinics"><el-button type="info" class="myButton" @click="()=>{$router.push('/main_admin/clinics')}">Clinics</el-button></a>
    <a class="aButton" href="/main_admin/doctors"><el-button type="info" class="myButton" @click="()=>{$router.push('/main_admin/clinics')}">Doctors</el-button></a>
    <a class="aButton" href="/main_admin/services"><el-button type="info" class="myButton" @click="()=>{$router.push('/main_admin/clinics')}">Services</el-button></a>

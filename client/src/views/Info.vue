@@ -146,6 +146,9 @@ export default {
 .appointmentButton{
     text-align: center;
 }
+.hey{
+    width:25%;
+}
 /* button.el-carousel__arrow{
     top:82%;
 } */
