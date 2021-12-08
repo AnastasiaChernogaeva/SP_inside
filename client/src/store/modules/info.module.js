@@ -9,11 +9,11 @@ export default {
       clinics: [],
       doctors: [],
       services: [],
-      cities: [],
-      workingtime: [],
+      // cities: [],
+      // workingtime: [],
       pets: [],
-      users: [],
-      treatments: [],
+      clients: [],
+      // treatments: [],
       shopgoods: [],
       // photos:['https://forevervets.com/wp-content/uploads/bb-plugin/cache/mobile-dog-panorama.jpg', 'https://gaapp.org/wp-content/uploads/2021/05/Katze_1000x500.jpg', 'https://content.alphapaw.com/wp-content/uploads/2020/12/Hot-Spots-on-Dogs-Causes-Treatment-Pre....jpg', 'https://www.hamptonvetcentre.co.uk/wp-content/uploads/sites/12/2017/12/Misc-3-1000x500.jpg', 'https://advancedpetvet.com/wp-content/uploads/bb-plugin/cache/Advanced-Care-12-3-2019-6814-edit-panorama.jpg', 'https://www.winsfordvets.co.uk/wp-content/uploads/sites/10/2017/02/Emergency-care-1000x500.jpg', 'https://meowwiki.com/images/cat-cancer-treatment-1000x500.jpg' ],
       error: "",
@@ -25,9 +25,9 @@ export default {
         case "clinics":
           state.clinics = data;
           break;
-        case "cities":
-          state.cities = data;
-          break;
+        // case "cities":
+        //   state.cities = data;
+        //   break;
         case "doctors":
           state.doctors = data;
           break;
@@ -40,15 +40,15 @@ export default {
         case "shopgoods":
           state.shopgoods = data;
           break;
-        case "treatments":
-          state.treatments = data;
+        // case "treatments":
+        //   state.treatments = data;
+        //   break;
+        case "clients":
+          state.clients = data;
           break;
-        case "users":
-          state.users = data;
-          break;
-        case "workingtime":
-          state.workingtime = data;
-          break;
+        // case "workingtime":
+        //   state.workingtime = data;
+        //   break;
       }
     },
     addInfo(state, data, type) {
@@ -56,9 +56,9 @@ export default {
         case "clinics":
           state.clinics.push(data);
           break;
-        case "cities":
-          state.cities.push(data);
-          break;
+        // case "cities":
+        //   state.cities.push(data);
+        //   break;
         case "doctors":
           state.doctors.push(data);
           break;
@@ -71,15 +71,15 @@ export default {
         case "shopgoods":
           state.shopgoods.push(data);
           break;
-        case "treatments":
-          state.treatments.push(data);
+        // case "treatments":
+        //   state.treatments.push(data);
+        //   break;
+        case "clients":
+          state.clients.push(data);
           break;
-        case "users":
-          state.users.push(data);
-          break;
-        case "workingtime":
-          state.workingtime.push(data);
-          break;
+        // case "workingtime":
+        //   state.workingtime.push(data);
+        //   break;
       }
     },
     setError(state, error) {
@@ -125,6 +125,7 @@ export default {
       const { data } = await axios.get(
         `http://localhost:${PORT}/api/${payload.type}`
       );
+      console.log("data", data);
       commit("setInfo", data, payload.type);
       return data;
     },

@@ -7,6 +7,7 @@ const Main = () => import("../layout/Main.vue");
 const LogIn = () => import("../views/Auth.vue");
 const SignUp = () => import("../views/Register.vue");
 const Clients = () => import("../client/views/MainClient");
+const Appointments = () => import("../client/views/Appointment");
 
 const MainDoc = () => import("../doctor/layout/MainDoc");
 const Primary = () => import("../doctor/views/Primary");
@@ -36,6 +37,13 @@ const router = createRouter({
         {
           path: "cl",
           component: Clients,
+          meta: {
+            auth: true,
+          },
+        },
+        {
+          path: `appointments/:id`,
+          component: Appointments,
           meta: {
             auth: true,
           },

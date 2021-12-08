@@ -56,8 +56,6 @@
         <h3>About the clinic:</h3>
         <p>{{clinic.description}}</p>
           <div class="appointmentButton"> <el-button type="danger" plain @click="()=>makeAnAppointment(clinic._id)">Make an appointment</el-button></div> 
-        
-        
         </div>
 </div>
 <h2 v-else>NO</h2>
@@ -68,14 +66,12 @@
 </template>
 <script>
 import FilterClinics from '../admin/filters/FilterClinics.vue'
-// import Modal from '../'
 import { ElMessageBox } from 'element-plus'
 
 export default {
     props:['auth'],
     components:{
       FilterClinics,
-    //   Modal
     },
     data(){
         return{
@@ -83,7 +79,7 @@ export default {
             searchedClinics:[],
             filtered:false,
             photos:['https://forevervets.com/wp-content/uploads/bb-plugin/cache/mobile-dog-panorama.jpg', 'https://gaapp.org/wp-content/uploads/2021/05/Katze_1000x500.jpg', 'https://content.alphapaw.com/wp-content/uploads/2020/12/Hot-Spots-on-Dogs-Causes-Treatment-Pre....jpg', 'https://www.hamptonvetcentre.co.uk/wp-content/uploads/sites/12/2017/12/Misc-3-1000x500.jpg', 'https://advancedpetvet.com/wp-content/uploads/bb-plugin/cache/Advanced-Care-12-3-2019-6814-edit-panorama.jpg', 'https://www.winsfordvets.co.uk/wp-content/uploads/sites/10/2017/02/Emergency-care-1000x500.jpg', 'https://meowwiki.com/images/cat-cancer-treatment-1000x500.jpg' ],
-            appointment:false,
+            
 
 
         }
@@ -106,8 +102,7 @@ export default {
                     .catch(() => { })
             }
             else{
-                this.appointment=true
-                console.log("clinic id", id)
+                this.$router.push({path:`/appointments/${id}`})
             }
 
             
