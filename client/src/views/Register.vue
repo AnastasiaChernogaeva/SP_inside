@@ -1,5 +1,8 @@
 <template>
 <div>
+    <h2 class="center">
+      Sign Up
+    </h2>
    <el-form
     ref="info"
     :model="info"

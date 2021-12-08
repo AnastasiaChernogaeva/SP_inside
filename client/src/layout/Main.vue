@@ -22,7 +22,7 @@
   </div>
   <hr>
   <router-view class="card container" v-if="!info"></router-view>
-  <mainInfo v-if="info"></mainInfo>
+  <mainInfo v-if="info" :auth="auth"></mainInfo>
 </div>  
 </template>
 

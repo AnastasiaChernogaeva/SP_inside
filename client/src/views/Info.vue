@@ -12,7 +12,8 @@
     <h1 class="center">
         Clinics
     </h1>
-    <div v-if="search&&filtered&&search&&searchedClinics.length!==0">
+    <filter-clinics :info="clinics" @filtered="(info)=>checkIt(info)"></filter-clinics>
+    <div v-if="filtered&&searchedClinics.length!==0">
     <div class="border" v-for="clinic in searchedClinics" :key="clinic._id">
         <h1>{{clinic.name}}</h1>
         <h4>{{clinic.country}}, {{clinic.city}}</h4>
@@ -35,7 +36,6 @@
         
         </div>
 </div>
-<!-- <div v-else-if="!search&&!filtered&&clinics.length!==0"> -->
 <div v-else-if="!filtered&&clinics.length!==0">
   
     <div class="border" v-for="clinic in clinics" :key="clinic._id">
@@ -67,28 +67,58 @@
 
 </template>
 <script>
+import FilterClinics from '../admin/filters/FilterClinics.vue'
+// import Modal from '../'
+import { ElMessageBox } from 'element-plus'
+
 export default {
+    props:['auth'],
+    components:{
+      FilterClinics,
+    //   Modal
+    },
     data(){
         return{
             clinics:[],
             searchedClinics:[],
-            search:false,
             filtered:false,
-            // photos:[],
             photos:['https://forevervets.com/wp-content/uploads/bb-plugin/cache/mobile-dog-panorama.jpg', 'https://gaapp.org/wp-content/uploads/2021/05/Katze_1000x500.jpg', 'https://content.alphapaw.com/wp-content/uploads/2020/12/Hot-Spots-on-Dogs-Causes-Treatment-Pre....jpg', 'https://www.hamptonvetcentre.co.uk/wp-content/uploads/sites/12/2017/12/Misc-3-1000x500.jpg', 'https://advancedpetvet.com/wp-content/uploads/bb-plugin/cache/Advanced-Care-12-3-2019-6814-edit-panorama.jpg', 'https://www.winsfordvets.co.uk/wp-content/uploads/sites/10/2017/02/Emergency-care-1000x500.jpg', 'https://meowwiki.com/images/cat-cancer-treatment-1000x500.jpg' ],
             appointment:false,
+
 
         }
     },
     methods:{
         makeAnAppointment(id){
-            this.appointment=true
-            console.log("clinic id", id)
-        }
+            if(!this.auth){
+                  ElMessageBox.confirm(
+                    'Please, register to make an appointment. Continue?',
+                    'Attention!',
+                    {
+                    confirmButtonText: 'OK',
+                    cancelButtonText: 'Cancel',
+                    type: 'warning',
+                    }
+                     )
+                    .then(() => {
+                        this.$router.push('/signup')
+                    })
+                    .catch(() => { })
+            }
+            else{
+                this.appointment=true
+                console.log("clinic id", id)
+            }
+
+            
+        },
+        checkIt(info){
+            this.filtered=info.filter!={}?true:false
+            this.searchedClinics=info.info
+        },
     },
     async beforeMount() {
         this.clinics = await this.$store.dispatch('info/getInfo', {type:'clinics'}, {root:true,})
-        // this.photos = await this.$store.info.state.photos
     },
     
 

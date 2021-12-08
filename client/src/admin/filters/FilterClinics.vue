@@ -129,7 +129,7 @@ export default {
             this.filter['doc']=this.doc         
         },
         filtered(){   
-            console.log('ff', this.filtered)   
+            // console.log('ff', this.filtered)   
             this.$emit('filtered', {filter:this.filter, info:this.filtered})
         },
     },
