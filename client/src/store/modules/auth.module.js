@@ -12,15 +12,20 @@ export default {
   state() {
     return {
       token: localStorage.getItem(TOKEN_KEY_CLIENT),
-      activeUser: localStorage.getItem("activeUser"),
+      // activeUser: localStorage.getItem("activeUser"),
+      infoId: localStorage.getItem("infoId"),
       role: localStorage.getItem("role"),
       error: "",
     };
   },
   mutations: {
-    setActiveUser(state, email) {
-      state.activeUserEmail = email;
-      localStorage.setItem("activeUser", email);
+    // setActiveUser(state, email) {
+    //   state.activeUserEmail = email;
+    //   localStorage.setItem("activeUser", email);
+    // },
+    setInfoID(state, infoId) {
+      state.infoId = infoId;
+      localStorage.setItem("infoId", infoId);
     },
     setToken(state, token) {
       state.token = token;
@@ -36,7 +41,9 @@ export default {
       state.role = null;
 
       localStorage.removeItem(TOKEN_KEY_CLIENT);
-      localStorage.removeItem("activeUser");
+      localStorage.removeItem("infoId");
+      // localStorage.removeItem("activeUser");
+
       localStorage.removeItem("role");
       router.push("/");
     },
@@ -58,8 +65,11 @@ export default {
       if (!!data.message) {
         commit("setError", data.message);
       } else if (!data.message) {
+        // console.log("a", data);
         commit("setToken", data.token);
-        commit("setActiveUser", payload.username);
+        // commit("setActiveUser", payload.username);
+        commit("setInfoID", data.id);
+
         commit("setRole", payload.role);
       }
     },

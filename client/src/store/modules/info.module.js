@@ -125,7 +125,7 @@ export default {
       const { data } = await axios.get(
         `http://localhost:${PORT}/api/${payload.type}`
       );
-      console.log("data", data);
+      // console.log("data", data);
       commit("setInfo", data, payload.type);
       return data;
     },

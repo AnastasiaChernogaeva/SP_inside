@@ -1,7 +1,7 @@
 <template>
 <div>
     <h1>
-        USER
+        <!-- USER -->
         {{client}}
         
     </h1>
@@ -11,17 +11,16 @@
 export default {
     data(){
         return{
-            clinet:{}
+            client:{}
         }
     },
     async beforeMount() {
-        let clients = await this.$store.dispatch('info/getInfo',{type:'users'})
-        console.log(clients)
-        // let clieNt = clients.find(user=>user.username === this.$store.auth.state.activeUser)
+        // let userId = await this.$store.state.auth.infoId
+        let clients = await this.$store.dispatch('info/getInfo',{type:'clients'})
+        this.client= clients.find(user=>user._id === this.$store.state.auth.infoId)
         // let clientsFull = await this.$store.dispatch('info/getInfo', {type:'clients'})
         // let inf = clientsFull.find(elem => elem,_id === clieNt.infoId)
         // console.log(inf)
-        // this.client = inf
 
     },
 }

@@ -76,7 +76,7 @@ class authController {
       }
 
       const token = generateAccessToken(user._id, user.roles);
-      return res.json({ token });
+      return res.json({ token, id: user.infoId });
     } catch (e) {
       console.log(e);
       res.json({ message: "Login error" }).status(400);
@@ -93,7 +93,7 @@ class authController {
       //   await docRole.save();
 
       const users = await User.find();
-
+      // console.log("ALo", users);
       res.json(users);
     } catch (e) {
       console.log(e);
