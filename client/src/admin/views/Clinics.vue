@@ -1,10 +1,10 @@
 <template>
 <div>
-  <el-affix :offset="880" position="top">
+  <!-- <el-affix :offset="880" position="top">
     <a href="#Top"><el-button type="primary" class="myButton"> Up</el-button></a>
-  </el-affix>
+  </el-affix> name="Top" -->
 <div class="card  container ">
-  <h1 class="center" name="Top">Clinics</h1>
+  <h1 class="center">Clinics</h1>
   <!-- <hr> -->
     <el-button type="info" class="myButton" @click="()=>{$router.push('/main_admin')}">Back</el-button>
     <el-button class="icon" :type="addNewOne?'danger':'success'" @click="addNewOne=!addNewOne" :icon="addNewOne?'el-icon-minus':'el-icon-plus'"></el-button>
@@ -76,7 +76,7 @@
    -->
 
 </div>
-
+  <el-backtop />
 
 </div>
     

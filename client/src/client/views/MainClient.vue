@@ -3,8 +3,19 @@
     <h1>
         <!-- USER -->
         {{client}}
+
         
     </h1>
+    <div class="avatar">
+      <el-avatar
+        :size="60"
+        :src="client.photo"
+      ></el-avatar>
+      <h4>{{client.name}}<br/>
+      {{client.surname}}</h4>
+
+
+    </div>
 </div>
 </template>
 <script>
@@ -25,3 +36,14 @@ export default {
     },
 }
 </script>
+<style scoped>
+
+    .avatar{
+            text-align: center;
+    }
+    /* span.el-avatar.el-avatar--large.el-avatar--circle {
+    width: 70px;
+    height: 70px;
+} */
+    
+</style>
